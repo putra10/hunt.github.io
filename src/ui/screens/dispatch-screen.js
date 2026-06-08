@@ -1,0 +1,418 @@
+import { renderTopBar } from '../components/top-bar.js';
+import { renderPublicFeed } from '../components/public-feed.js';
+import { renderStoryCard } from '../components/story-card.js';
+import { renderDecisionCards } from '../components/decision-cards.js';
+import { renderAdvisorCard } from '../components/advisor-card.js';
+import { pick } from '../ui-helpers.js';
+import { SCANDAL_SEVERITY } from '../../engine/scandal-system.js';
+
+
+function renderBetrayalEvents(betrayals) {
+  if (!betrayals || !betrayals.length) return '';
+  return betrayals.map((b, i) => {
+    const relIcon = b.relationship === 'romantic' ? '\u{1F494}' : b.relationship === 'trust' ? '\u{1F5E1}' : '⚠';
+    const relNote = b.relationship === 'romantic'
+      ? 'Someone you trusted closely has turned on you.'
+      : b.relationship === 'rivalry'
+      ? 'The rivalry has reached its breaking point.'
+      : 'An advisor has abandoned your government.';
+    return `
+    <div class="betrayal-overlay" data-betrayal-index="${i}">
+      <div class="betrayal-modal">
+        <div class="betrayal-header">
+          <span class="betrayal-icon">${relIcon}</span>
+          <span class="betrayal-label">ADVISOR BETRAYAL</span>
+        </div>
+        <div class="betrayal-name">${b.advisorName}</div>
+        <div class="betrayal-note">${relNote}</div>
+        <div class="betrayal-quote">"${b.line}"</div>
+        <button class="betrayal-dismiss" data-dismiss-betrayal="${i}">ACKNOWLEDGE</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function _contractTerms(c) {
+  const sign = c.approval_delta >= 0 ? '+' : '';
+  const apClass = c.approval_delta > 0 ? 'co-good' : c.approval_delta < 0 ? 'co-bad' : '';
+  const rarityBadge = c.rarity !== 'common' ? `<span class="co-rarity co-rarity--${c.rarity}">${c.rarity.toUpperCase()}</span>` : '';
+  const durationNote = c.duration > 1 ? ` <span class="co-dur">(${c.duration}-turn installments)</span>` : '';
+  return `
+    <div class="co-name">${c.title}${rarityBadge}</div>
+    <div class="co-desc">${c.description}</div>
+    <div class="co-terms">
+      Reward: <span class="co-good">+${c.reward_budget}M${durationNote}</span>
+      ${c.approval_delta !== 0 ? `&nbsp;&middot;&nbsp; <span class="${apClass}">${sign}${c.approval_delta}%</span>` : ''}
+      ${c.scandal_risk > 0 ? `&nbsp;&middot;&nbsp; Scandal: <span class="co-warn">${Math.round(c.scandal_risk * 100)}%</span>` : ''}
+      ${c.decline_penalty ? `&nbsp;&middot;&nbsp; <span class="co-warn">Decline: ${c.decline_penalty}%</span>` : ''}
+    </div>`;
+}
+
+function renderContractOffers(offers, activeDeals) {
+  let html = '';
+
+  // Active multi-turn deals
+  if (activeDeals?.length) {
+    html += `<div class="co-active-deals">
+      <div class="co-ad-header">ACTIVE DEALS</div>
+      ${activeDeals.map(d => `
+        <div class="co-ad-row">
+          <span class="co-ad-title">${d.title}</span>
+          <span class="co-ad-val">+${d.installmentAmount}M x ${d.turnsRemaining} left</span>
+        </div>`).join('')}
+    </div>`;
+  }
+
+  if (!offers?.length) return html;
+
+  const isCompeting = offers.length >= 2;
+
+  if (isCompeting) {
+    html += `
+    <div class="contract-card contract-card--competing">
+      <div class="co-header">
+        <span class="co-icon">\u{1F4CB}</span>
+        <span class="co-title">COMPETING OFFERS -- CHOOSE ONE</span>
+      </div>
+      ${offers.map(c => `
+        <div class="co-compete-item">
+          <div class="co-client">${c.client}</div>
+          ${_contractTerms(c)}
+          <button class="co-accept" data-accept-contract="${c.id}">ACCEPT (+${c.reward_budget}M)</button>
+        </div>`).join('<div class="co-vs">OR</div>')}
+      <button class="co-decline co-decline-all" id="btn-decline-all-contracts">DECLINE BOTH</button>
+    </div>`;
+  } else {
+    const c = offers[0];
+    html += `
+    <div class="contract-card">
+      <div class="co-header">
+        <span class="co-icon">\u{1F4CB}</span>
+        <span class="co-title">CONTRACT OFFER</span>
+        <span class="co-client">${c.client}</span>
+      </div>
+      ${_contractTerms(c)}
+      <div class="co-actions">
+        <button class="co-accept" data-accept-contract="${c.id}">ACCEPT (+${c.reward_budget}M)</button>
+        <button class="co-decline" data-decline-contract="${c.id}">DECLINE${c.decline_penalty ? ` (${c.decline_penalty}%)` : ''}</button>
+      </div>
+    </div>`;
+  }
+
+  return html;
+}
+
+function renderUnrestCard(unrest) {
+  if (!unrest) return '';
+  const META = {
+    strike: {
+      icon: '✊', label: "WORKERS' STRIKE",
+      desc: 'Organized labor has walked out. Production has halted across key sectors.',
+      actions: [
+        { id: 'meet_demands', label: 'MEET DEMANDS',      note: '-20M budget',             cls: 'uc-costly' },
+        { id: 'stand_firm',   label: 'STAND FIRM',        note: '-5% approval',            cls: 'uc-hard'   },
+      ]
+    },
+    demonstration: {
+      icon: '\u{1F4E2}', label: 'PUBLIC DEMONSTRATION',
+      desc: 'Thousands have taken to the streets. The city is watching how you respond.',
+      actions: [
+        { id: 'engage',   label: 'ENGAGE PROTESTERS', note: '-25M, +2% approval',   cls: 'uc-costly' },
+        { id: 'disperse', label: 'DISPERSE CROWD',     note: '-10% approval',        cls: 'uc-hard'   },
+      ]
+    },
+    riot: {
+      icon: '\u{1F525}', label: 'CIVIL RIOT',
+      desc: 'Riots have broken out across the city. Property destruction is spreading fast.',
+      actions: [
+        { id: 'negotiate', label: 'NEGOTIATE',  note: '-40M budget',              cls: 'uc-costly' },
+        { id: 'crackdown', label: 'CRACKDOWN',  note: '-18% approval + scandal',  cls: 'uc-danger' },
+      ]
+    },
+  };
+  const m = META[unrest.type] ?? META.demonstration;
+  const btns = m.actions.map(a =>
+    `<button class="uc-btn ${a.cls}" data-resolve-unrest="${a.id}">${a.label} <span class="uc-note">(${a.note})</span></button>`
+  ).join('');
+  return `
+    <div class="unrest-card unrest-card--${unrest.type}">
+      <div class="uc-header">
+        <span class="uc-icon">${m.icon}</span>
+        <span class="uc-title">${m.label}</span>
+      </div>
+      <div class="uc-desc">${m.desc}</div>
+      <div class="uc-actions">${btns}</div>
+    </div>`;
+}
+
+function renderBribeOffers(bribes) {
+  if (!bribes || !bribes.length) return '';
+  return bribes.map(b => `
+    <div class="bribe-card">
+      <div class="bc-header">
+        <span class="bc-icon">⚠</span>
+        <span class="bc-title">BACK-CHANNEL OFFER</span>
+      </div>
+      <div class="bc-body">
+        <strong>${b.advisorName}</strong> is offering a deal to stay loyal.
+      </div>
+      <div class="bc-terms">
+        Cost: <strong>${b.cost}M</strong> &nbsp;&middot;&nbsp;
+        Agenda <span class="bc-good">-${b.agendaReduction}%</span> &nbsp;&middot;&nbsp;
+        Trust <span class="bc-good">+${b.trustGain}%</span> &nbsp;&middot;&nbsp;
+        Scandal risk <span class="bc-warn">${Math.round(b.scandalRisk * 100)}%</span>
+      </div>
+      <div class="bc-actions">
+        <button class="bc-accept" data-accept-bribe="${b.advisorId}">PAY ${b.cost}M</button>
+        <button class="bc-decline" data-decline-bribe="${b.advisorId}">DECLINE</button>
+      </div>
+    </div>`).join('');
+}
+
+
+function renderScandalCard(scandal) {
+  const tier     = scandal.severity_tier ?? 'minor';
+  const tierDef  = SCANDAL_SEVERITY[tier] ?? SCANDAL_SEVERITY.minor;
+  const penalty  = Math.abs(tierDef.approvalPenalty);
+  const isCareer = tier === 'career_ending';
+  const label    = tierDef.label ?? 'Political Scandal';
+
+  // Tier-specific response buttons (career_ending uses respondToScandal, others use suppress/accept)
+  let actionButtons;
+  if (isCareer) {
+    actionButtons = tierDef.responses.map(r => `
+      <button class="sc-response sc-response--${r.id}" data-scandal-response="${r.id}">
+        ${r.label}${r.budgetCost ? ` (-${r.budgetCost}M)` : ''}
+      </button>`).join('');
+  } else {
+    actionButtons = `
+      <button class="sc-suppress" id="btn-suppress-scandal">SUPPRESS (${scandal.suppress_cost}M)</button>
+      <button class="sc-accept" id="btn-accept-scandal">ACCEPT (-${penalty}%)</button>`;
+  }
+
+  return `
+    <div class="scandal-card scandal-card--${tier}">
+      <div class="sc-header">
+        <span class="sc-icon">\u{1F4F0}</span>
+        <span class="sc-title">${label.toUpperCase()}</span>
+        <span class="sc-tier-badge sc-tier--${tier}">${tier.replace('_', '-').toUpperCase()}</span>
+      </div>
+      <div class="sc-name">${scandal.title ?? scandal.description ?? 'Political Scandal'}</div>
+      <div class="sc-desc">${scandal.description ?? ''}</div>
+      ${!isCareer ? `<div class="sc-terms">
+        Accept: <span class="sc-bad">-${penalty}% approval</span>
+        &nbsp;&middot;&nbsp;
+        Suppress: <span class="sc-warn">-${scandal.suppress_cost}M budget</span>
+      </div>` : ''}
+      <div class="sc-actions">${actionButtons}</div>
+    </div>`;
+}
+
+export class DispatchScreen {
+  static render(state) {
+    const city = state.city;
+    // getNextDecision() enforces one-per-turn pacing and tracks presented decisions
+    const decision = state.getNextDecision();
+
+    const approval = state.approval;
+    const angerPct = 100 - approval;
+
+    // Ticker
+    const tickerParts = [];
+    if (state.activeCrises.length) {
+      const c = city?.crises?.find(c => c.id === state.activeCrises[0]);
+      if (c) tickerParts.push(c.name);
+    }
+    const advisors = state.advisors.filter(a => !a.betrayed);
+    advisors.slice(0, 2).forEach(a => {
+      const line = pick(a.dialogue?.briefing);
+      if (line) tickerParts.push(line.slice(0, 35) + '...');
+    });
+
+    // Crisis window
+    const crisisWindowText = state.activeCrises.length
+      ? 'CRISIS ACTIVE - respond now'
+      : `Next eligible: Turn ${Math.ceil((state.turn) / 3) * 3 + 3}`;
+
+    // Story section
+    let storyHTML = renderStoryCard(state, decision);
+
+    // Pip row helper
+    const crisisNow = state.activeCrises.length > 0;
+    const pipRowHTML = Array.from({ length: 12 }, (_, i) => {
+      const n = i + 1;
+      if (n < state.turn)  return '<div class="pip d"></div>';
+      if (n === state.turn) return crisisNow ? '<div class="pip c"></div>' : '<div class="pip d"></div>';
+      return '<div class="pip"></div>';
+    }).join('');
+
+    const FEED_DURATIONS = { slow: '120s', normal: '75s', fast: '35s' };
+    const feedDuration = FEED_DURATIONS[state.settings?.feedSpeed ?? 'normal'];
+
+    return `
+      <div class="screen">
+        ${renderBetrayalEvents(state.pendingBetrayals)}
+        ${renderTopBar(state)}
+        <div class="mobile-tab-strip">
+          <button class="mob-tab mob-tab--active" data-mob-tab="dispatch">DISPATCH</button>
+          <button class="mob-tab" data-mob-tab="advisors">ADVISORS</button>
+          <button class="mob-tab" data-mob-tab="feed">FEED</button>
+        </div>
+        <div class="main-body">
+
+          <div class="sidebar">
+            <div class="sh">
+              <span class="sh-t">PUBLIC FEED</span>
+              <div class="sm">
+                <div class="sm-b"><div class="sm-f" style="width:${angerPct}%"></div></div>
+                <span class="sm-t">${angerPct}% angry</span>
+              </div>
+            </div>
+            <div class="feed-platform">${city?.city_personality?.media_outlet || 'Live Feed'}</div>
+            <div class="feed">
+              <div class="feed-scroll" style="animation-duration:${feedDuration}">${renderPublicFeed(state, decision)}</div>
+            </div>
+            ${state.budget < 0 ? '<div class="budget-warn">⚠ DEFICIT -- AUSTERITY ACTIVE</div>' : ''}
+            <div class="sf">
+              <div class="sf-l">SENTIMENT</div>
+              <div class="sf-t"><div class="sf-f" style="width:${angerPct}%"></div></div>
+              <div class="sf-p">${approval}% approval</div>
+            </div>
+          </div>
+
+          <div class="center">
+            <div class="story">
+              <div class="pip-row">${pipRowHTML}</div>
+              ${storyHTML}
+            </div>
+            <div class="dec">
+              <div class="dec-l">YOUR DECISION</div>
+              ${decision ? `
+                <div class="cards">${renderDecisionCards(decision)}</div>
+                <button class="confirm-btn" id="btn-confirm-decision" disabled>SELECT AN OPTION ABOVE</button>
+              ` : `<div class="no-dec">No decisions pending this turn.</div>`}
+              ${state.pendingScandal ? renderScandalCard(state.pendingScandal) : ''}
+              ${state.pendingUnrest  ? renderUnrestCard(state.pendingUnrest)   : ''}
+              <button class="skip-btn" id="btn-next-turn">END TURN</button>
+            </div>
+          </div>
+
+          <div class="right">
+            <div class="adv-area">
+              <div class="adv-h">ADVISORS</div>
+              ${advisors.map(a => renderAdvisorCard(a)).join('')}
+              ${renderBribeOffers(state.pendingBribes)}
+              ${renderContractOffers(state.pendingContractOffers, state.activeContractDeals)}
+            </div>
+            <div class="crisis-box">
+              <div class="cr-l">CRISIS WINDOW</div>
+              <div class="cr-t">${crisisWindowText}</div>
+            </div>
+            <div class="ticker">
+              <div class="tk-l">LIVE TICKER</div>
+              <div class="tk-t">${tickerParts.join(' - ') || 'City status nominal'}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>`;
+  }
+
+  static bind(state, container, handlers) {
+    // Mobile tab switching
+    const mainBody = container.querySelector('.main-body');
+    container.querySelectorAll('.mob-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        container.querySelectorAll('.mob-tab').forEach(t => t.classList.remove('mob-tab--active'));
+        tab.classList.add('mob-tab--active');
+        mainBody?.setAttribute('data-mob-tab', tab.dataset.mobTab);
+      });
+    });
+
+    container.querySelector('#btn-next-turn')?.addEventListener('click', () => {
+      handlers.nextTurn();
+    });
+
+    // getNextDecision() returns the same decision that was shown in render()
+    const decision = state.getNextDecision();
+
+    let selectedDecisionId = null;
+    let selectedIndex = null;
+    const confirmBtn = container.querySelector('#btn-confirm-decision');
+
+    container.querySelectorAll('.card[data-decision]').forEach(card => {
+      card.addEventListener('click', () => {
+        container.querySelectorAll('.card[data-decision]').forEach(c => c.classList.remove('sel'));
+        card.classList.add('sel');
+        selectedDecisionId = card.dataset.decision;
+        selectedIndex      = parseInt(card.dataset.index);
+        if (confirmBtn) {
+          confirmBtn.disabled = false;
+          const tag = card.querySelector('.ctag')?.textContent ?? 'OPTION';
+          confirmBtn.textContent = 'EXECUTE: ' + tag;
+        }
+      });
+    });
+
+    confirmBtn?.addEventListener('click', () => {
+      if (selectedDecisionId !== null && selectedIndex !== null) {
+        handlers.handleDecision(selectedDecisionId, selectedIndex);
+      }
+    });
+
+    container.querySelector('#btn-accept-scandal')?.addEventListener('click', () => {
+      handlers.acceptScandal?.();
+    });
+
+    container.querySelector('#btn-suppress-scandal')?.addEventListener('click', () => {
+      handlers.suppressScandal?.();
+    });
+
+    // Career-ending tier: tier-specific response buttons
+    container.querySelectorAll('[data-scandal-response]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handlers.respondToScandal?.(btn.dataset.scandalResponse);
+      });
+    });
+
+    container.querySelectorAll('[data-dismiss-betrayal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handlers.dismissBetrayal?.();
+      });
+    });
+
+    container.querySelectorAll('[data-accept-bribe]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handlers.acceptBribe?.(btn.dataset.acceptBribe);
+      });
+    });
+
+    container.querySelectorAll('[data-decline-bribe]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handlers.declineBribe?.(btn.dataset.declineBribe);
+      });
+    });
+
+    container.querySelectorAll('.acard[data-advisor]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        handlers.openMessenger(btn.dataset.advisor);
+      });
+    });
+
+    container.querySelectorAll('[data-accept-contract]').forEach(btn => {
+      btn.addEventListener('click', () => handlers.acceptContract?.(btn.dataset.acceptContract));
+    });
+
+    container.querySelectorAll('[data-decline-contract]').forEach(btn => {
+      btn.addEventListener('click', () => handlers.declineContract?.(btn.dataset.declineContract));
+    });
+
+    container.querySelector('#btn-decline-all-contracts')?.addEventListener('click', () => {
+      handlers.declineAllContracts?.();
+    });
+
+    container.querySelectorAll('[data-resolve-unrest]').forEach(btn => {
+      btn.addEventListener('click', () => handlers.resolveUnrest?.(btn.dataset.resolveUnrest));
+    });
+  }
+}

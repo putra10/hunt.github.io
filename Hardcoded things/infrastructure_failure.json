@@ -1,0 +1,578 @@
+[
+  {
+    "id": "bridge_collapse_warning",
+    "category": "infrastructure_failure",
+    "title": "The Groaning Bridge of {city.name}",
+    "trigger": "Engineers warn that the main bridge near {city.landmark} is groaning audibly and dropping bolts into the river.",
+    "description": "The bridge handles 40% of the city's freight. Closing it starves the {city.primary_industry_workers}, but keeping it open risks a mass casualty event. The {city.government_body} is currently debating the definition of imminent.",
+    "external_actors": [
+      "Structural Engineer",
+      "Freight Company CEO"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Close the bridge immediately for emergency repairs.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -300,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Traffic is a nightmare and the economy stalls, but nobody dies. The repairs take three times longer than promised.",
+          "city_reaction": "Guess I live on this side of the river now. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Keep it open but ban heavy trucks and monitor closely.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -50,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "A truck ignores the ban and falls through a small hole. The bridge survives, but the lawsuit is massive.",
+          "city_reaction": "Playing Russian roulette with my commute. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Duct tape the cracks and declare it a historic pedestrian walkway.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "Hipsters love the new walkway until a strong wind blows a section away. The freight industry collapses entirely.",
+          "city_reaction": "Very rustic, very deadly. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 8
+  },
+  {
+    "id": "power_grid_blackouts",
+    "category": "infrastructure_failure",
+    "title": "Lights Out in {city.name}",
+    "trigger": "The aging power grid fails during peak hours, plunging half of the city into darkness.",
+    "description": "The utility company blames unprecedented demand despite it being a mild Tuesday. Hospitals are running on backup generators that have not been serviced in years. {city.media_outlet} is broadcasting via candlelight.",
+    "external_actors": [
+      "Utility CEO",
+      "Hospital Administrator"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Implement strict rolling blackouts and buy expensive emergency power.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -250,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "Everyone gets power for four hours a day. It is miserable but fair. The budget is obliterated.",
+          "city_reaction": "Candle sales are through the roof. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Cut power to residential slums to keep the business district lit.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The {city.primary_industry_workers} riot in the dark. The business district looks beautiful, though.",
+          "city_reaction": "Glad the empty office buildings have AC while we sweat. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Nationalize the utility company using armed police.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -150,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The CEO is arrested. The police have no idea how to run a power plant. The grid catches fire.",
+          "city_reaction": "Seizing the means of electrocution. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 9
+  },
+  {
+    "id": "water_supply_contamination",
+    "category": "infrastructure_failure",
+    "title": "The Purple Tap Water of {city.name}",
+    "trigger": "Tap water in three districts turns a vibrant glowing shade of purple.",
+    "description": "The {city.media_outlet} reports it smells like sulfur and bubblegum. The {city.government_body} insists it is safe to drink if boiled for exactly 47 minutes. Citizens are panic-buying all available bottled water.",
+    "external_actors": [
+      "Panicked Citizen",
+      "Water Treatment Plant Manager"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Distribute emergency bottled water and flush the entire system.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The water runs clear after a week, but the city reserves are drained buying bottled water for everyone.",
+          "city_reaction": "Showering with a water bottle is a humbling experience. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Claim the purple color is a harmless added mineral supplement.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "People's teeth start turning purple. A massive class-action lawsuit is filed against the city.",
+          "city_reaction": "My dog drank it and now he glows in the dark. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Bottle the purple water and sell it as a novelty energy drink.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -50,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "It becomes a viral trend. The FDA raids city hall. The city made a small profit before the ban.",
+          "city_reaction": "Tastes like pennies and regret, but I feel energized. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 1,
+    "turn_max": 7
+  },
+  {
+    "id": "school_building_condemned",
+    "category": "infrastructure_failure",
+    "title": "Falling Ceilings in {city.name}",
+    "trigger": "The ceiling of a major public school collapses overnight, displacing 3,000 students.",
+    "description": "An inspection reveals the contractor used painted cardboard instead of drywall. Furious parents are demanding the city pay for private tutors. The {city.government_body} suggests outdoor learning.",
+    "external_actors": [
+      "Angry PTA President",
+      "Corrupt Contractor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Rent commercial office space as temporary classrooms.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -200,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The kids are learning in abandoned cubicles. It is depressing but safe. The smell of old coffee helps somehow.",
+          "city_reaction": "My 8-year-old asked for a promotion today. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Force students to share facilities with the {city.primary_industry_workers}.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "Child labor laws are technically violated as kids learn practical skills on the factory floor.",
+          "city_reaction": "Timmy failed spelling but he can operate a forklift now. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Declare the collapsed school an archaeological dig site for history class.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "Students dig through rubble for their own textbooks. Parents are not amused. Several contract tetanus.",
+          "city_reaction": "Building character by dodging falling debris. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "sewage_overflow_district",
+    "category": "infrastructure_failure",
+    "title": "The Filth Moat of {city.name}",
+    "trigger": "A blocked main causes raw sewage to geyser out of manholes in a major district.",
+    "description": "Residents are trapped in their homes by a moat of filth. Those affected are threatening to withhold all taxes until it is fixed. The {city.media_outlet} is running aerial footage of floating cars.",
+    "external_actors": [
+      "Angry District Resident",
+      "Sanitation Worker"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Divert all city sanitation crews to the affected district immediately.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -100,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The district is saved, but the rest of the city's trash piles up for weeks. The inequality is glaring.",
+          "city_reaction": "Glad some of us don't have to smell our own problems anymore. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Tell the affected residents to hire private plumbers.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "Residents refuse to pay their taxes. The situation festers for days before private crews finally arrive.",
+          "city_reaction": "Pay your own way through the sewage. Classic governance. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Pump the sewage into the {city.landmark} reservoir to contain it.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -80,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The landmark is ruined. Tourists vomit on arrival. The city becomes an international laughingstock.",
+          "city_reaction": "Well it is definitely a landmark now. A smelly one. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "airport_radar_failure",
+    "category": "infrastructure_failure",
+    "title": "Grounded in {city.name}",
+    "trigger": "The municipal airport's radar system catches fire, grounding all flights indefinitely.",
+    "description": "Thousands of angry travelers are sleeping on the floor. The replacement part is stuck in customs, which is also run by the {city.government_body}. The {city.media_outlet} is interviewing furious tourists.",
+    "external_actors": [
+      "Stranded Tourist",
+      "Customs Officer"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Expedite the customs process and pay overtime for installation.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 25,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The radar is fixed but the delay cost the city millions in lost tourism revenue.",
+          "city_reaction": "Bureaucracy so bad we have to bribe ourselves. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Use binoculars and walkie-talkies to land the planes manually.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "Several near-misses occur. The FAA threatens to shut the airport down permanently.",
+          "city_reaction": "Air traffic control by vibes. Terrifying. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Convert the grounded planes into expensive stationary airport hotels.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -50,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "Tourists actually pay for this. The airlines sue the city for unauthorized use of their aircraft.",
+          "city_reaction": "Charging rent for a middle seat. Capitalism wins again. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 10
+  },
+  {
+    "id": "sinkhole_swallows_bus",
+    "category": "infrastructure_failure",
+    "title": "The Abyss of {city.name}",
+    "trigger": "A sinkhole disguised as a pothole completely swallows a city bus near {city.landmark}.",
+    "description": "Fortunately the bus was empty, but it is currently stuck vertically in the asphalt. The {city.government_body} wants to declare it a modern art installation to save removal costs.",
+    "external_actors": [
+      "Bus Driver",
+      "Geologist"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Hire a heavy crane to remove it and fill the hole properly.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The bus is salvaged but the road remains closed for weeks while a proper investigation occurs.",
+          "city_reaction": "Only took a whole bus disappearing to fix the road. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Leave the bus and pave over the top of it.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The road has a weird bus-shaped hump in it now. Cars scrape their undercarriages daily for years.",
+          "city_reaction": "The new speed bump looks suspiciously like public transit. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Declare it a subway entrance and charge people to climb into the bus.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Tourists actually pay for this. The subway smells like diesel and existential dread.",
+          "city_reaction": "We finally got a subway system. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 7
+  },
+  {
+    "id": "traffic_light_hack",
+    "category": "infrastructure_failure",
+    "title": "Green Means Go in {city.name}",
+    "trigger": "A hacker turns all traffic lights in the city green simultaneously.",
+    "description": "The resulting gridlock is visible from space. The {city.primary_industry_workers} are losing millions by the hour as logistics grind to a halt. The {city.government_body} IT department cannot find the admin password.",
+    "external_actors": [
+      "Anonymous Hacker",
+      "Furious Truck Driver"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Pay the hacker's ransom to restore the system.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -100,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The lights work again, but the city just negotiated with a teenager who was bored on a Saturday.",
+          "city_reaction": "Defeated by a kid with a laptop. Inspiring. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Send police to manually direct traffic at every single intersection.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -200,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The police are exhausted and furious. Traffic moves at a glacial pace. Crime spikes elsewhere in the city.",
+          "city_reaction": "Cops doing useful work for once. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Turn off all traffic lights entirely and declare the city a shared space zone.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "Mad Max rules apply. Fender benders are resolved via fistfights. Insurance companies flee the city.",
+          "city_reaction": "Yield to the biggest vehicle. Those are the rules now. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 10
+  }
+]

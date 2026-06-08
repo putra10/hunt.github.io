@@ -1,0 +1,578 @@
+[
+  {
+    "id": "federal_ultimatum_funding",
+    "category": "political_pressure",
+    "title": "The Federal Leash in {city.name}",
+    "trigger": "The federal government threatens to cut all transit funding unless the city implements a wildly unpopular surveillance program.",
+    "description": "The {city.government_body} is trapped between federal extortion and local riots. The {city.media_outlet} is already calling the mayor a federal puppet. Cameras are slated to go up on every corner near {city.landmark}.",
+    "external_actors": [
+      "Federal Minister",
+      "Privacy Advocate"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Comply with the feds to keep the money flowing.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -50,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The cameras go up. Transit is funded but citizens start wearing masks everywhere to avoid facial recognition.",
+          "city_reaction": "Big Brother is watching me wait for a delayed bus. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Refuse the cameras and sue the federal government.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -200,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The city loses the transit funding immediately. Buses stop running but the mayor is hailed as a rebel hero.",
+          "city_reaction": "I am walking to work but at least I am free. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Install fake plastic cameras to trick the feds.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -30,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The feds find out within a week. The city is fined heavily and the mayor is charged with fraud.",
+          "city_reaction": "A plastic camera. Are we run by toddlers. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "no_confidence_motion",
+    "category": "political_pressure",
+    "title": "Knives Out in {city.name}",
+    "trigger": "A coalition of angry council members tables a formal no-confidence motion against the administration.",
+    "description": "They cite general incompetence and specific malice. Backroom deals are needed to survive the vote and the price of loyalty is skyrocketing. The {city.primary_industry_workers} are placing bets on the outcome.",
+    "external_actors": [
+      "Rival Politician",
+      "Undecided Council Member"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Bribe undecided members with new infrastructure projects in their districts.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -300,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The administration survives the vote but the budget is completely hijacked by pork-barrel spending.",
+          "city_reaction": "Surviving by emptying the treasury. Classic politics. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Publicly expose the corrupt secrets of the opposition leaders.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -50,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The opposition collapses in scandal but the political atmosphere becomes incredibly toxic and vindictive.",
+          "city_reaction": "They are all criminals, ours just had better dirt. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Lock the doors of the council chamber until they vote in your favor.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "It is technically kidnapping. The police have to breach the building. The mayor is briefly arrested.",
+          "city_reaction": "Taking hostages to pass a budget. We are a banana republic. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 10
+  },
+  {
+    "id": "senior_official_defects",
+    "category": "political_pressure",
+    "title": "The Rat Leaves the Ship in {city.name}",
+    "trigger": "The deputy mayor resigns on live television and joins the opposition party.",
+    "description": "They take a box of highly sensitive documents with them. The {city.media_outlet} is having a field day with leaked internal emails which reveal the {city.government_body} has no idea what it is doing.",
+    "external_actors": [
+      "The Defector",
+      "Opposition Leader"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Launch a PR campaign claiming the defector was fired for incompetence.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -80,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "Nobody really believes it but it muddies the waters enough to survive the news cycle.",
+          "city_reaction": "Sure they were incompetent, but you hired them. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Sue the defector for violating their non-disclosure agreement.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -100,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The lawsuit drags out all the dirty laundry in open court. It is a bloodbath for everyone involved.",
+          "city_reaction": "Watching them destroy each other in court is my new soap opera. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Promote the defector's intern to deputy mayor to show you do not care.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The intern accidentally deletes the city's entire zoning database on their first day. Absolute chaos ensues.",
+          "city_reaction": "The intern is running the city. We are doomed. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 6,
+    "turn_max": 11
+  },
+  {
+    "id": "international_body_rebuke",
+    "category": "political_pressure",
+    "title": "Global Shame for {city.name}",
+    "trigger": "An international human rights organization issues a scathing report on the treatment of {city.primary_industry_workers}.",
+    "description": "Foreign investors are getting jittery. The {city.government_body} drafts a response calling the report foreign interference, but the {city.media_outlet} agrees with the report's findings.",
+    "external_actors": [
+      "UN Rapporteur",
+      "Foreign Investor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Form a meaningless task force to study the report's findings.",
+        "consequences": {
+          "approval_delta": 0,
+          "budget_delta": -50,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The task force will meet once a year and do nothing. The international body moves on to another crisis.",
+          "city_reaction": "A task force. The graveyard of accountability. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Implement sweeping labor reforms to appease the international community.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -250,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The workers are thrilled but the local oligarchs threaten to pull all investments. The budget is strained.",
+          "city_reaction": "Finally we are not an international embarrassment. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Ban the international organization from entering city limits.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 15,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "Foreign investment drops to near zero. The city is treated like a rogue state by the international community.",
+          "city_reaction": "We just sanctioned the UN. Bold strategy. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "neighboring_city_conflict",
+    "category": "political_pressure",
+    "title": "The Trash War of {city.name}",
+    "trigger": "The neighboring municipality starts illegally dumping raw garbage just across the border.",
+    "description": "The smell is reaching {city.landmark}. Diplomatic talks have broken down into shouting matches over jurisdiction. The {city.government_body} is demanding action before the rats take over.",
+    "external_actors": [
+      "Neighboring Mayor",
+      "Angry Border Resident"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Pay to clean it up ourselves and build a barrier.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "We look weak but the smell goes away. The neighboring city laughs at us openly.",
+          "city_reaction": "We are literally cleaning up their mess. Pathetic. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Load the trash into dump trucks and return it to their city hall lawn.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -80,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The citizens cheer the retaliation. The neighboring mayor declares a state of emergency.",
+          "city_reaction": "Return to sender. Best day ever. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Annex the border territory using municipal police.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -200,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "A minor border skirmish occurs. The federal government intervenes to stop the municipal war.",
+          "city_reaction": "We are going to war over garbage. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "internal_party_rebellion",
+    "category": "political_pressure",
+    "title": "Mutiny in {city.name}",
+    "trigger": "A radical faction within the ruling party threatens to split and form their own coalition.",
+    "description": "They demand extreme policy shifts and control over the budget committee. If they leave the government collapses. The {city.media_outlet} is running polls on who will backstab whom first.",
+    "external_actors": [
+      "Faction Leader",
+      "Party Whip"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Give them control of the budget committee to keep the peace.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -100,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The government survives but the radicals immediately defund all moderate programs.",
+          "city_reaction": "Surrendered the keys to the treasury to the crazy wing. Great. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Expel the faction leaders from the party entirely.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -30,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The government loses its majority and has to rule as a weak minority. Every vote is a bloodbath.",
+          "city_reaction": "Finally grew a spine even if it means nothing gets done. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Resign from the party and govern as a fully independent executive.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The entire council unites against the mayor. Impeachment proceedings begin immediately.",
+          "city_reaction": "Going full rogue. Let us see how this plays out. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 7,
+    "turn_max": 11
+  },
+  {
+    "id": "snap_election_threat",
+    "category": "political_pressure",
+    "title": "The Clock is Ticking in {city.name}",
+    "trigger": "The opposition gathers enough signatures to force a recall election.",
+    "description": "The {city.government_body} has 30 days to prove they are not completely useless or they will all be out of a job. The {city.media_outlet} is already running attack ads paid for by anonymous donors.",
+    "external_actors": [
+      "Opposition Candidate",
+      "Angry Voter"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Launch a massive PR campaign highlighting minor successes.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -250,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The PR blitz works just enough to survive the recall by a razor-thin margin. The city is broke.",
+          "city_reaction": "They spent our tax money to tell us they did a good job. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Challenge the opposition candidate to a live unscripted debate.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The debate is a screaming match. The mayor throws a glass of water. It is somehow a toss-up.",
+          "city_reaction": "Jerry Springer style politics. I am voting for the water glass. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Invalidate the signatures on a technicality and cancel the election.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -50,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "Riots erupt instantly. City hall is surrounded by angry mobs demanding democracy.",
+          "city_reaction": "Canceling elections. We live in a dictatorship now. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 8,
+    "turn_max": 11
+  },
+  {
+    "id": "military_overreach",
+    "category": "political_pressure",
+    "title": "Tanks in the Streets of {city.name}",
+    "trigger": "The local military garrison decides to help with traffic enforcement using armored personnel carriers.",
+    "description": "Citizens are terrified. The general claims he is just restoring order but it looks a lot like a soft coup. The {city.government_body} is afraid to tell them to leave.",
+    "external_actors": [
+      "Rogue General",
+      "Terrified Commuter"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Politely request the federal government to recall the general.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -30,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The feds take weeks to respond. In the meantime tanks are issuing parking tickets near {city.landmark}.",
+          "city_reaction": "Got pulled over by a tank today. Did not argue. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Order the municipal police to formally arrest the military personnel.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -100,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "A tense armed standoff occurs. The military eventually backs down but relations are permanently destroyed.",
+          "city_reaction": "Cops vs Army. Buy popcorn. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Appoint the general as the new head of the transport department.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "Traffic is solved through sheer terror. Jaywalkers are treated as enemy combatants.",
+          "city_reaction": "No traffic jams when everyone is too scared to drive. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 10
+  }
+]

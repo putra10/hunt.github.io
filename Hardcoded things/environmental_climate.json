@@ -1,0 +1,578 @@
+[
+  {
+    "id": "extreme_heatwave",
+    "category": "environmental_climate",
+    "title": "Melting Asphalt in {city.name}",
+    "trigger": "Temperatures hit record highs and the morgues are running out of space.",
+    "description": "The asphalt is literally melting near {city.landmark}. The {city.government_body} advises citizens to think cool thoughts as air conditioning units overload the grid.",
+    "external_actors": [
+      "Hospital Director",
+      "Grid Operator"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Open public cooling centers and distribute free ice.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -150,
+          "scandal_risk": 5,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Lives are saved but the budget melts faster than the ice. The cooling centers smell terrible.",
+          "city_reaction": "Sitting in a gymnasium with 500 sweaty strangers to survive. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Mandate a city-wide siesta with all businesses closed during peak heat hours.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -80,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The economy tanks but heatstroke cases drop. The {city.primary_industry_workers} lose a week of wages.",
+          "city_reaction": "Forced naps are cool until you cannot pay rent. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Spray the streets with liquid nitrogen to cool them down.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -300,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The rapid cooling shatters the asphalt completely. Three stray dogs are accidentally frozen solid.",
+          "city_reaction": "From an oven to a freezer burn. Great job. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 8
+  },
+  {
+    "id": "industrial_pollution_river",
+    "category": "environmental_climate",
+    "title": "The Toxic Tide of {city.name}",
+    "trigger": "A chemical plant leak turns the main river into a toxic bubbling sludge.",
+    "description": "Dead fish are piling up on the banks near {city.landmark}. The {city.media_outlet} discovers the plant's environmental inspector is legally blind and also the mayor's cousin.",
+    "external_actors": [
+      "Environmental Activist",
+      "Chemical Plant Owner"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Fine the company heavily and hire a professional cleanup crew.",
+        "consequences": {
+          "approval_delta": 8,
+          "budget_delta": -100,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The fine barely covers the cleanup but the river stops bubbling. The company threatens to relocate jobs.",
+          "city_reaction": "Fined them pocket change for poisoning our water. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Shut down the plant permanently.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -200,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The environment heals but thousands of {city.primary_industry_workers} lose their jobs instantly.",
+          "city_reaction": "River is clean but my wallet is empty. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Rebrand the toxic river as a hot springs spa experience.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -50,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "Tourists get chemical burns. The city is sued into oblivion by international health organizations.",
+          "city_reaction": "My skin is peeling off but it is exfoliating. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 9
+  },
+  {
+    "id": "coastal_erosion_threat",
+    "category": "environmental_climate",
+    "title": "Slipping Away in {city.name}",
+    "trigger": "A severe storm washes away a chunk of the coastline leaving infrastructure teetering over the edge.",
+    "description": "Wealthy property owners demand a taxpayer-funded seawall immediately, while inland residents demand the money be spent on basic drainage. The {city.government_body} is paralyzed by the competing lobbying.",
+    "external_actors": [
+      "Coastal Property Owner",
+      "Inland Resident"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Build the seawall to protect coastal property, angering the inlanders.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -300,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The coastline is saved. The inland districts flood during the next rain. The inequality is staggering.",
+          "city_reaction": "Glad my taxes saved a hotel I cannot afford to look at. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Let the coastline erode and invest in inland drainage instead.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -150,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "Coastal properties collapse spectacularly. Inland flooding stops. The city loses major coastal tax revenue.",
+          "city_reaction": "Watching a billionaire's hotel sink was the best TV all year. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Try to physically push the eroding structures inland with bulldozers.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -120,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The structural integrity fails immediately. Everything crumbles into expensive rubble.",
+          "city_reaction": "Did they think it was made of Lego. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 10
+  },
+  {
+    "id": "drought_reservoir_low",
+    "category": "environmental_climate",
+    "title": "Dust and Bones in {city.name}",
+    "trigger": "The city's main reservoir drops to 20% capacity, revealing a sunken village and several rusted cars.",
+    "description": "Water rationing is imminent. The {city.primary_industry_workers} demand priority access while golf courses continue watering their greens at midnight. The {city.media_outlet} publishes photos of the mayor's lush private lawn.",
+    "external_actors": [
+      "Angry Farmer",
+      "Golf Course Manager"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Implement strict residential water rationing and fine violators.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -50,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "Citizens are showering once a week. The golf courses quietly pay the fines and keep watering anyway.",
+          "city_reaction": "I smell terrible but the 18th hole looks great. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Cut off water to all luxury and recreational facilities.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -80,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The golf courses turn brown. The elites are furious and launch a smear campaign against the administration.",
+          "city_reaction": "Finally the rich have to suffer with us. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Hire a rainmaker shaman for a massive public ceremony.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -150,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The shaman dances for three days. It does not rain. The city is audited for the fraudulent expense.",
+          "city_reaction": "We paid a guy to dance at the clouds. We are doomed. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 6,
+    "turn_max": 11
+  },
+  {
+    "id": "flash_flooding_downtown",
+    "category": "environmental_climate",
+    "title": "The Rivers of {city.name}",
+    "trigger": "An hour of heavy rain overwhelms the clogged storm drains turning downtown into a river.",
+    "description": "Commuters are paddling to work in inflatable kayaks. The {city.government_body} blames unforeseen weather despite it raining every year at this time. Trash from near {city.landmark} is floating past the banks.",
+    "external_actors": [
+      "Stranded Commuter",
+      "Insurance Adjuster"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Deploy emergency pumps and pay massive overtime for cleanup.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -200,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The water recedes, leaving a thick layer of mud and a massive bill for the city.",
+          "city_reaction": "Smells like sewage but at least I can walk again. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Blame the citizens for clogging the drains with litter and refuse to pump.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The water stagnates for days breeding mosquitoes. The mayor's approval rating sinks faster than the cars.",
+          "city_reaction": "Gaslighting us while we drown. Classic. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Stock the flooded streets with fish and declare it a new fishing district.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -60,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "People actually start fishing from office windows. The health department has a collective breakdown.",
+          "city_reaction": "Caught a catfish in the bank lobby. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 1,
+    "turn_max": 6
+  },
+  {
+    "id": "toxic_smog_emergency",
+    "category": "environmental_climate",
+    "title": "The Yellow Fog of {city.name}",
+    "trigger": "A thick yellow smog descends on the city reducing visibility to near zero.",
+    "description": "Hospitals are flooded with asthma cases. The mayor is caught on camera boarding a private jet to a mountain resort for their health. The {city.media_outlet} is advising people to breathe through wet socks.",
+    "external_actors": [
+      "Pulmonologist",
+      "Factory Owner"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Distribute masks and mandate a temporary factory shutdown.",
+        "consequences": {
+          "approval_delta": 8,
+          "budget_delta": -150,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The smog clears after a few days. The factory owners sue the city for lost revenue.",
+          "city_reaction": "I can see the sun again. It is a miracle. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Ban all cars from the city center indefinitely.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -80,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The air clears but the {city.primary_industry_workers} riot because they cannot get to work. Commutes double.",
+          "city_reaction": "Air is clean but I have to walk 10 miles to work. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Install giant industrial fans on {city.landmark} to blow the smog away.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -250,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The fans just blow the smog into the wealthy suburbs. The rich are furious. The poor find it hilarious.",
+          "city_reaction": "Sharing the air quality crisis with the billionaires. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "wildfire_smoke_choke",
+    "category": "environmental_climate",
+    "title": "Ash Snow in {city.name}",
+    "trigger": "Smoke from nearby unregulated agricultural fires chokes the entire city.",
+    "description": "Ash is falling like snow. The {city.media_outlet} reports that several council members own the farms responsible for the fires. The {city.government_body} calls it a natural seasonal event.",
+    "external_actors": [
+      "Angry Parent",
+      "Farm Owner with Political Connections"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Send city fire trucks to put out the agricultural fires.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -100,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The fires are put out but the city is left defenseless when a real building catches fire downtown.",
+          "city_reaction": "Glad the farms are safe while my apartment burns. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Publicly fine the council members who own the farms.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -50,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The council members retaliate by blocking the mayor's entire legislative agenda. Political gridlock ensues.",
+          "city_reaction": "Finally holding them accountable even if nothing gets done now. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Tell citizens to collect the ash and sell it as premium artisan fertilizer.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The ash is toxic. Hospitals fill with people who touched it. The city is sued internationally.",
+          "city_reaction": "The mayor's side hustle is poisoning us. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "landslide_hillside_settlement",
+    "category": "environmental_climate",
+    "title": "The Mountain Moves in {city.name}",
+    "trigger": "Days of rain cause a massive landslide in a densely populated hillside settlement.",
+    "description": "Hundreds are displaced. The {city.government_body} had ignored warnings for years, claiming the settlement was technically outside city limits. The {city.media_outlet} is broadcasting the devastation around the clock.",
+    "external_actors": [
+      "Displaced Resident",
+      "Geological Surveyor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Set up emergency shelters and formally accept responsibility.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -250,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The city avoids a riot but the financial cost is staggering. The mayor's career is permanently stained.",
+          "city_reaction": "A little late for apologies but we need the tents. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Blame the residents for building illegal structures and refuse all aid.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "International human rights groups condemn the city. The displaced residents march on city hall.",
+          "city_reaction": "Heartless. We are coming for them. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Declare the landslide a natural terracing project and announce future parks.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The sheer audacity leaves the public speechless. The PR team resigns en masse.",
+          "city_reaction": "They called our destroyed homes a park. Unbelievable. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 6,
+    "turn_max": 11
+  }
+]

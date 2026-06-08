@@ -1,0 +1,578 @@
+[
+  {
+    "id": "internal_memos_leaked",
+    "category": "media_scandal",
+    "title": "The Tax Livestock Memos in {city.name}",
+    "trigger": "A whistleblower leaks a cache of memos where officials mock the {city.primary_industry_workers}.",
+    "description": "One memo refers to the public as tax livestock. The {city.media_outlet} publishes them all on the front page. The {city.government_body} is scrambling to claim it was an inside joke.",
+    "external_actors": [
+      "Whistleblower",
+      "Outraged Worker"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Fire the officials who wrote the memos and issue a groveling apology.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -80,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The scapegoats are fired with generous severance packages. The public is slightly appeased for now.",
+          "city_reaction": "Give us our taxes back. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Sue the {city.media_outlet} for publishing stolen documents.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -100,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The lawsuit creates a Streisand effect. Everyone in the country has now read the memos.",
+          "city_reaction": "Suing the messenger because you are terrible people. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Double down and claim tax livestock is a legitimate academic economic term.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The mayor attempts to explain macroeconomics on live TV and gets pelted with eggs outside city hall.",
+          "city_reaction": "They really think we are entirely stupid. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "official_caught_camera",
+    "category": "media_scandal",
+    "title": "Bathroom Bribes in {city.name}",
+    "trigger": "A senior official is caught on a hot mic accepting a bribe in a public restroom.",
+    "description": "The audio is crystal clear including the sound of a flushing toilet. The {city.government_body} claims it was an undercover sting operation, but nobody is buying it.",
+    "external_actors": [
+      "Corrupt Official",
+      "Bribe Payer"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Force the official to resign and hand the recording to the police.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -30,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The official goes to jail. The administration looks slightly cleaner, for now.",
+          "city_reaction": "Flushed their career down the toilet. Literally. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Stick to the sting operation story and quietly promote the official.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The sheer brazenness stuns the press. The official is promoted but universally despised.",
+          "city_reaction": "Promoted for taking a bribe. I need a job in government. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Release audio of all officials in embarrassing situations to prove it is normal.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The privacy violation is historic. Multiple officials resign in disgust. The city is an international laughingstock.",
+          "city_reaction": "I did not need to hear the mayor's bathroom habits. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 9
+  },
+  {
+    "id": "parody_account_trusted",
+    "category": "media_scandal",
+    "title": "The Fake Mayor of {city.name}",
+    "trigger": "A satirical social media account mocking the city administration becomes the most trusted news source.",
+    "description": "Citizens are following the parody account's fake emergency advice instead of official channels. The real mayor is furious because the parody account is actually getting potholes fixed by shaming contractors publicly.",
+    "external_actors": [
+      "Anonymous Satirist",
+      "Confused Citizen"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Hire the person running the parody account as the new communications director.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -80,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The satirist sells out. The account becomes boring official propaganda. The public mourns.",
+          "city_reaction": "They bought out the only honest voice in the city. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Use police cyber-units to unmask and arrest the satirist.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -80,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The satirist is revealed to be a 16-year-old. The arrest sparks massive protests citywide.",
+          "city_reaction": "Arresting teenagers for making memes. Real tough guys. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Start an official parody account of the parody account.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The mayor spends all day posting terrible memes. The city's governance grinds to a complete halt.",
+          "city_reaction": "The mayor is posting cringe on main again. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 10
+  },
+  {
+    "id": "citizen_data_breach",
+    "category": "media_scandal",
+    "title": "Admin123 in {city.name}",
+    "trigger": "The municipal tax database is hacked and the personal data of millions is held for ransom.",
+    "description": "The hackers demand payment in cryptocurrency. The IT department admits the main server password was admin123. The {city.media_outlet} is publishing guides on how to freeze your credit.",
+    "external_actors": [
+      "Anonymous Hacker Group",
+      "Incompetent IT Director"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Pay the ransom quietly using available emergency funds.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -300,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The data is returned but the city is broke. The hackers leave a five-star review of the city's customer service.",
+          "city_reaction": "Glad my identity is safe but my taxes just paid a ransom. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Refuse to pay and tell citizens to monitor their accounts.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Everyone's identity is stolen. The {city.primary_industry_workers} find out their assets have been compromised.",
+          "city_reaction": "Thanks for nothing. I am now legally named someone else. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Attempt to hack the hackers back using municipal IT infrastructure.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The city accidentally launches a cyberattack on a random hospital in another country. Interpol gets involved.",
+          "city_reaction": "We started a cyber war because of a bad password. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 11
+  },
+  {
+    "id": "live_broadcast_gaffe",
+    "category": "media_scandal",
+    "title": "Open Mic Night in {city.name}",
+    "trigger": "During a live broadcast the mayor accidentally admits to a crime while trying to sound tough.",
+    "description": "The clip goes viral globally. The {city.media_outlet} plays it on a loop. Legal teams are scrambling to redefine the word embezzlement as aggressive reallocation.",
+    "external_actors": [
+      "Broadcast Host",
+      "Viral Clip Distributor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Claim the mayor was quoting a movie villain to make a rhetorical point.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -80,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Nobody believes it but the legal loophole keeps the mayor out of handcuffs for now.",
+          "city_reaction": "Ah yes, my favorite movie quote. I stole the pension fund. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Own it publicly and claim the crime was necessary to save the city.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The sheer audacity wins over some voters but the federal prosecutors open a formal investigation.",
+          "city_reaction": "He is a crook but he is OUR crook. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Flee the city immediately during the commercial break.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -100,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The mayor is caught at the airport wearing a terrible disguise. The city is functionally leaderless.",
+          "city_reaction": "Running away in a fake mustache. Unbelievable. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 7
+  },
+  {
+    "id": "advisor_history_exposed",
+    "category": "media_scandal",
+    "title": "The Ponzi Planner of {city.name}",
+    "trigger": "Investigative journalists discover the city's top financial advisor was previously convicted of running a Ponzi scheme.",
+    "description": "The advisor claims they have learned from their mistakes and are now using those skills for the public good. The {city.government_body} refuses to fire them because they are too good at hiding money.",
+    "external_actors": [
+      "Investigative Journalist",
+      "Defrauded Investor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Quietly force the advisor to resign with a clean reference letter.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -80,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The advisor leaves taking a chunk of the slush fund with them. The press moves on within days.",
+          "city_reaction": "Letting the fox guard the henhouse then paying him to leave. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Keep the advisor and publicly praise their creative accounting expertise.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 15,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The city's credit rating is downgraded to highly suspicious. The budget magically balances though.",
+          "city_reaction": "Our budget is literally a pyramid scheme now. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Put the advisor in charge of the municipal police pension fund.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -50,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The police go on strike immediately. The advisor flees to a non-extradition country within 48 hours.",
+          "city_reaction": "We just gave the thief the biggest vault. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "foreign_press_investigation",
+    "category": "media_scandal",
+    "title": "Global Spotlight on {city.name}",
+    "trigger": "A prestigious foreign newspaper publishes a massive exposé on corruption in the city.",
+    "description": "Local media usually cooperates with the administration, but the foreign press does not care about the mayor's threats. International embarrassment is total. The article features a damning photo of {city.landmark} surrounded by decay.",
+    "external_actors": [
+      "Foreign Correspondent",
+      "Embarrassed Diplomat"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Hire an expensive international PR firm to rehabilitate the city's image.",
+        "consequences": {
+          "approval_delta": 0,
+          "budget_delta": -200,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The PR firm buys ads in foreign magazines. It costs a fortune and changes nothing on the ground.",
+          "city_reaction": "Spending our money to lie to foreigners. Great. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Accuse the foreign newspaper of being a foreign intelligence front.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -30,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "Nationalists rally behind the mayor. The international community is deeply concerned about the paranoia.",
+          "city_reaction": "Everything bad is a foreign conspiracy. Sure. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Ban all foreign journalists from entering the city limits.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The city becomes an international pariah. Tourism drops to near zero overnight.",
+          "city_reaction": "We are basically a hermit kingdom now. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 7,
+    "turn_max": 11
+  },
+  {
+    "id": "social_media_disinformation",
+    "category": "media_scandal",
+    "title": "The Tin Foil Hats of {city.name}",
+    "trigger": "A coordinated bot network spreads a rumor that the city's tap water contains mind-control microchips.",
+    "description": "Thousands of citizens are buying up all the bottled water and wearing tin foil hats to {city.government_body} meetings. Every attempt to debunk it only makes them look more guilty.",
+    "external_actors": [
+      "Conspiracy Theorist Influencer",
+      "Bot Network Operator"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Drink the tap water on live television to prove it is safe.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -30,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The mayor gags slightly because the water tastes terrible anyway, fueling two days of new conspiracy theories.",
+          "city_reaction": "He blinked twice. The chips are controlling him. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Temporarily shut down the city's main social media infrastructure.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -150,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The rumors stop but the economy loses millions. People are forced to talk to each other outside.",
+          "city_reaction": "Turned off the internet because of a meme. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Lean into it and claim the microchips are actually free 5G connectivity upgrades.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -30,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "People start drinking gallons of water hoping for better cell reception. The hospital is full of water intoxication cases.",
+          "city_reaction": "My signal is great but my kidneys hurt. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  }
+]

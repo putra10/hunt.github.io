@@ -1,0 +1,40 @@
+/* Auto-scrolling feed */
+@keyframes scrollFeed {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* Escalation pulse */
+@keyframes pulseEsc {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* Screen transitions */
+.screen-enter {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card hover lift */
+.decision-card {
+  transition: transform 0.1s, border-color 0.15s, background 0.15s;
+}
+
+.decision-card:hover {
+  transform: translateY(-1px);
+}
+
+/* Pulse for critical elements */
+.pulse-red {
+  animation: pulseRed 2s ease-in-out infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

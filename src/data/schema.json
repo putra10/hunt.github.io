@@ -1,0 +1,221 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GovernedCityData",
+  "description": "JSON Schema for validation of city data files in Governed",
+  "type": "object",
+  "properties": {
+    "city_id": {
+      "type": "string",
+      "description": "Unique identifier of the city (e.g., 'jakarta')"
+    },
+    "city_name": {
+      "type": "string",
+      "description": "Display name of the city (e.g., 'Jakarta')"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard", "extreme", "war"],
+      "description": "Difficulty tier of the city"
+    },
+    "problem_clusters": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "High-level problems tags (e.g., ['governance', 'climate'])"
+    },
+    "city_personality": {
+      "type": "object",
+      "properties": {
+        "voice": { "type": "string" },
+        "humor_style": { "type": "string" },
+        "media_outlet": { "type": "string" },
+        "government_body": { "type": "string" },
+        "landmark": { "type": "string" },
+        "primary_industry_workers": { "type": "string" },
+        "slang_reaction": { "type": "string" }
+      },
+      "required": ["voice", "humor_style", "media_outlet", "government_body", "landmark", "primary_industry_workers", "slang_reaction"]
+    },
+    "opening_sequence": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "intro": { "type": "string" },
+        "starting_stats": {
+          "type": "object",
+          "properties": {
+            "approval_rating": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "budget": { "type": "integer" },
+            "advisor_trust_levels": {
+              "type": "object",
+              "additionalProperties": { "type": "integer", "minimum": 0, "maximum": 100 }
+            }
+          },
+          "required": ["approval_rating", "budget", "advisor_trust_levels"]
+        }
+      },
+      "required": ["title", "intro", "starting_stats"]
+    },
+    "advisors": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "domain": { "type": "string" },
+          "archetype": { "type": "string" },
+          "hidden_agenda": { "type": "string" },
+          "betrayal_trigger": { "type": "string" },
+          "competence_rating": { "type": "integer", "minimum": 1, "maximum": 10 },
+          "relationship_meter": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "dialogue": {
+            "type": "object",
+            "properties": {
+              "briefing": { "type": "array", "items": { "type": "string" } },
+              "agreement": { "type": "array", "items": { "type": "string" } },
+              "disagreement": { "type": "array", "items": { "type": "string" } },
+              "betrayal": { "type": "string" },
+              "roast": { "type": "array", "items": { "type": "string" } },
+              "scandal_reaction": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["briefing", "agreement", "disagreement", "betrayal", "roast", "scandal_reaction"]
+          }
+        },
+        "required": ["id", "name", "domain", "archetype", "hidden_agenda", "betrayal_trigger", "competence_rating", "relationship_meter", "dialogue"]
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "body": { "type": "string" },
+          "description": { "type": "string" },
+          "turn_available": { "type": "integer", "minimum": 1 },
+          "unlock_flag": { "type": ["string", "null"] },
+          "options": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "description": { "type": "string" },
+                "tag": { "type": "string" },
+                "consequences": {
+                  "type": "object",
+                  "properties": {
+                    "approval_delta": { "type": "integer" },
+                    "budget_delta": { "type": "integer" },
+                    "scandal_risk": { "type": "integer", "minimum": 0, "maximum": 100 },
+                    "public_reaction": { "type": "string" },
+                    "advisor_effects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "advisor_id": { "type": "string" },
+                          "trust_delta": { "type": "integer" },
+                          "betrayal_risk_delta": { "type": "integer" }
+                        },
+                        "required": ["advisor_id", "trust_delta"]
+                      }
+                    }
+                  },
+                  "required": ["approval_delta", "budget_delta"]
+                }
+              },
+              "required": ["label", "consequences"]
+            }
+          }
+        },
+        "required": ["id", "title", "options"]
+      }
+    },
+    "crises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "trigger": { "type": "string" },
+          "description": { "type": "string" },
+          "turn_min": { "type": "integer", "minimum": 1 },
+          "turn_max": { "type": "integer", "minimum": 12 },
+          "war_mode": { "type": "boolean" },
+          "options": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "label": { "type": "string" },
+                "description": { "type": "string" },
+                "tag": { "type": "string" },
+                "consequences": {
+                  "type": "object",
+                  "properties": {
+                    "approval_delta": { "type": "integer" },
+                    "budget_delta": { "type": "integer" },
+                    "scandal_risk": { "type": "integer", "minimum": 0, "maximum": 100 },
+                    "advisor_effects": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "advisor_id": { "type": "string" },
+                          "trust_delta": { "type": "integer" },
+                          "betrayal_risk_delta": { "type": "integer" }
+                        },
+                        "required": ["advisor_id", "trust_delta"]
+                      }
+                    }
+                  },
+                  "required": ["approval_delta", "budget_delta"]
+                }
+              },
+              "required": ["id", "label", "consequences"]
+            }
+          }
+        },
+        "required": ["id", "name", "trigger", "description", "options"]
+      }
+    },
+    "scandals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "severity": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "approval_penalty": { "type": "integer" }
+        },
+        "required": ["id", "title", "description", "approval_penalty"]
+      }
+    },
+    "comment_library": {
+      "type": "object",
+      "properties": {
+        "positive": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "neutral": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "negative": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "crisis": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+        "scandal": { "type": "array", "minItems": 2, "items": { "type": "string" } }
+      },
+      "required": ["positive", "neutral", "negative", "crisis", "scandal"]
+    }
+  },
+  "required": [
+    "city_id", "city_name", "tier", "problem_clusters", "city_personality",
+    "opening_sequence", "advisors", "decisions", "crises", "scandals", "comment_library"
+  ]
+}

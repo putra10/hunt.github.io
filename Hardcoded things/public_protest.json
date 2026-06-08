@@ -1,0 +1,578 @@
+[
+  {
+    "id": "industry_worker_strike",
+    "category": "public_protest",
+    "title": "The Arteries Clog in {city.name}",
+    "trigger": "The {city.primary_industry_workers} union calls a wildcat strike, barricading the main arterial road.",
+    "description": "Thousands of workers are demanding better pay and hazard gear. They have parked heavy machinery across the highway near {city.landmark}. The {city.media_outlet} is running live feeds of commuters crying in their cars.",
+    "external_actors": [
+      "Union Leader",
+      "Chamber of Commerce"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Concede to minor demands and offer a one-time hazard bonus.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -200,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The barricades are lifted, but the city's budget takes a hit. The union promises to return next year.",
+          "city_reaction": "Traffic is moving again, but my wallet hurts. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Send in riot police to clear the machinery.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -80,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Tear gas fills the streets. The machinery is removed, but several police cruisers are flipped.",
+          "city_reaction": "Nothing says good morning like the smell of tear gas. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Join the strike personally and blame the federal government for conditions.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -30,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The mayor is seen holding a picket sign. The federal government cuts all infrastructure grants in retaliation.",
+          "city_reaction": "Our mayor is protesting against their own city. Wild. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 8
+  },
+  {
+    "id": "student_plaza_occupation",
+    "category": "public_protest",
+    "title": "Youth Rebellion in {city.name}",
+    "trigger": "University students set up a massive tent city in the plaza outside the {city.government_body}.",
+    "description": "They are protesting a new municipal tax on cheap food and internet cafes. They have brought acoustic guitars, a very loud megaphone, and an endless supply of self-righteousness.",
+    "external_actors": [
+      "Student Coalition Leader",
+      "Angry Office Worker"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Repeal the new tax and wait for them to go back to class.",
+        "consequences": {
+          "approval_delta": 8,
+          "budget_delta": -80,
+          "scandal_risk": 5,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The students declare victory and leave a massive pile of trash in the plaza. The budget gap remains.",
+          "city_reaction": "At least I can afford lunch again. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Turn off the plaza's free Wi-Fi and public restrooms.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -20,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The students leave within 48 hours, but human waste is found in the decorative fountains.",
+          "city_reaction": "Biological warfare against teenagers. Classy. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Blast classical music at maximum volume 24 hours a day to drown them out.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The students start raving to Mozart. The surrounding office workers sue the city for hearing loss.",
+          "city_reaction": "I haven't slept in three days because of Beethoven. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 9
+  },
+  {
+    "id": "friday_sermon_politics",
+    "category": "public_protest",
+    "title": "Divine Discontent in {city.name}",
+    "trigger": "A prominent religious leader uses the Friday sermon to declare the city administration spiritually bankrupt.",
+    "description": "Thousands of worshippers pour into the streets demanding the mayor's resignation. The {city.media_outlet} amplifies the sermon, causing panic among secular investors who fear a theocratic shift.",
+    "external_actors": [
+      "Charismatic Cleric",
+      "Secular Business Leader"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Publicly apologize and donate city funds to the cleric's favored charity.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The protests stop, but the secular base feels betrayed. The cleric effectively has veto power now.",
+          "city_reaction": "Guess we know who really runs this town now. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Audit the cleric's tax-exempt properties.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -50,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The cleric is found to own three luxury yachts. The protests turn into violent clashes between supporters and detractors.",
+          "city_reaction": "Holy war over a tax bill. Typical. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Start a rival state-sponsored religious sect.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -300,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "Nobody joins the state religion, but the marketing budget bankrupts the city. The cleric calls for a holy strike.",
+          "city_reaction": "The mayor's new cult has terrible branding. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 10
+  },
+  {
+    "id": "disabled_rights_blockade",
+    "category": "public_protest",
+    "title": "Access Denied in {city.name}",
+    "trigger": "Wheelchair users chain themselves to the inaccessible stairs of the main transit hub.",
+    "description": "The protest highlights that millions were spent on transit upgrades but elevators were value-engineered out of the final design. Commuters are sympathetic but annoyed they cannot get to work.",
+    "external_actors": [
+      "Disability Rights Activist",
+      "Transit Authority Head"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Promise to build the elevators and sign a binding timeline.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -250,
+          "scandal_risk": 5,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The elevators are built but break down weekly. The budget deficit grows. At least nobody died.",
+          "city_reaction": "Finally some accessibility, even if it smells like regret. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Arrest the protesters for blocking critical infrastructure.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Images of police carrying away wheelchairs go globally viral. The PR disaster is absolute and immediate.",
+          "city_reaction": "Arresting people in wheelchairs. We have hit rock bottom. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Install a giant terrifyingly steep wooden ramp overnight.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The ramp violates every safety code. Several people slide down it out of control on the first day.",
+          "city_reaction": "It is not accessibility, it is an extreme sport. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 7
+  },
+  {
+    "id": "market_vendor_eviction",
+    "category": "public_protest",
+    "title": "The Battle of the Bazaar in {city.name}",
+    "trigger": "Riot police attempt to clear an informal market near {city.landmark} to make way for a luxury mall.",
+    "description": "The vendors fight back by throwing rotting fruit and building makeshift barricades out of vegetable crates. The {city.primary_industry_workers} threaten a sympathy strike if the development continues.",
+    "external_actors": [
+      "Market Vendor Spokesperson",
+      "Luxury Mall Developer"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Halt the eviction and relocate the mall to another site.",
+        "consequences": {
+          "approval_delta": 8,
+          "budget_delta": -100,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The developer sues the city for breach of contract. The market stays, smelling strongly of overripe papaya.",
+          "city_reaction": "Victory for the little guy, defeat for the city budget. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Push through with the eviction using water cannons.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The market is cleared but the footage is brutal. The mall is built but locals boycott it permanently.",
+          "city_reaction": "Enjoy your empty store built on crushed tomatoes. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Incorporate the street market inside the luxury mall.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -200,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "High-end boutiques are now next to live poultry stalls. The wealthy shoppers flee in terror.",
+          "city_reaction": "Buying a watch while dodging a loose chicken. Incredible. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "migrant_worker_protest",
+    "category": "public_protest",
+    "title": "Shadows in the Streets of {city.name}",
+    "trigger": "Undocumented workers march on city hall after a series of workplace fatalities are ignored.",
+    "description": "The {city.government_body} is paralyzed. Deporting them would collapse the local economy, but acknowledging them angers nationalist groups. {city.media_outlet} runs inflammatory op-eds on both sides.",
+    "external_actors": [
+      "Migrant Advocate",
+      "Nationalist Politician"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Offer anonymous safety inspections without checking legal status.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -80,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Fatalities drop slightly, but nationalists accuse the city of harboring criminals. The tension simmers.",
+          "city_reaction": "Doing the bare minimum so people don't die. Wow. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Launch a mass deportation raid to appease the nationalists.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -150,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "Construction and service sectors instantly collapse. Trash piles up and buildings remain half-finished.",
+          "city_reaction": "Who knew kicking out all the workers would stop the work. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Grant them all instant municipal citizenship bypassing federal law.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -50,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -20,
+              "betrayal_risk_delta": 20
+            }
+          ],
+          "follow_up": "The federal government sends national guard to arrest the mayor. The city declares itself a sovereign sanctuary.",
+          "city_reaction": "We are an independent republic now apparently. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 5,
+    "turn_max": 10
+  },
+  {
+    "id": "transport_fare_riot",
+    "category": "public_protest",
+    "title": "The Fare Evasion Uprising in {city.name}",
+    "trigger": "A 50% overnight hike in public transit fares sparks spontaneous riots at bus terminals.",
+    "description": "Toll booths are set on fire. The {city.media_outlet} blames the mayor's new luxury vehicle fleet for the budget shortfall. The {city.primary_industry_workers} simply stop paying and jump the turnstiles en masse.",
+    "external_actors": [
+      "Angry Commuter",
+      "Transit Police Chief"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Roll back the fare hike and subsidize the transit authority.",
+        "consequences": {
+          "approval_delta": 12,
+          "budget_delta": -250,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The riots end, but the transport budget is entirely depleted. Maintenance is deferred indefinitely.",
+          "city_reaction": "Fares are down, but the bus has no brakes. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Deploy transit police to brutally enforce the new fares.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -80,
+          "scandal_risk": 55,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "Arrests skyrocket. Jails are full of people who just wanted to get to work. Fare revenue barely covers overtime.",
+          "city_reaction": "Paying extra to get baton-charged on the way to work. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Make all public transit entirely free forever.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -400,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The city goes instantly bankrupt. The buses become rolling shelters, but technically everyone loves it.",
+          "city_reaction": "Free ride to nowhere. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 6
+  },
+  {
+    "id": "anti_gentrification_barricade",
+    "category": "public_protest",
+    "title": "Holding the Line in {city.name}",
+    "trigger": "Residents of a historic neighborhood build barricades to stop demolition bulldozers.",
+    "description": "A corporate developer tied to the {city.government_body} wants to build luxury condos near {city.landmark}. The locals are armed with paving stones and ancestral rage. {city.media_outlet} paints them as either heroes or anti-progress terrorists.",
+    "external_actors": [
+      "Neighborhood Matriarch",
+      "Corporate Developer"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Cancel the development and declare the neighborhood a heritage site.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -100,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The developer pulls all investments from the city. The neighborhood is saved but slowly crumbles from lack of funds.",
+          "city_reaction": "We kept our homes, even if the roofs are leaking. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Bribe the neighborhood leaders with penthouse suites in the new condos.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -80,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The leaders sell out. The barricades fall. The rest of the residents are evicted and deeply embittered.",
+          "city_reaction": "Everyone has a price apparently. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Seize the demolition bulldozers and give them to the residents.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -150,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The residents use the bulldozers to destroy the developer's corporate headquarters. Absolute anarchy.",
+          "city_reaction": "Grandma is driving a bulldozer. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  }
+]

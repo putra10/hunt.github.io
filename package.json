@@ -1,0 +1,19 @@
+{
+  "name": "governed",
+  "version": "0.1.0",
+  "description": "A governance simulator where every city has its own chaos",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.61.1",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "topojson-client": "^3.1.0"
+  }
+}

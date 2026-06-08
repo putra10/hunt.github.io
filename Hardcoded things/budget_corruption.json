@@ -1,0 +1,578 @@
+[
+  {
+    "id": "ghost_employees_payroll",
+    "category": "budget_corruption",
+    "title": "The Phantom Workforce of {city.name}",
+    "trigger": "A routine payroll system update reveals thousands of city employees who haven't badged into a building since 2018.",
+    "description": "An investigative piece by {city.media_outlet} uncovered that 15% of the sanitation department consists of deceased or fictional people. The {city.government_body} is feigning shock, despite several council members' relatives sharing names with the spectral workers.",
+    "external_actors": [
+      "Independent Auditor",
+      "Labor Union Boss"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Quietly purge the names and pay a small severance to the 'families'.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -150,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The ghosts are laid to rest with a generous golden parachute. The budget bleeds, but the press gets bored.",
+          "city_reaction": "Even the dead get better benefits than us. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Launch a loud, public anti-corruption task force.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -80,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The task force accidentally implicates the deputy mayor. Several hard drives are mysteriously wiped with magnets.",
+          "city_reaction": "Ah yes, investigating themselves. I'm sure they'll find the culprit. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Demand the ghost employees show up for work or face termination.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "Hundreds of random citizens show up claiming to be the ghosts to collect the back pay. Absolute administrative gridlock.",
+          "city_reaction": "I am Spartacus, and I also work in sanitation. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 7
+  },
+  {
+    "id": "pension_fund_raid",
+    "category": "budget_corruption",
+    "title": "Empty Vaults in {city.name}",
+    "trigger": "Retired {city.primary_industry_workers} discover their monthly pension checks have bounced.",
+    "description": "It turns out the {city.government_body} borrowed from the municipal pension fund to finance a beautification project near {city.landmark}. The money is gone, replaced by an IOU written on a napkin.",
+    "external_actors": [
+      "Pensioner Coalition",
+      "Central Bank Regulator"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Take out a high-interest commercial loan to cover the shortfall.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -300,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "The checks clear, but the city's credit rating drops to junk. Our grandchildren will be paying this off.",
+          "city_reaction": "Got my money, don't care if the city burns tomorrow. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Admit the theft and offer municipal bonds as compensation.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -50,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": 0,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The bonds are virtually worthless. Retirees start selling them on the street as novelty souvenirs.",
+          "city_reaction": "Trading my retirement for a piece of paper with the mayor's face on it. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Claim a clerical error and freeze all payouts indefinitely.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -50,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "Seniors chain themselves to city hall doors. A riot police standoff with grandmothers ensues for three days.",
+          "city_reaction": "Never thought I'd see my grandma tear-gassed, but here we are. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "phantom_contractor_paving",
+    "category": "budget_corruption",
+    "title": "The Invisible Roads of {city.name}",
+    "trigger": "A newly completed highway extension is revealed to be just a dirt path with a single traffic cone.",
+    "description": "Records show a shell company was paid millions to pave roads connecting the {city.primary_industry_workers} district. {city.media_outlet} reporters drove to the company's registered address and found a vacant lot.",
+    "external_actors": [
+      "Investigative Journalist",
+      "Shell Company CEO"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Hire a real contractor to quickly do the job at double the cost.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -250,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The road is built hastily and will probably crack in a year, but the immediate outrage subsides.",
+          "city_reaction": "Only took two tries and triple the taxes to get a flat road. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Sue the shell company to recover the funds.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -80,
+          "scandal_risk": 30,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The lawsuit costs more than the stolen funds. The CEO turns out to be a 90-year-old man with dementia.",
+          "city_reaction": "Great job suing a grandpa. Real tough on crime. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Declare the dirt path an eco-friendly greenway and ban cars on it.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "Commuters are furious. The dirt path becomes a massive mud pit during the next rainstorm.",
+          "city_reaction": "Returning to nature by destroying my suspension. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "shadow_budget_audit",
+    "category": "budget_corruption",
+    "title": "Two Sets of Books in {city.name}",
+    "trigger": "A disgruntled accountant leaks the real municipal ledger to {city.media_outlet}.",
+    "description": "The official budget is a work of fiction. The shadow ledger reveals exorbitant spending on luxury vehicles for the {city.government_body} and a suspicious slush fund labeled Miscellaneous Operations.",
+    "external_actors": [
+      "Whistleblower",
+      "Federal Prosecutor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Settle with the federal prosecutors and pay a massive fine.",
+        "consequences": {
+          "approval_delta": -5,
+          "budget_delta": -350,
+          "scandal_risk": 10,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The city avoids criminal charges by emptying its reserves. Austerity measures are quietly implemented.",
+          "city_reaction": "We pay the fine for them stealing our money. Makes sense. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Claim the leaked ledger is a deepfake and launch a witch hunt.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -80,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The whistleblower is arrested on trumped-up charges, sparking protests. The truth is buried, for now.",
+          "city_reaction": "They really expect us to believe an Excel spreadsheet is CGI. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Legalize the slush fund retroactively by passing an emergency ordinance.",
+        "consequences": {
+          "approval_delta": -20,
+          "budget_delta": -30,
+          "scandal_risk": 75,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The brazen move shocks even cynical observers. International transparency watchdogs downgrade the city immediately.",
+          "city_reaction": "If you can't beat the law, just change it. Classic. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 6,
+    "turn_max": 10
+  },
+  {
+    "id": "inflated_procurement_scandal",
+    "category": "budget_corruption",
+    "title": "The $500 Lightbulbs of {city.name}",
+    "trigger": "An intern accidentally publishes the procurement receipts for city hall renovations.",
+    "description": "Citizens are outraged to learn the city paid astronomical prices for basic goods. The supplier is conveniently owned by the brother-in-law of the head of the {city.government_body}.",
+    "external_actors": [
+      "Angry Taxpayer",
+      "Supplier CEO"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Cancel the remaining orders and quietly switch suppliers.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -80,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 0,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The new supplier is only slightly less overpriced. The brother-in-law keeps the money already paid.",
+          "city_reaction": "At least the new chairs only cost half as much. Progress. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Defend the purchases as premium quality necessary for civic dignity.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -30,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The mayor gives a press conference sitting in a luxury chair. It breaks on live television.",
+          "city_reaction": "Civic dignity looking real fragile right now. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Auction off all the overpriced furniture to recoup costs.",
+        "consequences": {
+          "approval_delta": 10,
+          "budget_delta": -20,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "transport",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "Wealthy citizens buy the items as joke pieces. City officials are left sitting on milk crates for weeks.",
+          "city_reaction": "I bought the mayor's desk for my cat. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 2,
+    "turn_max": 7
+  },
+  {
+    "id": "missing_foreign_aid",
+    "category": "budget_corruption",
+    "title": "Disappearing Relief in {city.name}",
+    "trigger": "An international NGO demands to know what happened to a $10 million grant meant for {city.primary_industry_workers}.",
+    "description": "The funds were supposed to build affordable housing near {city.landmark}. Instead the money has been routed through shell accounts, and the housing site is currently a luxury golf course under construction.",
+    "external_actors": [
+      "NGO Representative",
+      "Golf Course Developer"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Reallocate city funds to build a scaled-down housing project immediately.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -400,
+          "scandal_risk": 15,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The city goes broke fulfilling the grant requirements. The housing is built but barely adequate.",
+          "city_reaction": "They built us sheds and kept the golf course. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Claim the golf course is actually green infrastructure for flood management.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 50,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 10,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The NGO publicly blacklists the city. The mayor is photographed playing 18 holes on the flood management site.",
+          "city_reaction": "Glad my tax dollars are working on their short game. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Seize the golf course via eminent domain and open it free to the public.",
+        "consequences": {
+          "approval_delta": 15,
+          "budget_delta": -100,
+          "scandal_risk": 70,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The developers sue the city for billions. Citizens use the sand traps as impromptu volleyball courts.",
+          "city_reaction": "Finally, a place to walk my dog without a leash. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 4,
+    "turn_max": 9
+  },
+  {
+    "id": "nepotism_consulting_fees",
+    "category": "budget_corruption",
+    "title": "Family Business in {city.name}",
+    "trigger": "It is revealed that the city's top efficiency consultant is a 22-year-old relative of a powerful official.",
+    "description": "The consultant was paid a six-figure retainer to produce a report on optimizing the {city.government_body}. The report was a printed Wikipedia article on Management, complete with blue hyperlinks still visible.",
+    "external_actors": [
+      "Opposition Politician",
+      "The 22-year-old Consultant"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Quietly terminate the contract and bury the report.",
+        "consequences": {
+          "approval_delta": 0,
+          "budget_delta": -50,
+          "scandal_risk": 20,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 0,
+              "betrayal_risk_delta": 0
+            }
+          ],
+          "follow_up": "The kid keeps the money but the contract ends. The official grumbles but accepts the compromise.",
+          "city_reaction": "Wish my uncle could get me a fake job paying six figures. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Force the consultant to present their findings publicly.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -20,
+          "scandal_risk": 40,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": -10,
+              "betrayal_risk_delta": 15
+            }
+          ],
+          "follow_up": "The presentation is a humiliating disaster. The kid cries on live TV. The official vows revenge.",
+          "city_reaction": "Most entertaining city council meeting of the year. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Implement the Wikipedia recommendations verbatim across all departments.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -150,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "urban_planning",
+              "trust_delta": -15,
+              "betrayal_risk_delta": 10
+            }
+          ],
+          "follow_up": "City hall is reorganized based on a misread paragraph about synergy. Total bureaucratic paralysis for weeks.",
+          "city_reaction": "Nobody knows what their job is anymore. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 3,
+    "turn_max": 8
+  },
+  {
+    "id": "convenient_audit_fire",
+    "category": "budget_corruption",
+    "title": "Up in Smoke in {city.name}",
+    "trigger": "The night before a massive federal audit, the municipal archives building mysteriously burns to the ground.",
+    "description": "The fire chief notes the blaze started simultaneously in three filing cabinets containing records for {city.landmark} construction. {city.media_outlet} implies arson, but the {city.government_body} calls it a tragic electrical anomaly.",
+    "external_actors": [
+      "Fire Chief",
+      "Federal Auditor"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "tag": "SAFE",
+        "label": "Cooperate fully with auditors using whatever digital backups remain.",
+        "consequences": {
+          "approval_delta": 5,
+          "budget_delta": -100,
+          "scandal_risk": 25,
+          "advisor_effects": [
+            {
+              "advisor_id": "finance",
+              "trust_delta": 5,
+              "betrayal_risk_delta": -5
+            }
+          ],
+          "follow_up": "The digital backups are conveniently corrupted, but the gesture of cooperation slightly appeases the feds.",
+          "city_reaction": "The USB drive fell in a blender? What are the odds. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "B",
+        "tag": "BOLD",
+        "label": "Blame the fire on a marginalized activist group.",
+        "consequences": {
+          "approval_delta": -15,
+          "budget_delta": -50,
+          "scandal_risk": 60,
+          "advisor_effects": [
+            {
+              "advisor_id": "military_liaison",
+              "trust_delta": 15,
+              "betrayal_risk_delta": -10
+            }
+          ],
+          "follow_up": "The public doesn't buy it. Protests erupt and the activists sue the city for defamation.",
+          "city_reaction": "They think we're stupid. We are, but not that stupid. {city.slang_reaction}."
+        }
+      },
+      {
+        "id": "C",
+        "tag": "CHAOS",
+        "label": "Claim the destroyed documents proved the city is owed money by the federal government.",
+        "consequences": {
+          "approval_delta": -10,
+          "budget_delta": -30,
+          "scandal_risk": 80,
+          "advisor_effects": [
+            {
+              "advisor_id": "religious_affairs",
+              "trust_delta": -5,
+              "betrayal_risk_delta": 5
+            }
+          ],
+          "follow_up": "The audacious lie confuses the auditors so much it delays the investigation by years. The feds are furious.",
+          "city_reaction": "Gaslighting the federal government. You love to see it. {city.slang_reaction}."
+        }
+      }
+    ],
+    "turn_min": 7,
+    "turn_max": 11
+  }
+]

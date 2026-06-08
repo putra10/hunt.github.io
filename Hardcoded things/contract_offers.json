@@ -1,0 +1,654 @@
+[
+  {
+    "id": "tourism_promotion_grant",
+    "title": "Tourism Promotion Grant",
+    "client": "Regional Tourism Board",
+    "description": "The tourism board wants to fund a citywide marketing push. They need formal branding rights and a partnership agreement.",
+    "reward_budget": 130,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 9,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "sports_event_hosting",
+    "title": "International Sports Event Bid",
+    "client": "Global Sports Federation",
+    "description": "The city is awarded hosting rights for a major international event. Short-term budget injection — logistics costs may follow.",
+    "reward_budget": 160,
+    "approval_delta": 10,
+    "scandal_risk": 0.1,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 8,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "local_business_summit",
+    "title": "Local Business Summit Grant",
+    "client": "Chamber of Commerce",
+    "description": "The city's chamber of commerce wants to host an international business summit. They need facilities funding and official endorsement.",
+    "reward_budget": 100,
+    "approval_delta": 3,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "film_production_subsidy",
+    "title": "Film Production Subsidy",
+    "client": "Meridian Entertainment",
+    "description": "A film studio wants to use the city as a backdrop. Tax incentives and location fees generate quick revenue — but tabloid crews come with the deal.",
+    "reward_budget": 120,
+    "approval_delta": 6,
+    "scandal_risk": 0.18,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 9,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "cultural_exchange_program",
+    "title": "Cultural Exchange Program",
+    "client": "UNESCO Partnership Office",
+    "description": "UNESCO is funding a cultural exchange initiative. The PR value is significant and the public tends to respond well to international recognition.",
+    "reward_budget": 85,
+    "approval_delta": 7,
+    "scandal_risk": 0.02,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 11,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "green_energy_grant",
+    "title": "Green Energy Infrastructure Grant",
+    "client": "ClimateFirst Foundation",
+    "description": "A 3-year renewable infrastructure grant paid in installments. The public views it favorably — your planning team will appreciate the investment.",
+    "reward_budget": 300,
+    "approval_delta": 5,
+    "scandal_risk": 0.02,
+    "advisor_effects": [
+      {
+        "advisor_id": "urban_planning",
+        "trust_delta": 8
+      }
+    ],
+    "min_turn": 1,
+    "max_turn": 8,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 3,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "university_research_grant",
+    "title": "University Research Partnership",
+    "client": "National Research Council",
+    "description": "A research council offers funding to establish a city-university technology lab. Your urban planning team needs to be on board for this to work.",
+    "reward_budget": 110,
+    "approval_delta": 5,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "urban_planning"
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "city_branding_campaign",
+    "title": "City Branding Campaign",
+    "client": "Global Cities Network",
+    "description": "An international city network will fund a major visibility push. Your city gets international exposure in exchange for co-branding rights.",
+    "reward_budget": 115,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "tech_hub_partnership",
+    "title": "Tech Hub Partnership",
+    "client": "GlobalTech Consortium",
+    "description": "A multinational consortium offers infrastructure funding in exchange for zoning rights near the city center. Residents are already skeptical.",
+    "reward_budget": 200,
+    "approval_delta": -5,
+    "scandal_risk": 0.2,
+    "advisor_effects": [
+      {
+        "advisor_id": "urban_planning",
+        "trust_delta": -10
+      }
+    ],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "world_bank_loan",
+    "title": "World Bank Development Loan",
+    "client": "World Bank",
+    "description": "A large development loan earmarked for public infrastructure. Repayment terms are favorable — but fiscal conditionalities apply.",
+    "reward_budget": 280,
+    "approval_delta": -4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [
+      {
+        "advisor_id": "finance",
+        "trust_delta": 8
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 11,
+    "tier_filter": [
+      "medium",
+      "hard",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "private_investment_deal",
+    "title": "Foreign Direct Investment Deal",
+    "client": "Meridian Capital Group",
+    "description": "A private equity group is willing to invest heavily in the city's growth sector. Opposition groups are already calling it a sellout.",
+    "reward_budget": 240,
+    "approval_delta": -7,
+    "scandal_risk": 0.3,
+    "advisor_effects": [
+      {
+        "advisor_id": "finance",
+        "trust_delta": 12
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "corporate_sponsorship",
+    "title": "Corporate Sponsorship Package",
+    "client": "Apex Industries",
+    "description": "A major corporation wants to sponsor public infrastructure in exchange for naming rights. Your finance team is enthusiastic — whether that's reassuring or not.",
+    "reward_budget": 200,
+    "approval_delta": 2,
+    "scandal_risk": 0.14,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "finance",
+      "advisor_min_trust": 50
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "infrastructure_bond",
+    "title": "Municipal Infrastructure Bond",
+    "client": "Regional Development Authority",
+    "description": "A 2-year government-backed bond paid in installments. Lower short-term gains but more stable than a lump sum deal.",
+    "reward_budget": 320,
+    "approval_delta": -2,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 9,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 2,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "port_authority_lease",
+    "title": "Port Authority Long-Term Lease",
+    "client": "Pacific Shipping Consortium",
+    "description": "A shipping consortium wants a long-term port lease. The deal is lucrative — but labor unions are already unhappy about the terms.",
+    "reward_budget": 260,
+    "approval_delta": -6,
+    "scandal_risk": 0.22,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "media_conglomerate_deal",
+    "title": "Media Conglomerate Licensing Deal",
+    "client": "Nexus Media Group",
+    "description": "A media group wants exclusive city broadcast rights. The money is good — but losing editorial independence over city coverage is a real risk.",
+    "reward_budget": 180,
+    "approval_delta": -5,
+    "scandal_risk": 0.35,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "tech_incubator_deal",
+    "title": "Technology Incubator Initiative",
+    "client": "Silicon Frontier Fund",
+    "description": "A private fund wants to establish a tech incubator. They'll only deal with a city that has a proven governance track record.",
+    "reward_budget": 220,
+    "approval_delta": -2,
+    "scandal_risk": 0.14,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "min_decisions_resolved": 3
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "ngo_infrastructure_grant",
+    "title": "NGO Infrastructure Grant",
+    "client": "International Aid Consortium",
+    "description": "A coalition of NGOs is funding basic infrastructure repairs. They want oversight access and mandatory public reporting in return.",
+    "reward_budget": 180,
+    "approval_delta": 5,
+    "scandal_risk": 0.12,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -2,
+    "can_compete": true
+  },
+  {
+    "id": "diaspora_investment",
+    "title": "Diaspora Investment Fund",
+    "client": "National Diaspora Council",
+    "description": "A diaspora investment program funded by citizens abroad. Three-year commitment with steady installments and strong community goodwill.",
+    "reward_budget": 270,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 9,
+    "tier_filter": [
+      "hard",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 3,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "military_logistics_contract",
+    "title": "Military Logistics Contract",
+    "client": "Joint Defense Command",
+    "description": "The defense command wants to use city infrastructure for staging. Requires active liaison coordination — and comes with political strings.",
+    "reward_budget": 280,
+    "approval_delta": -5,
+    "scandal_risk": 0.2,
+    "advisor_effects": [
+      {
+        "advisor_id": "military_liaison",
+        "trust_delta": 12
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "military_liaison"
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "emergency_aid_coalition",
+    "title": "Emergency Aid Coalition",
+    "client": "Global Relief Consortium",
+    "description": "International relief funding that only reaches cities in genuine documented need — late in their governance cycle. Refusing signals you don't need it.",
+    "reward_budget": 360,
+    "approval_delta": 8,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 5,
+    "max_turn": 12,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -3,
+    "can_compete": false
+  },
+  {
+    "id": "sovereign_wealth_fund",
+    "title": "Sovereign Wealth Fund Injection",
+    "client": "Apex Sovereign Fund",
+    "description": "A sovereign wealth fund is interested in the city's long-term assets. The investment is substantial — and so are the governance conditions attached.",
+    "reward_budget": 420,
+    "approval_delta": -9,
+    "scandal_risk": 0.22,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "hard",
+      "extreme"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "imf_stabilization",
+    "title": "IMF Stabilization Package",
+    "client": "International Monetary Fund",
+    "description": "Emergency fiscal injection. There are strings attached — austerity expectations and oversight measures are part of the deal.",
+    "reward_budget": 350,
+    "approval_delta": -8,
+    "scandal_risk": 0.1,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "un_humanitarian_grant",
+    "title": "UN Humanitarian Aid Grant",
+    "client": "United Nations",
+    "description": "Emergency humanitarian funds from the UN. The public sees this as international support — but it comes with strict reporting requirements.",
+    "reward_budget": 420,
+    "approval_delta": 6,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 12,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -4,
+    "can_compete": false
+  },
+  {
+    "id": "disaster_relief_fund",
+    "title": "Emergency Disaster Relief Fund",
+    "client": "Global Relief Foundation",
+    "description": "International relief funding following a crisis designation. The paperwork is fast-tracked — funds arrive immediately.",
+    "reward_budget": 300,
+    "approval_delta": 8,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 12,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "international_observer_program",
+    "title": "International Observer Program",
+    "client": "Global Governance Initiative",
+    "description": "An international body offers funding in exchange for deploying independent governance observers. Declining signals the city has something to hide.",
+    "reward_budget": 200,
+    "approval_delta": 8,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 11,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -5,
+    "can_compete": true
+  },
+  {
+    "id": "foreign_security_aid",
+    "title": "Foreign Defense Support Package",
+    "client": "Allied Security Council",
+    "description": "A security bloc offers logistical and financial support. There are geopolitical implications — the public will not unanimously approve.",
+    "reward_budget": 380,
+    "approval_delta": -10,
+    "scandal_risk": 0.25,
+    "advisor_effects": [
+      {
+        "advisor_id": "military_liaison",
+        "trust_delta": 15
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 12,
+    "tier_filter": [
+      "war",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "shadow_banking_deal",
+    "title": "Off-Books Financing Arrangement",
+    "client": "Undisclosed Principal",
+    "description": "An anonymous financial intermediary has a large sum available — no questions asked. The risk of exposure is substantial.",
+    "reward_budget": 450,
+    "approval_delta": 0,
+    "scandal_risk": 0.48,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "warlord_negotiation",
+    "title": "Territorial Access Negotiation",
+    "client": "Regional Faction Leader",
+    "description": "A faction leader is willing to pay for safe access to city infrastructure. Refusing may worsen tensions in already contested areas.",
+    "reward_budget": 300,
+    "approval_delta": -5,
+    "scandal_risk": 0.33,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": -5,
+    "can_compete": false
+  },
+  {
+    "id": "arms_dealer_contract",
+    "title": "Defense Procurement Contract",
+    "client": "Aegis Defense Solutions",
+    "description": "A defense contractor wants to use the city as a logistics hub. The money is significant — but political and reputational exposure is severe.",
+    "reward_budget": 350,
+    "approval_delta": -12,
+    "scandal_risk": 0.42,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "requires": {
+      "min_decisions_resolved": 4
+    },
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "proxy_government_deal",
+    "title": "Proxy Administration Agreement",
+    "client": "Classified — Foreign State Actor",
+    "description": "A foreign government is willing to effectively back your administration financially. The terms are opaque. Exposure could end your term. This offer won't come again.",
+    "reward_budget": 600,
+    "approval_delta": -20,
+    "scandal_risk": 0.52,
+    "advisor_effects": [],
+    "min_turn": 6,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "legendary",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  }
+]
