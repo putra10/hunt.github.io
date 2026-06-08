@@ -83,6 +83,23 @@ export class CrisisScreen {
         </div>`;
     }).join('');
 
+    const allAdvisors = state.advisors.filter(a => !a.betrayed).slice(0, 4);
+    const stanceCards = allAdvisors.map(a => {
+      const t   = Math.round(a.trust);
+      const ac  = t >= 70 ? '#5ca85c' : t >= 40 ? '#d4a843' : '#e05c5c';
+      const ln  = pick(a.dialogue?.briefing) ?? 'Monitoring situation closely.';
+      const short = ln.length > 80 ? ln.slice(0, 80) + '…' : ln;
+      return `
+        <div class="cs-stance">
+          <div class="cs-stance-hd">
+            <span class="cs-stance-name">${a.name}</span>
+            <span class="cs-stance-role">${a.domain}</span>
+            <span class="cs-stance-trust" style="color:${ac}">${t}% trust</span>
+          </div>
+          <div class="cs-stance-msg">"${short}"</div>
+        </div>`;
+    }).join('');
+
     return `
       <div class="screen">
         ${renderTopBar(state)}
@@ -92,22 +109,26 @@ export class CrisisScreen {
             <div class="crisis-body">
               <div class="crisis-desc">${crisis.description ?? crisis.trigger}</div>
               ${renderEscalationTracker(escalationPct)}
-              <div class="crisis-dec">
-                <div class="crisis-dec-l">CRISIS RESPONSE - CHOOSE ONE</div>
-                <div class="crisis-cards">
-                  ${crisisCards}
-                  ${secretOpt ? `
-                    <div class="cc cc-secret" data-index="${secretIdx}" data-advisor-secret="${secretAdvisor.id}">
-                      <div class="cc-tag cc-tag-advisor">ADVISOR</div>
-                      <div class="cc-secret-advisor">${secretAdvisor.name} (${Math.round(secretAdvisor.trust)}% trust)</div>
-                      <div class="cc-text">${secretOpt.label}</div>
-                      <div class="cc-secret-note">"${secretOpt.advisorNote}"</div>
-                      <div class="cc-preview">
-                        <div class="ccp-item"><span class="good">+${secretOpt.consequences.approval_delta} approval</span></div>
-                        <div class="ccp-item"><span class="bad">${secretOpt.consequences.budget_delta}M budget</span></div>
-                      </div>
-                    </div>` : ''}
-                </div>
+              <div class="crisis-intel">
+                <div class="ci-label">ADVISOR POSITIONS</div>
+                <div class="ci-stances">${stanceCards}</div>
+              </div>
+            </div>
+            <div class="crisis-dec">
+              <div class="crisis-dec-l">CRISIS RESPONSE — CHOOSE ONE</div>
+              <div class="crisis-cards">
+                ${crisisCards}
+                ${secretOpt ? `
+                  <div class="cc cc-secret" data-index="${secretIdx}" data-advisor-secret="${secretAdvisor.id}">
+                    <div class="cc-tag cc-tag-advisor">ADVISOR</div>
+                    <div class="cc-secret-advisor">${secretAdvisor.name} (${Math.round(secretAdvisor.trust)}% trust)</div>
+                    <div class="cc-text">${secretOpt.label}</div>
+                    <div class="cc-secret-note">"${secretOpt.advisorNote}"</div>
+                    <div class="cc-preview">
+                      <div class="ccp-item"><span class="good">+${secretOpt.consequences.approval_delta} approval</span></div>
+                      <div class="ccp-item"><span class="bad">${secretOpt.consequences.budget_delta}M budget</span></div>
+                    </div>
+                  </div>` : ''}
               </div>
             </div>
           </div>

@@ -69,7 +69,7 @@ export class CitySelectScreen {
             <svg id="cs-worldmap" viewBox="247.5 116.4 480.2 250.1"
               xmlns="http://www.w3.org/2000/svg"
               style="width:100%;height:100%;display:block;cursor:grab;touch-action:none">
-              <!-- Giant rect so ocean color never cuts off -->
+              <!-- Giant rectangle to ensure ocean color NEVER ends during aspect ratio changes -->
               <rect x="-5000" y="-5000" width="10000" height="10000" fill="#0d1a24"/>
               <g class="countries-group"></g>
               <g class="pins-group"></g>
@@ -121,7 +121,14 @@ export class CitySelectScreen {
   static bind(container, handlers) {
     container.querySelector('#cs-back')?.addEventListener('click', () => handlers.goToMenu());
 
+    // Scale of the D3 Map
     const SVG_W = 960, SVG_H = 500; 
+
+    // The ACTUAL drawn bounds of the D3 map (removes the 60px of empty ocean padding)
+    const BOUNDS_X = 61;
+    const BOUNDS_Y = 32;
+    const BOUNDS_W = 838;
+    const BOUNDS_H = 436;
     
     // The perfect framing viewbox where the map starts
     const VB_INIT = { x: 247.5, y: 116.4, w: 480.2, h: 250.1 };
@@ -147,14 +154,11 @@ export class CitySelectScreen {
       if (vb.w < MIN_W) vb.w = MIN_W;
       vb.h = vb.w * ASPECT_RATIO;
       
-      // 2. Lock panning horizontally (0 to 960 lets them scroll the whole world left and right)
-      const minX = 0;
-      const maxX = SVG_W - vb.w;
-      
-      // 3. Lock panning vertically strictly to the drawn boundaries of the map
-      // This stops them from dragging up into the empty ocean padding!
-      const minY = VB_INIT.y;
-      const maxY = (VB_INIT.y + VB_INIT.h) - vb.h;
+      // 2. Lock panning to the ACTUAL map layout borders
+      const minX = BOUNDS_X;
+      const minY = BOUNDS_Y;
+      const maxX = (BOUNDS_X + BOUNDS_W) - vb.w;
+      const maxY = (BOUNDS_Y + BOUNDS_H) - vb.h;
       
       vb.x = Math.max(minX, Math.min(vb.x, maxX));
       vb.y = Math.max(minY, Math.min(vb.y, maxY));
@@ -348,12 +352,12 @@ export class CitySelectScreen {
       let targetX = c.projX - zw/2;
       let targetY = c.projY - zh/2;
       
-      // Auto-zooming uses the exact same vertical constraints so it doesn't fly out of bounds
-      const maxX = SVG_W - zw;
-      const maxY = (VB_INIT.y + VB_INIT.h) - zh;
+      // Auto-zooming uses the same exact physical bounds
+      const maxX = (BOUNDS_X + BOUNDS_W) - zw;
+      const maxY = (BOUNDS_Y + BOUNDS_H) - zh;
       
-      targetX = Math.max(0, Math.min(targetX, maxX));
-      targetY = Math.max(VB_INIT.y, Math.min(targetY, maxY));
+      targetX = Math.max(BOUNDS_X, Math.min(targetX, maxX));
+      targetY = Math.max(BOUNDS_Y, Math.min(targetY, maxY));
       
       animateToVB({ x: targetX, y: targetY, w: zw, h: zh });
     }

@@ -3,13 +3,15 @@
 /* Game wrapper */
 .screen {
   background: var(--color-bg);
-  border-radius: 12px;
-  border: 0.5px solid var(--color-border);
-  overflow: visible;
+  border-radius: 0;
+  border: none;
+  overflow: hidden;
   font-family: var(--font-mono);
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
   width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -230,7 +232,7 @@
 }
 
 /* ═══ SCREEN 2 — MESSENGER ═══ */
-.msg-wrap { display: grid; grid-template-rows: auto auto 1fr auto; height: 480px; }
+.msg-wrap { display: grid; grid-template-rows: auto auto 1fr auto; flex: 1; min-height: 0; }
 
 .msg-top   { background: var(--color-surface); border-bottom: 0.5px solid #222; padding: 8px 13px; display: flex; align-items: center; gap: 9px; }
 .back-btn  { font-size: 10px; color: var(--color-text-secondary); cursor: pointer; padding: 3px 7px; border: 0.5px solid var(--color-border); border-radius: 4px; transition: color 0.15s; }
@@ -280,7 +282,7 @@
 .qr.dng:hover { border-color: var(--color-red); color: var(--color-red); background: #110808; }
 
 /* ═══ SCREEN 3 — CRISIS ═══ */
-.crisis-screen  { display: grid; grid-template-columns: 1fr 200px; height: 400px; }
+.crisis-screen  { display: grid; grid-template-columns: 1fr 200px; flex: 1; min-height: 0; }
 .crisis-main    { padding: 0; display: flex; flex-direction: column; }
 
 .crisis-banner  { background: var(--color-red-bg); border-bottom: 0.5px solid #3a1010; padding: 10px 16px; display: flex; align-items: center; gap: 10px; }
@@ -288,9 +290,10 @@
 .crisis-tag     { font-size: 7px; color: var(--color-red); letter-spacing: 0.1em; margin-bottom: 2px; text-transform: uppercase; }
 .crisis-title   { font-family: var(--font-serif); font-size: 13px; color: #f0c0c0; font-weight: 500; line-height: 1.3; }
 
-.crisis-body    { flex: 1; padding: 13px 16px; overflow: hidden; display: flex; flex-direction: column; }
-.crisis-desc    { font-size: 9px; color: var(--color-text-secondary); line-height: 1.75; margin-bottom: 12px; }
-.crisis-desc em { color: #aaa; font-style: normal; }
+.crisis-body    { flex: 1; padding: 13px 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; scrollbar-width: none; }
+.crisis-body::-webkit-scrollbar { display: none; }
+.crisis-desc    { font-size: 10px; color: #aaa; line-height: 1.75; }
+.crisis-desc em { color: #ccc; font-style: normal; }
 
 /* Escalation tracker */
 .crisis-escalation { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 6px 9px; background: #0f0808; border: 0.5px solid #2a1515; border-radius: 4px; }
@@ -300,8 +303,19 @@
 .esc-text { font-size: 7px; color: #5a2a2a; white-space: nowrap; }
 
 /* Crisis decision cards */
-.crisis-dec   { border-top: 0.5px solid var(--color-border-light); padding: 9px 16px 11px; background: #090909; margin-top: auto; }
+.crisis-dec   { border-top: 0.5px solid var(--color-border-light); padding: 9px 16px 11px; background: #090909; flex-shrink: 0; }
 .crisis-dec-l { font-size: 7px; color: var(--color-red); letter-spacing: 0.08em; margin-bottom: 6px; text-transform: uppercase; }
+/* Crisis intel section */
+.crisis-intel  { display: flex; flex-direction: column; gap: 6px; }
+.ci-label      { font-size: 7px; color: #444; letter-spacing: .14em; text-transform: uppercase; border-bottom: 0.5px solid #1a1a1a; padding-bottom: 5px; }
+.ci-stances    { display: flex; flex-direction: column; gap: 5px; }
+.cs-stance     { background: #0d0d0d; border: 0.5px solid #1c1c1c; border-radius: 3px; padding: 7px 9px; }
+.cs-stance-hd  { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+.cs-stance-name { font-size: 9px; color: #ccc; font-weight: 600; }
+.cs-stance-role { font-size: 7px; color: #444; flex: 1; }
+.cs-stance-trust { font-size: 7px; font-weight: 600; }
+.cs-stance-msg { font-size: 8px; color: #666; line-height: 1.5; font-style: italic; }
+
 .crisis-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
 .cc           { padding: 6px 9px; border: 0.5px solid #1e1e1e; border-radius: 4px; background: #0d0d0d; cursor: pointer; transition: all 0.15s; }
 .cc:hover     { border-color: #444; }
@@ -327,7 +341,7 @@
 .ea-msg      { font-size: 8px; color: var(--color-text-secondary); line-height: 1.4; font-style: italic; }
 
 /* ═══ SCREEN 4 — REPORT ═══ */
-.report-screen { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; max-height: 520px; overflow-y: auto; scrollbar-width: none; }
+.report-screen { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; }
 .report-screen::-webkit-scrollbar { display: none; }
 
 .report-header { text-align: center; padding-bottom: 12px; border-bottom: 0.5px solid var(--color-border-light); }
@@ -383,7 +397,7 @@
 .menu-screen {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 100%;
   background: #0d0d0d;
   display: flex;
   flex-direction: column;
@@ -528,7 +542,7 @@
 ═══════════════════════════════════════════════════════ */
 .cs-screen {
   width: 100%;
-  height: 540px;
+  height: 100%;
   background: #0d0d0d;
   display: flex;
   flex-direction: column;
@@ -841,7 +855,8 @@
 ═══════════════════════════════════════════════════════ */
 .st-screen {
   width: 100%;
-  height: 520px;
+  flex: 1;
+  min-height: 0;
   background: #0d0d0d;
   display: flex;
   flex-direction: column;

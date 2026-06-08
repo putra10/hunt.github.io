@@ -31,8 +31,9 @@
 .main-body {
   display: grid;
   grid-template-columns: 170px 1fr 150px;
-  grid-template-rows: 480px;
-  height: 480px;
+  grid-template-rows: 1fr;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -420,6 +421,107 @@
 .co-ad-row:last-child { border-bottom: none; }
 .co-ad-title { flex: 1; color: #557755; }
 .co-ad-val   { color: #4aaa4a; font-weight: 700; white-space: nowrap; }
+
+/* ── Scandal card ─────────────────────────────────────────────────────────── */
+.scandal-card {
+  background: #110808;
+  border: 1px solid #3a1515;
+  border-left: 3px solid #e05c5c;
+  border-radius: 4px;
+  padding: 10px 12px;
+  font-family: var(--font-mono);
+  margin-top: 6px;
+}
+.scandal-card--major        { border-left-color: #e03030; background: #130606; }
+.scandal-card--career_ending { border-left-color: #ff2020; background: #180404; }
+
+.sc-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.sc-icon  { font-size: 11px; }
+.sc-title {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: #e05c5c;
+}
+.sc-tier-badge {
+  margin-left: auto;
+  font-size: 7px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: .06em;
+  border: 0.5px solid #3a1515;
+  color: #e05c5c;
+  background: #1a0808;
+}
+.sc-tier--major         { color: #e03030; border-color: #5a1010; }
+.sc-tier--career_ending { color: #ff2020; border-color: #6a0000; }
+
+.sc-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #e8e8e8;
+  margin-bottom: 4px;
+  font-family: var(--font-serif);
+}
+.sc-desc {
+  font-size: 8px;
+  color: #7a4444;
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+.sc-terms {
+  font-size: 8px;
+  color: #555;
+  margin-bottom: 8px;
+}
+.sc-bad  { color: #e05c5c; }
+.sc-warn { color: #d4a843; }
+
+.sc-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.sc-suppress, .sc-accept {
+  font-size: 8px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: .06em;
+  padding: 5px 12px;
+  border-radius: 3px;
+  border: 1px solid;
+  cursor: pointer;
+  transition: background .15s;
+}
+.sc-suppress {
+  background: #0d1209;
+  border-color: #2a4a1a;
+  color: #5aaa3a;
+}
+.sc-suppress:hover { background: #142008; color: #88dd55; }
+.sc-accept {
+  background: #120808;
+  border-color: #3a1515;
+  color: #e05c5c;
+}
+.sc-accept:hover { background: #1a0a0a; }
+
+.sc-response {
+  font-size: 8px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: .06em;
+  padding: 5px 12px;
+  border-radius: 3px;
+  border: 1px solid #3a1515;
+  background: #120808;
+  color: #e8e8e8;
+  cursor: pointer;
+  transition: background .15s;
+}
+.sc-response:hover { background: #1a0c0c; }
 
 /* ── Civil Unrest cards (riot / demonstration / strike) ───────────────────── */
 .unrest-card {
