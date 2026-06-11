@@ -1,6 +1,7 @@
 // src/engine/advisor-system.js
 import { randomPick, random } from '../utils/random.js';
 import { addHeat } from './heat-system.js';
+import advisorReactions from '../../Hardcoded things/advisor_reactions.json';
 
 // Canonical domain of an advisor. Candidate-pool advisors carry a unique `id`
 // (e.g. "finance_siti") plus a `domain_id` ("finance"); legacy advisors use
@@ -384,6 +385,29 @@ export class AdvisorSystem {
 
       s.pendingDecisionRecommendations[advisor.id] = best;
       console.log(`[Advisor] ${advisor.name} recommends option ${best} for "${decision.id}"${scheming ? ' (SCHEMING)' : ''}`);
+    }
+  }
+
+  // ── Advisor Reactions ("I told you so") ──────────────────────────────────
+  // resolveDecision stores advisor.pendingReaction when the player ignored a
+  // recommendation AND the chosen option went badly. One turn later this
+  // converts it into a chat message (advisor.pendingReactionMsg) — the
+  // messenger pushes it into the log, and dispatch shows an unread badge.
+
+  deliverPendingReactions() {
+    const s = this.state;
+    for (const advisor of s.advisors) {
+      if (advisor.betrayed || !advisor.pendingReaction) continue;
+      // Deliver only on a LATER turn — "the morning after"
+      if ((advisor.pendingReaction.turn ?? 0) >= s.turn) continue;
+
+      const pool = advisorReactions[advisor.pendingReaction.type] ?? advisorReactions.told_you_so ?? [];
+      const line = randomPick(pool);
+      if (line) {
+        advisor.pendingReactionMsg = line.replace(/{title}/g, advisor.pendingReaction.title ?? 'that matter');
+        console.log(`[Advisor Reaction] ${advisor.name}: ${advisor.pendingReaction.type} queued`);
+      }
+      advisor.pendingReaction = null;
     }
   }
 

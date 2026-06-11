@@ -219,6 +219,10 @@ export class ScandalSystem {
       return { gameOver: true, miracleSaved: false };
     }
 
+    // Track whether the base penalty zeroed approval — the recall happens
+    // BEFORE the response's recovery modifier can paper over it
+    let hitZero = false;
+
     if (response.miracleRoll) {
       const saved = random() < 0.25;
       if (!saved) {
@@ -228,6 +232,7 @@ export class ScandalSystem {
       // a career-ending scandal netted +15 approval. The scandal still
       // happened: apply its penalty first, then the response modifiers.
       s.shiftApproval(scandalObj?.approval_penalty ?? tier.approvalPenalty);
+      hitZero = s.approval <= 0;
       console.log('[Miracle] The governor survived a career-ending scandal!');
     }
 
@@ -236,6 +241,7 @@ export class ScandalSystem {
     // "Public Apology" would be a free +5 and strictly dominate accepting.
     if (!response.miracleRoll) {
       s.shiftApproval(scandalObj?.approval_penalty ?? tier.approvalPenalty);
+      hitZero = s.approval <= 0;
     }
 
     if (response.budgetCost) s.shiftBudget(-response.budgetCost);
@@ -249,6 +255,6 @@ export class ScandalSystem {
       }
     }
 
-    return { gameOver: false, miracleSaved: !!response.miracleRoll };
+    return { gameOver: false, miracleSaved: !!response.miracleRoll, hitZero };
   }
 }

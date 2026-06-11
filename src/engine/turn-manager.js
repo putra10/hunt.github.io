@@ -101,6 +101,8 @@ export class TurnManager {
     this.contractSystem.rollContractOffer();
 
     // 5. Advisor briefing + recommendations for next decision
+    //    (reactions first: "I told you so" messages land the morning after)
+    this.advisorSystem.deliverPendingReactions();
     this.advisorSystem.generateBriefings();
     const nextDecision = this.state.getNextDecision();
     if (nextDecision) this.advisorSystem.generateRecommendations(nextDecision);
@@ -317,6 +319,15 @@ export class TurnManager {
       } else {
         adv.trust = Math.max(0, (adv.trust ?? 50) - 2);
         console.log(`[Advisor Rec] ${adv.name} -2 trust — player ignored recommendation`);
+
+        // "I told you so": ignored advice AND the chosen option hurt approval
+        // more than the advisor's pick would have → they gloat next turn
+        const chosenDelta = option.consequences?.approval_delta ?? 0;
+        const recDelta    = decision.options[recIdx]?.consequences?.approval_delta ?? 0;
+        if (chosenDelta < 0 && chosenDelta < recDelta) {
+          adv.pendingReaction = { type: 'told_you_so', title: decision.title, turn: s.turn };
+          console.log(`[Advisor Rec] ${adv.name} will have words next turn`);
+        }
       }
     }
     s.pendingDecisionRecommendations = {};
@@ -780,7 +791,9 @@ export class TurnManager {
       s.endReason = 'career_ending_scandal';
       // Distinguish "gambled on the miracle and lost" from a plain resignation
       if (responseId === 'miracle') s.setFlag('miracle_failed', true);
-    } else if (s.approval <= 0) {
+    } else if (s.approval <= 0 || result.hitZero) {
+      // hitZero: the scandal's base penalty zeroed approval — the recall
+      // happened before the response's recovery could paper over it
       s.endReason = 'recalled';
       result.gameOver = true;
     }

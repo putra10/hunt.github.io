@@ -2320,6 +2320,19 @@
     overflow: hidden;
   }
 
+  /* Story (dispatch body): allow vertical scroll on mobile.
+     Base components.css sets overflow:hidden; the desktop @media block
+     overrides to overflow-y:auto — but that rule doesn't fire on phones.
+     This block is appended last, so it wins the cascade. */
+  .story {
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .story::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Messenger: override desktop height:480px */
   .msg-wrap {
     flex: 1;

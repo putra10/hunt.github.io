@@ -21,7 +21,7 @@ function agendaColor(pct) {
   return '#406040';
 }
 
-export function renderAdvisorCard(advisor, hasOffer = false, needsAnswer = false) {
+export function renderAdvisorCard(advisor, hasOffer = false, needsAnswer = false, hasUnread = false) {
   const trust    = Math.round(advisor.trust);
   const agenda   = Math.round(advisor.agendaProgress ?? 0);
   const cardCls  = advisorCardClass(trust, advisor.betrayed);
@@ -55,7 +55,7 @@ export function renderAdvisorCard(advisor, hasOffer = false, needsAnswer = false
       <div class="an">
         ${advisor.name}
         ${relIcon ? `<span style="color:${relColor};font-size: 0.625rem;margin-left: 0.25rem">${relIcon} ${relLabel}</span>` : ''}
-        ${needsAnswer ? '<span class="acard-unread" title="Needs an answer">1</span>' : ''}
+        ${(needsAnswer || hasUnread) ? `<span class="acard-unread" title="${needsAnswer ? 'Needs an answer' : 'New message'}">1</span>` : ''}
       </div>
       <div class="ar">${advisor.domain} &middot; Trust ${trust}%</div>
       ${warningHtml}
@@ -72,6 +72,6 @@ export function renderAdvisorCard(advisor, hasOffer = false, needsAnswer = false
       <div class="agenda-bar-bg">
         <div class="agenda-bar-fill" style="width:${agenda}%;background:${aColor}"></div>
       </div>
-      <div class="at${needsAnswer ? ' at-urgent' : ''}">${needsAnswer ? '&#x2709; needs an answer' : 'tap to chat'}</div>
+      <div class="at${(needsAnswer || hasUnread) ? ' at-urgent' : ''}">${needsAnswer ? '&#x2709; needs an answer' : hasUnread ? '&#x2709; new message' : 'tap to chat'}</div>
     </div>`;
 }

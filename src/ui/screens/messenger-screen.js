@@ -21,6 +21,13 @@ export class MessengerScreen {
       }
     }
 
+    // Pending reaction ("I told you so") — delivered into the chat log the
+    // first time the player opens this messenger; badge cleared by consuming it
+    if (advisor.pendingReactionMsg) {
+      advisor._msgLog.push({ type: 'them', sender: advisor.name, text: advisor.pendingReactionMsg, time: now() });
+      advisor.pendingReactionMsg = null;
+    }
+
     const trust    = Math.round(advisor.trust);
     const status   = trustStatus(trust);
     const cardCls  = advisorCardClass(trust, advisor.betrayed);
@@ -103,13 +110,23 @@ export class MessengerScreen {
     const opt = decision.options[recIdx];
     if (!opt) return '';
 
+    // Rendered as a normal chat bubble: the advisor makes their case (the
+    // option's authored advisor_reason), then names their pick
+    const reason = opt.advisor_reason
+      ? `<div class="adv-rec-reason">${opt.advisor_reason}</div>`
+      : '';
+
     return `
-      <div class="adv-rec">
-        <div class="adv-rec-header">\u{1F4CB} RECOMMENDATION</div>
-        <div class="adv-rec-body">
-          I'd recommend: <strong>${opt.label ?? opt.tag ?? `Option ${recIdx + 1}`}</strong>
+      <div class="msg them">
+        <div class="bub them adv-rec">
+          <div class="adv-rec-header">\u{1F4CB} RECOMMENDATION</div>
+          ${reason}
+          <div class="adv-rec-body">
+            My recommendation: <strong>${opt.label ?? opt.tag ?? `Option ${recIdx + 1}`}</strong>
+          </div>
+          <div class="adv-rec-note">Following my advice +3 trust &middot; Ignoring -2 trust</div>
         </div>
-        <div class="adv-rec-note">Following my advice +3 trust &middot; Ignoring -2 trust</div>
+        <div class="mm">${advisor.name}</div>
       </div>`;
   }
 

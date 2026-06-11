@@ -285,6 +285,8 @@ export const state = {
         sacrificed: a.sacrificed ?? false,
         lastDemandTurn: a.lastDemandTurn ?? 0,
         pactPaused: a.pactPaused ?? 0,
+        pendingReaction: a.pendingReaction ?? null,
+        pendingReactionMsg: a.pendingReactionMsg ?? null,
       })),
       pastDecisions: this.pastDecisions,
       pastCrises: this.pastCrises,
@@ -394,6 +396,8 @@ export const state = {
           sacrificed:         saved.sacrificed ?? false,
           lastDemandTurn:     saved.lastDemandTurn ?? 0,
           pactPaused:         saved.pactPaused ?? 0,
+          pendingReaction:    saved.pendingReaction ?? null,
+          pendingReactionMsg: saved.pendingReactionMsg ?? null,
         };
       });
     }

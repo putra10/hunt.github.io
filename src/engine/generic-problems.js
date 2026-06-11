@@ -46,6 +46,7 @@ export function normalizeProblem(prob, city) {
       return {
         ...opt,
         label: interpolateText(opt.label, city),
+        advisor_reason: interpolateText(opt.advisor_reason, city),
         tag: opt.tag ?? tagDefaults[i] ?? 'OPTION',
         consequences: {
           ...cons,
