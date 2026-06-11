@@ -1,409 +1,309 @@
-# GOVERNED — Project Structure
-## Updated: June 2026 (post v3 advisor & unrest expansion)
+# GOVERNED — Project Structure & Mechanics
+## Updated: June 2026 (v4.2 — advisor recommendation reasons, "I told you so" reactions, unread message badges)
 
 ---
 
-## Folder Structure (Current)
+## Folder Structure
 
 ```
 governed/
 ├── public/
-│   ├── index.html              ← Single entry point
-│   └── assets/
-│       ├── fonts/
-│       └── icons/
+│   └── index.html              ← Single HTML shell; #app div is the only content
 │
 ├── src/
-│   ├── main.js                 ← App class, CITY_REGISTRY (20 cities), public API
-│   ├── data/
-│   │   ├── cities/             ← 20 city JSONs
-│   │   │   ├── jakarta.json    ← Easy reference / gold standard
-│   │   │   ├── singapore.json
-│   │   │   ├── sf.json
-│   │   │   ├── shenzhen.json
-│   │   │   ├── brisbane.json   ← NEW (easy)
-│   │   │   ├── lagos.json
-│   │   │   ├── frankfurt.json
-│   │   │   ├── jeddah.json
-│   │   │   ├── beijing.json
-│   │   │   ├── nyc.json
-│   │   │   ├── toronto.json
-│   │   │   ├── johannesburg.json ← NEW (medium)
-│   │   │   ├── karachi.json    ← NEW (hard)
-│   │   │   ├── cayman.json     ← NEW (hard, special: 3 advisors, high tax_rate)
-│   │   │   ├── tehran.json
-│   │   │   ├── tel-aviv.json
-│   │   │   ├── crimea.json
-│   │   │   ├── gaza.json
-│   │   │   ├── caracas.json
-│   │   │   └── mogadishu.json  ← NEW (extreme)
-│   │   ├── schema.json         ← City content schema
-│   │   └── voice-bible.md      ← Tone rules per city
+│   ├── main.js                 ← App class + CITY_REGISTRY (25 cities) + window.GOVERNED
 │   │
-│   ├── engine/
-│   │   ├── game-state.js       ← Single source of truth
-│   │   │                         State fields: city, turn, approval, budget,
-│   │   │                         activeCrises, resolvedCrises, pendingCrisis,
-│   │   │                         advisors[], pastDecisions, pastCrises,
-│   │   │                         activeScandals, resolvedScandals, pendingScandal,
-│   │   │                         pendingBribes[], pendingBetrayals[],
-│   │   │                         presentedDecisions[], flags{},
-│   │   │                         decisionsThisTurn, maxDecisionsThisTurn,
-│   │   │                         consecutiveDeficitTurns (budget streak counter),
-│   │   │                         pendingUnrest (null | { type, turn }),
-│   │   │                         pendingDecisionRecommendations (advisorId→optionIndex),
-│   │   │                         settings{ tutorial, sound, feedSpeed, scandalFreq }
-│   │   │                         Advisor runtime: trust, agendaProgress,
-│   │   │                         betrayed, romanceExposed, relationshipType,
-│   │   │                         emergencyPowerUsed (bool, once per game)
-│   │   │                         Dynamic advisor count (GDD §4.1):
-│   │   │                           easy/medium=5, hard=4, extreme/war=3
-│   │   │                           city.advisor_count overrides (e.g. Cayman=3)
-│   │   │                           Randomly shuffled from full JSON pool each game
-│   │   │
-│   │   ├── turn-manager.js     ← Turn flow controller
-│   │   │                         processTurn(): auto-fire unhandled scandal,
-│   │   │                         tick agendas, tick relationships, bribe offers,
-│   │   │                         crisis queue, end check, increment turn,
-│   │   │                         passive tax, budget pressure, scandal roll,
-│   │   │                         unrest roll, advisor briefings + recommendations,
-│   │   │                         absence effects, crisis trigger
-│   │   │                         Scandal roll uses settings.scandalFreq:
-│   │   │                           low=8%, normal=20%, high=38%
-│   │   │                         _applyBudgetPressure(): tracks consecutiveDeficitTurns
-│   │   │                           reset to 0 when budget ≥ 0
-│   │   │                         _rollUnrestEvent(): budget<0 AND approval<37, turn≥3
-│   │   │                           chance = 0.20 + debtPressure*0.15 + approvalPanic*0.20
-│   │   │                           type: approval<18→riot, <28→demonstration, else strike
-│   │   │                           urban_planning trust≥75 reduces chance by 20%
-│   │   │                         resolveUnrest(action): 6 actions
-│   │   │                           meet_demands(−20M), stand_firm(−5ap),
-│   │   │                           engage(−25M +2ap), disperse(−10ap),
-│   │   │                           negotiate(−40M), crackdown(−18ap +30% scandal)
-│   │   │                         useEmergencyPower(advisorId): condition-gated,
-│   │   │                           one-time per advisor, −8 trust on use
-│   │   │                         resolveCrisis(id, optIdx, advisorSecretId?):
-│   │   │                           virtual secret option via ADVISOR_SECRET_CRISIS_OPTIONS
-│   │   │                         resolveDecision(): applies recommendation trust deltas
-│   │   │                           (+3 trust if followed, −2 if ignored) before domain bonus
-│   │   │                         Trust-gated passives:
-│   │   │                           finance trust≥75 → +10M/turn (_applyPassiveTax)
-│   │   │                           military_liaison trust≥75 → ×0.85 scandal chance
-│   │   │                           urban_planning trust≥75 → ×0.80 unrest chance
-│   │   │
-│   │   ├── crisis-manager.js   ← Crisis pool selection, escalation
-│   │   │
-│   │   ├── advisor-system.js   ← All 4 advisor layers + new systems
-│   │   │                         L1: trust −2/turn, domain recovery +5 trust −8 agenda
-│   │   │                         L2: trust<30 → domain hidden + budget/approval penalty
-│   │   │                         L3: positive trust_delta → agendaProgress×1.5 reduction
-│   │   │                         Personal: neutral→trust→romantic (extra loyalty,
-│   │   │                           +4 trust/turn, 5% romance exposure risk/turn)
-│   │   │                           rivalry (−4 trust/turn, accelerated agenda)
-│   │   │                         generateBribeOffers(): agenda≥60 → 30% chance
-│   │   │                         applyAbsenceEffects(): finance−5M, others −1 approval
-│   │   │                         generateRecommendations(decision): domain-matched
-│   │   │                           advisor picks highest approval_delta option,
-│   │   │                           stores in pendingDecisionRecommendations
-│   │   │                         generateBriefings(): trust>70 → intel line instead
-│   │   │                           of normal briefing line (_generateIntel):
-│   │   │                             finance: deficit forecast / streak warning
-│   │   │                             military_liaison: crisis window / active unrest
-│   │   │                             urban_planning: approval near unrest threshold
-│   │   │                         EMERGENCY_POWERS export (5 advisors, one-time):
-│   │   │                           finance: EMERGENCY LOAN (+80M −5ap, budget<−50)
-│   │   │                           military_liaison: MARSHAL FORCES (clears unrest)
-│   │   │                           urban_planning: COMMUNITY INITIATIVE (+10ap −20M)
-│   │   │                           religious_affairs: UNITY SERMON (+7ap)
-│   │   │                           transport: EMERGENCY RELIEF ROUTES (+15M −3ap)
-│   │   │                           All require trust≥45 (military_liaison: ≥50)
-│   │   │                         ADVISOR_SECRET_CRISIS_OPTIONS export (5 advisors):
-│   │   │                           engine-side consequence data for crisis virtual index
-│   │   │
-│   │   ├── contract-system.js  ← Side-quest / budget relief contracts
-│   │   │                         TIER_CHANCE: easy=0.40, medium=0.35, hard=0.30,
-│   │   │                           extreme=0.25, war=0.20 base roll chance
-│   │   │                         rollContractOffer(): adds deficitBonus +0.20 when
-│   │   │                           consecutiveDeficitTurns ≥ 2 (cap 0.70 total)
-│   │   │                         Competing offers: choose 1 of 2 presented
-│   │   │                         Installment contracts: pay in stages over turns
-│   │   │                         acceptContract / declineContract / declineAllContracts
-│   │   │
-│   │   ├── consequence-sim.js  ← Resolves decision/crisis outcomes
-│   │   │
-│   │   ├── generic-problems.js ← Generic decision pool (non-crisis turns)
-│   │   │
-│   │   └── scandal-system.js   ← GDD §3.5 scandal engine
-│   │                             SCANDAL_SEVERITY: 4 tiers with labels/penalties/responses
-│   │                             City reactions read from city.scandal_reactions[tier]
-│   │                             FALLBACK_REACTIONS used when city JSON lacks field
-│   │                             Romance exposure reads city.romance_exposure
-│   │                             (severity + flavour text, no hardcoded culture map)
+│   ├── data/
+│   │   ├── cities/             ← 25 city JSON data files
+│   │   ├── geo/                ← World map TopoJSON (D3 city select map)
+│   │   ├── schema.json         ← City content schema reference
+│   │   └── voice-bible.md      ← Tone rules per city (for AI city generation)
+│   │
+│   ├── engine/                 ← Pure game logic — no DOM touches
+│   │   ├── game-state.js       ← Single source of truth + serialize/deserialize
+│   │   ├── turn-manager.js     ← Turn flow orchestrator + player actions
+│   │   ├── crisis-manager.js   ← Crisis pool/trigger (turns 4, 8, 12)
+│   │   ├── advisor-system.js   ← Trust, agendas, back channel, lover arc
+│   │   ├── consequence-sim.js  ← Decision/crisis outcome applier
+│   │   ├── contract-system.js  ← Budget contracts (side quests)
+│   │   ├── scandal-system.js   ← 4-tier scandals + responses + exposure
+│   │   ├── heat-system.js      ← SCRUTINY: levels, sources, transitions
+│   │   ├── market-system.js    ← Black market: selection, effects, risks
+│   │   └── generic-problems.js ← Generic decision pool + text interpolation
 │   │
 │   ├── ui/
-│   │   ├── components/
-│   │   │   ├── top-bar.js
-│   │   │   ├── public-feed.js      ← 50+ entries, speed from settings.feedSpeed
-│   │   │   ├── story-card.js
-│   │   │   ├── decision-cards.js
-│   │   │   ├── advisor-card.js
-│   │   │   └── report-card.js
-│   │   │
-│   │   ├── screens/
-│   │   │   ├── dispatch-screen.js  ← Main game view
-│   │   │   │                         Betrayal overlay (position:fixed, z-index:999)
-│   │   │   │                           renders pendingBetrayals[] one-at-a-time
-│   │   │   │                           [data-dismiss-betrayal] → handlers.dismissBetrayal()
-│   │   │   │                         Feed speed: animation-duration from settings.feedSpeed
-│   │   │   │                           slow=120s, normal=75s, fast=35s
-│   │   │   │                         Bribe cards, scandal cards, advisor cards,
-│   │   │   │                         contract cards (accept/decline/decline-all)
-│   │   │   │                         renderUnrestCard(unrest): .unrest-card
-│   │   │   │                           type-specific icon + action buttons
-│   │   │   │                           [data-resolve-unrest] → handlers.resolveUnrest()
-│   │   │   │                           strike: meet_demands / stand_firm / engage
-│   │   │   │                           demonstration: disperse / negotiate / engage
-│   │   │   │                           riot: crackdown / negotiate / meet_demands
-│   │   │   ├── cityselect-screen.js ← SVG world map, 20 city pins
-│   │   │   │                          Tier colors:
-│   │   │   │                            easy=#5ca85c, medium=#d4a843, hard=#e07a30
-│   │   │   │                            extreme=#cc44cc, war=#cc2222
-│   │   │   ├── settings-screen.js  ← Tabbed UI using st-* CSS classes
-│   │   │   │                          Tabs: Gameplay, Display, Audio, Data
-│   │   │   │                          Gameplay: tutorial toggle, scandal frequency
-│   │   │   │                          Display: feed speed (slow/normal/fast)
-│   │   │   │                          Audio: sound toggle
-│   │   │   │                          Data: live stats, reset save button
-│   │   │   │                          settings persist across city changes (not reset on loadCity)
-│   │   │   │   ├── messenger-screen.js ← Advisor chat view
-│   │   │   │                         _renderRecommendation(state, advisor):
-│   │   │   │                           .adv-rec box if advisor has recommendation
-│   │   │   │                           for current pending decision
-│   │   │   │                         _renderEmergencyPower(state, advisor):
-│   │   │   │                           .adv-ep box with ACTIVATE button
-│   │   │   │                           if condition met and power not used
-│   │   │   │                           [data-use-emergency] → handlers.useEmergencyPower()
-│   │   │   ├── crisis-screen.js    ← Crisis resolution view
-│   │   │   │                         ADVISOR_SECRET_OPTIONS local const (display data):
-│   │   │   │                           label, advisorNote, consequences per advisor
-│   │   │   │                         Most-trusted advisor trust≥60 → .cc-secret card
-│   │   │   │                           at virtual index = crisis.options.length
-│   │   │   │                           [data-advisor-secret] passes advisorId
-│   │   │   ├── menu-screen.js      ← HOW TO PLAY + CREDITS modals
-│   │   │   └── report-screen.js
-│   │   │
-│   │   └── renderer.js             ← Screen router + all action handlers
-│   │                                 resolveUnrest(action) → window.GOVERNED?.resolveUnrest()
-│   │                                 useEmergencyPower(id) → window.GOVERNED?.useEmergencyPower()
-│   │                                 handleCrisisDecision passes advisorSecretId (3rd arg)
+│   │   ├── renderer.js         ← Screen router + handlers object
+│   │   ├── ui-helpers.js       ← Pure CSS class mapping + text formatting
+│   │   ├── components/         ← Reusable HTML-string generators
+│   │   └── screens/            ← Full-screen HTML-string generators
 │   │
 │   ├── utils/
-│   │   ├── random.js
-│   │   ├── validators.js       ← normalizeCity(), loadCity(), validateCity()
-│   │   ├── formatters.js
-│   │   └── local-storage.js
+│   │   ├── random.js           ← Seeded PRNG (Mulberry32) — ALL engine RNG goes through it
+│   │   ├── validators.js       ← City JSON normalization (incl. scandal tier derivation)
+│   │   ├── formatters.js       ← Number/label display helpers
+│   │   ├── local-storage.js    ← Save/load game state (key: governed_save)
+│   │   ├── settings-store.js   ← Settings persistence independent of saves
+│   │   └── career-stats.js     ← Lifetime player stats across games
 │   │
 │   └── styles/
-│       ├── variables.css
-│       ├── base.css
-│       ├── components.css      ← All card/component styles
-│       │                         Unrest: .unrest-card, .unrest-card--{riot,demo,strike}
-│       │                           .uc-header, .uc-icon, .uc-title, .uc-desc
-│       │                           .uc-actions, .uc-btn, .uc-note
-│       │                           .uc-costly, .uc-hard, .uc-danger (cost markers)
-│       │                         Advisor recommendation: .adv-rec, .adv-rec-header,
-│       │                           .adv-rec-body, .adv-rec-note
-│       │                         Emergency power: .adv-ep, .adv-ep-header,
-│       │                           .adv-ep-desc, .adv-ep-note, .adv-ep-btn, .adv-ep-warn
-│       │                         Crisis secret: .cc-secret, .cc-tag-advisor,
-│       │                           .cc-secret-advisor, .cc-secret-note
-│       ├── screens.css         ← Betrayal overlay (.betrayal-overlay, .betrayal-modal)
-│       │                         Settings tabs (.st-screen, .st-sidenav, .st-section)
-│       │                         Bribe cards (.bribe-card), scandal cards (.scandal-card)
-│       └── animations.css
+│       ├── variables.css       ← Design tokens (colors, fonts, spacing)
+│       ├── base.css            ← Fluid root font scale + themed scrollbars + reset
+│       ├── components.css      ← All card/component styles + mobile dispatch
+│       ├── screens.css         ← Screen layouts + END-OF-FILE mobile override block
+│       └── animations.css      ← Keyframe animations
 │
-├── HOW_TO_PLAY.md              ← Full player guide (all mechanics)
-├── CITY_GENERATOR_PROMPT.md    ← Gemini prompt for generating new city JSONs
-├── package.json
-└── vite.config.js
+├── tests/                      ← Vitest suite (npm test)
+│   ├── fixtures.js             ← Minimal city fixture + localStorage stub
+│   ├── game-state.test.js      ← Save/load round-trip, roster restore regression
+│   ├── turn-manager.test.js    ← End conditions, scandal flows, back channel
+│   ├── consequence-sim.test.js
+│   ├── contract-system.test.js ← Installment math, competing offers
+│   └── scandal-system.test.js  ← Authored penalties, reveal queue, responses
+│
+├── Hardcoded things/           ← Shared content pools
+│   ├── budget_corruption.json        }
+│   ├── environmental_climate.json    }
+│   ├── infrastructure_failure.json   }  6 generic problem categories
+│   ├── media_scandal.json            }
+│   ├── political_pressure.json       }
+│   ├── public_protest.json           }
+│   ├── contract_offers.json    ← Contract side-quest pool
+│   ├── black_market.json       ← 60 black market offers (6 types × 10)
+│   └── advisor_reactions.json  ← Advisor reaction lines ("told_you_so" pool, random pick)
+│
+├── docs/                       ← Built output for GitHub Pages (DO NOT EDIT)
+├── HOW_TO_PLAY.md              ← Full player-facing manual (kept current)
+├── IMPROVEMENT_PLAN.md         ← UI ideas, roadmap, ship checklist
+├── audit_report.md             ← Mechanics audit history (all findings fixed)
+├── CITY_GENERATOR_PROMPT.md    ← Prompt for generating new city JSONs
+├── ADVISOR_REASON_PROMPT.md    ← Prompt for generating per-option advisor_reason text
+├── package.json                ← scripts: dev / build / preview / test
+└── vite.config.js              ← base: '/governed/', outDir: 'docs'
 ```
 
 ---
 
-## Data → Engine → UI Rule
+## Architecture: Data → Engine → UI
 
 ```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   DATA      │ →  │   ENGINE    │ →  │     UI      │
-│  (JSON)     │    │  (JS logic) │    │  (DOM/CSS)  │
-└─────────────┘    └─────────────┘    └─────────────┘
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│   DATA       │ →  │   ENGINE     │ →  │     UI       │
+│  city JSON   │    │  pure logic  │    │  DOM/CSS     │
+│  problem &   │    │  no DOM      │    │  read-only   │
+│  market pools│    │  state only  │    │  from state  │
+└──────────────┘    └──────────────┘    └──────────────┘
 ```
+
+The engine never touches the DOM. UI never mutates state directly: **button click → `window.GOVERNED.method()` → engine mutates `state` → `app.render()` re-renders from scratch.** All engine randomness routes through the seeded PRNG (`utils/random.js`), so a seed-pinned game replays identically.
+
+---
+
+## Engine Modules
+
+### `game-state.js` — Single source of truth
+
+**Core fields:** `city`, `turn`, `approval`, `budget`, `advisors[]`, `activeCrises[]`, `resolvedCrises[]`, `flags{}`.
+
+**Pending-event queues (all serialized):** `pendingCrisis`, `pendingScandal`, `pendingScandalReveals[]` (surprise-scandal popups), `pendingHeatNotices[]` (SCRUTINY level-up popups), `pendingBetrayals[]`, `pendingBribes[]`, `pendingContractOffers[]`, `pendingUnrest`, `pendingMarketOffers[]`, `pendingLoverDemand`, `pendingPartnerDemand`.
+
+**Problem backlog:** `problemDeadlines{id→turn}`, `lastPresentTurn` (gates ONE new problem/turn — carryover resolutions don't consume it), `ignoredProblems` counter. Unresolved problems carry over between turns; at age ≥ 3 turns `_processOverdueProblems()` closes them as `ignored: true` in `pastDecisions` with a 50/50 outcome: moderate "Governor Sat On It" scandal, or −5% approval + hate comments + reveal popup. **Report gate:** > 1 undecided problem at term end = no invitation regardless of approval.
+
+**SCRUTINY:** `heat` (points), `lastHeatGainTurn`, `siegeTurns`.
+
+**Black market:** `purchasedOffers[]` (once-per-game tracking), `marketEffects{}` (every active aura/shield/stream — see market-system).
+
+**Bookkeeping:** `backChannelUsedTurn` (one dirty action per turn), `dirtyDeeds{skimmed, threats, leaks, exposed, marketBuys}`, `endReason` (`recalled | term_complete | career_ending_scandal | resigned`), `consecutiveDeficitTurns`.
+
+**Per-advisor runtime fields:** `trust`, `agendaProgress`, `betrayed`, `sacrificed`, `romanceExposed`, `relationshipType`, `scorned`, `lastDemandTurn`, `emergencyPowerUsed`, `corruptPact`, `pactTurns` (cumulative — never resets on restart), `totalSkimmed`, `pactResidual`, `threatCount`, `leakUsed`, `pendingReaction` (queued "told you so" — `{type, title, turn}`), `pendingReactionMsg` (ready-to-read chat line; drives the unread badge until the messenger consumes it).
+
+**`deserialize()`** rebuilds the advisor roster **from the save**, not from `loadCity()`'s shuffle (regression-tested — loading used to reshuffle advisors).
+
+### `turn-manager.js` — Turn flow + player actions
+
+**`processTurn()` sequence:**
+```
+0.   Auto-fire unhandled pendingScandal (full penalty)
+0.5  _processHeatAndMarket():
+       market offers expire · heat decay (−1 per clean turn)
+       siege clock (3 turns UNDER SIEGE = recall)
+       impeachment flag → major scandal
+       fixer resurface · income streams · approval drips
+       pension loan due · forced unrest (arms sale)
+1.   tickAgendas (agenda +5*, trust −2; betray at 80)   *frozen by market FX
+2.   tickRelationships (rel modifiers, romance roll, scorned, lover demands)
+3.   processCorruptPacts (skim, +2 trust, discovery roll 5%+1%/turn)
+4.   generateBribeOffers (agenda ≥ 60, 30%)
+5.   pendingCrisis → activeCrises
+6.   _checkEndConditions (approval 0 / siege / turn ≥ 12 & no crisis / 3 failed crises)
+7.   turn++ · decision quota reset
+8.   Economy: passive tax → budget pressure (slush fund, deficit pause)
+        → tier drain (truce pause, halved drains)
+9.   _rollScandalEvent (settings freq × military passive × SCRUTINY mult
+        × market dampers; newsroom-bug skip; lover tip-off 35%)
+10.  _rollUnrestEvent (budget<0 & approval<37; immunity/damp/boost FX)
+11.  Contracts: installments (+ remainder on final) → offer roll
+12.  Reactions ("I told you so" delivery) → briefings → recommendations → absence effects
+13.  Crisis trigger on 4/8/12 (skip-crisis FX consumes the window)
+14.  saveGame
+```
+
+**Player actions:** `resolveDecision` (applies halve-next-loss FX, rec trust ±, queues a told-you-so reaction when ignored advice goes badly, domain trust +5/agenda −8, then **rolls the black market**), `resolveCrisis` (crisis cost/approval FX), `resolveUnrest`, `acceptScandal/suppressScandal/respondToScandal`, `accept/declineBribe`, contracts, `useEmergencyPower`, `backChannelAction`, `buyMarketOffer/passMarket`, `addressNation`, `resolveLoverDemand`.
+
+### `heat-system.js` — SCRUTINY
+
+Points internal, levels public: QUIET 0 · MURMURS 10 · WATCHED 25 · INVESTIGATED 45 · UNDER SIEGE 70. Scandal heat: minor +1, moderate +2, major +3, career +5. `addHeat()` queues level-transition notices and entry effects (audit −20M at INVESTIGATED, impeachment at SIEGE). `scandalChanceMult()`: ×1 / ×1 / ×1.25 / ×1.5 / ×2. Defuses: clean-turn decay, Address the Nation (once per term, heat ≥ 25), sacrifice (back channel), market laundry offers.
+
+### `market-system.js` — Black market
+
+Pool: `Hardcoded things/black_market.json`, 6 types × 10 offers. **`rollOffers(domain)`** fires after the day's decision: 30% base +10% deficit +10% approval<35 (cap 50%). One offer from a random type + one *linked* offer (problem domain → dealer type: finance→sellside, urban/transport→insurance, religious→intelligence, military→influence, media→cleanup). Offers expire at next `processTurn`. INVESTIGATED+ adds 25% price premium. **`buy()`** applies cost, effects (interpreter with ~30 ops: stat deltas, advisor ops, clears, timed auras, shields, income streams, the pension loan), heat, then rolls the risk (scandal / resurface-worse / rivalry / forced unrest). Everything lands in `state.marketEffects` and is consumed by the relevant engine hook.
+
+### `advisor-system.js` — Advisors, back channel, lover arc
+
+**`BACK_CHANNEL_ACTIONS`** (one per turn; conditions on trust/approval/budget/agenda/heat):
+get_closer · keep_distance · corrupt_pact (trust ≥ 60, budget < 150) · end_pact · threaten (agenda ≥ 40 or PI-unlock, approval ≥ 45; backfire scales with leverage, doubles on reuse, 3rd = instant betrayal) · leak (agenda ≥ 50, 30M, once per advisor) · **sacrifice** (heat ≥ 20: heat −10, +2% approval, cabinet −8 trust; lover variant −12/−4%/−12).
+
+**Lover arc:** one lover only (cheating → scorned ex, may go public at +1 severity for 2 turns; breakups same). Devoted lover (trust ≥ 70): 35% tip-off cancels a rolled scandal. **Demands: 40%/turn** (`pendingLoverDemand`, max one pending): fund −30M or pardon +1 heat; refusal cools the relationship. Exposure stance by trust: ≥ 70 penalty halved +10 trust; < 40 full penalty + rivalry.
+
+**Partner demands:** active corrupt pact partner demands an answer **40%/turn** (`pendingPartnerDemand`): `bigger_cut` (pay −25M/+5 trust, or refuse → pactTurns +1, trust −8) or `cold_feet` (accept → `pactPaused`: next turn no skim/no risk; refuse → pactTurns +1, trust −5). Resolved via `resolvePartnerDemand(accept)`.
+
+**Unread badges:** advisor cards show a pulsing red badge — "needs an answer" when that advisor's lover/partner demand is pending, "new message" when a told-you-so reaction waits unread; the mobile ADVISORS tab gets a red dot when any demand, bribe, or unread reaction waits.
+
+**Recommendations are personality-driven**, not safety-driven: per-advisor weights (finance=budget, military=anti-scandal, urban=approval...), self-interest from `advisor_effects`, ±noise — and at agenda ≥ 60 a **50% chance of deliberate sabotage** (approval term inverted). Console logs `(SCHEMING)`. In the messenger the rec renders as a **chat bubble** with the option's authored `advisor_reason` — the advisor makes their case before naming their pick.
+
+**Reactions ("I told you so"):** when the player **ignores a recommendation** and the chosen option's `approval_delta` is negative AND worse than the recommended option's, `resolveDecision` queues `advisor.pendingReaction`. Next `processTurn`, `deliverPendingReactions()` converts it to `pendingReactionMsg` — a random line from `Hardcoded things/advisor_reactions.json` (`told_you_so` pool, `{title}` interpolated). Opening that advisor's messenger pushes it into the chat log and clears the badge. The file is extensible: add new pools keyed by reaction type.
+
+**Pacts:** skim = max(10, 25% of tax rate)/turn, +2 trust (complicity), discovery 5% +1%/turn; exposure severity by cumulative `pactTurns` (≤2 minor → 9+ career_ending); residual 4% × 2 turns after ending.
+
+### `scandal-system.js`
+
+4 tiers (−5/−12/−22/−40 default; **city-authored `approval_penalty` takes precedence**). `safeTier()` guards bad JSON. `_applyScandal()` adds heat + queues a reveal popup for every *surprise* scandal (sourceId ≠ 'accepted') with a human explanation of the source. Pending-card paths: suppress (20/40/80/150M) / accept / **manage the story** (tier responses; base penalty applies first, response shapes it). Career-ending: resign (game over) or Desperate Last Stand (150M, 25% — survival still applies the scandal penalty). `triggerRomanceExposure(name, severityBoost)` handles stance variants and the Deepfake Insurance shield.
+
+### `crisis-manager.js` / `consequence-sim.js` / `contract-system.js` / `generic-problems.js`
+
+Largely as before: crisis windows 4/8/12 with turn-12 fallback; consequence applier (positive trust_delta counters agenda ×1.5, scandal_risk roll, crisis/decision unlocks); contracts (tier chance + deficit bonus, installments **pay the rounding remainder on the final payment**, accepting one competing offer marks the other declined); generic problems (domain-tagged pools, `{city.*}` interpolation — including per-option `advisor_reason`, trust < 30 hides the domain's problems). Scandal responses now report `hitZero`: if the base penalty zeroes approval, the recall fires even when the response's recovery modifier would lift it back above 0. Problem options carry an optional `advisor_reason` (the advisor's authored argument for that option — generate with `ADVISOR_REASON_PROMPT.md`).
+
+---
+
+## UI
+
+**`renderer.js`** — router; `handlers` object delegates everything to `window.GOVERNED`.
+
+**`dispatch-screen.js`** — main game screen (grid `30% 1fr 20%`). Story column: pips, story card, **black market card** (after the day's decision, when open). Decision column: decision cards, **Address the Nation card** (heat ≥ 25, once), scandal card (with manage-the-story responses), unrest card, END TURN (sticky on desktop). Right: advisor cards (badges: BETRAYED / PLOTTING / OFFERING A DEAL (real offers only) / CHECKED OUT / GROWING RESTLESS), bribe + contract cards, crisis window (synced to engine's 4/8/12), live ticker. Full-screen popup queues: **heat notices → scandal reveals → betrayals** (sacrifice variant labeled SACRIFICED).
+
+**`messenger-screen.js`** — advisor chat: quick replies, **recommendation chat bubble** (authored `advisor_reason` + pick + trust note), delivered **"I told you so" messages** (consumed from `pendingReactionMsg` on open), emergency power, **lover demand box**, **BACK CHANNEL section** (only actions whose triggers pass; pact status line with live risk; one-per-turn notice).
+
+**`settings-screen.js`** — tabs: Gameplay (scandal freq — wired to engine; language placeholder), Display (feed speed — wired), Audio (sound toggle — persists, no audio engine yet), Stats (**CAREER** lifetime stats + CURRENT SESSION), Data (**Resign Early** during a game + Reset Save). All changes persist via `settings-store.js` immediately (independent of game saves).
+
+**`report-screen.js`** — endings: term complete / RECALLED / RESIGNED (scandal: "resigned in disgrace" or "the last stand failed") / RESIGNED (voluntary). Crises survived counted **out of 3** (windows, not city crisis count). Boxes: worst decision, **DIRTY HANDS / CLEAN HANDS**, **BACKROOM RELATIONS** (per-advisor epitaphs: lover, pact partner + skim total, threats, leaks, sacrificed...).
+
+**`menu-screen.js`** — PLAY / SETTINGS, HOW TO PLAY modal (current systems), formal CREDITS modal.
+
+**`cityselect-screen.js`** — D3 world map, 25 pins + planned-city dots, terminal-style posting board.
+
+**`top-bar.js`** — city/turn/approval/budget + **SCRUTINY level with pips** (hidden while QUIET).
+
+---
+
+## Styles — important rules
+
+- **`base.css`** — fluid root font: `clamp(14px, 100vw/60, 64px)` — whole UI (rem-based) keeps the same proportions at any desktop width. Tablet 150% / phone 125% fixed. **Themed scrollbars globally** (6px dark thumb).
+- **`screens.css`** — ⚠ has a mobile media block near the TOP that **loses the cascade** to desktop rules below it. The authoritative mobile overrides live in the **"MOBILE STICKY FIX" block at the END of the file** (settings tab strip, messenger grid, main-body). Add new mobile overrides THERE.
+- **`components.css`** — desktop: `.story` scrolls, `.dec` capped at 72% with internal scroll + sticky END TURN. Mobile: `.dec` flows normally (sticky removed — taller-than-viewport sticky panels bury the story).
 
 ---
 
 ## City JSON Schema (key fields)
 
+As before (city_id, tier, tax_rate, advisors, decisions, crises, scandals, comment_library, scandal_reactions, romance_exposure), plus:
+
 ```json
-{
-  "city_id":        "string (snake_case)",
-  "city_name":      "string",
-  "tier":           "easy | medium | hard | extreme | war",
-  "tax_rate":       "integer (optional — overrides tier default income per turn)",
-  "advisor_count":  "integer (optional — overrides tier default advisor count)",
-  "problem_clusters": ["string", "string", "string"],
-  "city_personality": { "voice", "humor_style", "media_outlet", "landmark", ... },
-  "opening_sequence": {
-    "title": "string",
-    "intro": "string",
-    "starting_stats": {
-      "approval_rating": 40-60,
-      "budget": 200-800,
-      "advisor_trust_levels": { "finance": 50, "military_liaison": 50, ... }
-    }
-  },
-  "advisors": [ /* exactly 5 in JSON; game picks subset by advisor_count */ ],
-  "decisions":  [ /* 5 city-specific policy decisions */ ],
-  "crises":     [ /* 4 crises, turn_min/turn_max staggered */ ],
-  "scandals":   [ /* 3 scandals with severity_tier */ ],
-  "comment_library": {
-    "positive": [], "neutral": [], "negative": [],
-    "media": [], "politician": [], "activist": [],
-    "street": [], "crisis": [], "scandal": []
-  },
-  "scandal_reactions": {
-    "minor": "string",
-    "moderate": "string",
-    "major": "string",
-    "career_ending": "string"
-  },
-  "romance_exposure": {
-    "severity": "minor | moderate | major | career_ending",
-    "flavour": "string"
+"advisors": [
+  {
+    "id": "finance_Jane",
+    "domain_id": "finance",       ← New: explicitly defines the advisor's domain
+    "name": "Jane Doe",
+    "role": "Director of Budget",
+    "portrait": "📋",
+    "agenda": "Maintain fiscal solvency...",
+    "dialogue": { ... }
   }
+],
+"scandals": [
+  { "id": "...", "title": "...", "description": "...",
+    "approval_penalty": -14,
+    "severity_tier": "moderate"   ← optional; derived from penalty if absent
+  }                                  (≤−30 career, ≤−18 major, ≤−8 moderate)
+],
+"address_the_nation": {            ← optional; generic fallback exists
+  "title": "Steps of Balai Kota",
+  "body": "Two hundred journalists. One podium...",
+  "option_flavor": { "own_it": "...", "defiant": "...", "deflect": "..." }
 }
 ```
 
 ---
 
-## Economy System
+## Economy Reference
 
-Each turn, in order:
-1. **Passive Tax**: `income = round(taxRate × approval/100)`
-   - Tier defaults: easy=80, medium=60, hard=40, extreme=25, war=15
-   - `city.tax_rate` overrides (e.g. Cayman=160 offshore hub, Gaza=35 international aid)
-2. **Budget Pressure**: budget < 0 → −3 approval/turn; budget < −200 → −5 approval/turn
-3. **Scandal Roll**: chance set by `settings.scandalFreq` (low=8%, normal=20%, high=38%)
-
----
-
-## Advisor System (GDD §4.1–4.3)
-
-**Count by city type:**
-| City type | Count | Example |
-|-----------|-------|---------|
-| easy/medium (major city) | 5 | Jakarta, NYC |
-| hard | 4 | Karachi |
-| extreme/war (war zone) | 3 | Gaza, Tehran |
-| Special | 3 | Cayman (via `advisor_count: 3`) |
-
-JSON always has 5 advisors; game shuffles and picks the required count at `loadCity()`.
-
-**Layers:**
-| Layer | What it does |
-|-------|-------------|
-| L1: Trust decay | −2/turn; domain decision → +5 trust, −8 agenda |
-| L2: Domain gate | trust<30 → domain hidden; budget/approval penalty |
-| L3: Betrayal slow | trust_delta>0 → also cuts agendaProgress×1.5 |
-| Personal | neutral→trust→romantic; rivalry track |
-
-**Relationship types:**
-- `neutral`: no modifier
-- `trust`: +2 trust/turn
-- `rivalry`: −4 trust/turn, agenda accelerates
-- `romantic`: +4 trust/turn, 5% romance exposure risk/turn
-
-Betrayals queue in `pendingBetrayals[]` and display as a full-screen blocking overlay in dispatch-screen.js — one at a time, dismissed via ACKNOWLEDGE button.
-
----
-
-## Scandal Severity Tiers (GDD §3.5)
-
-| Tier | Approval | Suppress Cost | Responses |
-|------|----------|--------------|-----------|
-| minor | −5 | 20M | Deny / Deflect / Blame Staff |
-| moderate | −12 | 40M | Apologize / Fire Advisor / Investigate |
-| major | −22 | 80M | Resign Offer / Fight Legal / Coalition |
-| career_ending | −40 | 150M | Desperate Last Stand (25% miracle) / Resign |
-
-City reactions: read from `city.scandal_reactions[tier]`. Falls back to `FALLBACK_REACTIONS` in scandal-system.js if not set. `ROMANCE_EXPOSURE_CULTURE` map has been removed — severity is now per-city in `city.romance_exposure`.
-
----
-
-## Settings System
-
-Stored in `state.settings` — persists across city changes (not reset by `loadCity()`). Serialized/deserialized with save data.
-
-| Setting | Values | Effect |
-|---------|--------|--------|
-| `tutorial` | true/false | Show advisor briefing tips |
-| `sound` | true/false | Audio feedback |
-| `feedSpeed` | slow/normal/fast | Feed scroll: 120s/75s/35s (inline CSS) |
-| `scandalFreq` | low/normal/high | Scandal roll: 8%/20%/38% per turn |
-
----
-
-## Turn Flow
-
-```
-processTurn()
-  0. Auto-fire unhandled pendingScandal
-  1. tickAgendas()        — agenda +5/turn, trust −2/turn, betrayal at 80 → pendingBetrayals[]
-  2. tickRelationships()  — relationship modifiers, romance exposure roll
-  3. generateBribeOffers()— agenda≥60, 30% chance per advisor
-  4. Push pendingCrisis if queued
-  5. _checkEndConditions()— approval≤0, turn≥12, 3 failed crises
-  6. turn++
-  7. _applyPassiveTax()   — reads city.tax_rate or tier default
-  8. _applyBudgetPressure()
-  9. _rollScandalEvent()  — chance from settings.scandalFreq
-  10. generateBriefings()
-  11. applyAbsenceEffects()
-  12. shouldTriggerCrisis() → crisis_triggered on turns 4/8/12
-```
+`income/turn = round(taxRate × approval/100)` · tier defaults 80/60/40/25/15 (city `tax_rate` overrides). Deficit: −3%/turn (−5% below −200M). Corrupt pact skim: max(10, 25% of tax rate). Black market prices 20–150M (+25% at INVESTIGATED). Suppress costs 20/40/80/150M.
 
 ---
 
 ## Public API (window.GOVERNED)
 
 ```javascript
-window.GOVERNED = {
-  nextTurn(),
-  handleDecision(decisionId, optionIndex),
-  handleCrisisDecision(crisisId, optionIndex),
-  openMessenger(advisorId),
-  backToDispatch(),
-  dismissBetrayal(),              // clears first item in pendingBetrayals[], re-renders
-  acceptScandal(),
-  suppressScandal(),
-  respondToScandal(responseId),
-  acceptBribe(advisorId),
-  declineBribe(advisorId),
-  shiftAdvisorRelationship(advisorId, delta),
-  goToMenu(), goToCitySelect(), goToSettings(),
-  switchCity(cityId),
-}
+goToMenu(), goToCitySelect(), goToSettings(),
+startGame(cityKey, governorName),          // async
+switchCity(cityId),                        // async
+nextTurn(),
+handleDecision(decisionId, optionIndex),
+handleCrisisDecision(crisisId, optionIndex, advisorSecretId?),
+acceptScandal(), suppressScandal(), respondToScandal(responseId),
+openMessenger(advisorId), backToDispatch(),
+dismissBetrayal(), dismissScandalReveal(), dismissHeatNotice(),
+acceptBribe(id), declineBribe(id),
+acceptContract(id), declineContract(id), declineAllContracts(),
+resolveUnrest(action), useEmergencyPower(id),
+shiftAdvisorRelationship(id, delta),
+backChannelAction(advisorId, actionId),    // get_closer/keep_distance/corrupt_pact/
+                                           // end_pact/threaten/leak/sacrifice
+buyMarketOffer(offerId), passMarket(),
+addressNation(optionId),                   // own_it/defiant/deflect
+loverDemand(accept), partnerDemand(accept),
+resignEarly()
 ```
+
+All game-over paths route through `app._endGame()` → records career stats exactly once (`career_recorded` flag).
+
+---
+
+## Persistence
+
+| Key | Contents |
+|---|---|
+| `governed_save` | Full game state (versioned 0.1.0; mismatch clears) |
+| `governed_settings` | Settings — written on every change, loaded at boot |
+| `governed_career_stats` | Lifetime: games, terms completed, recalls, resignations, best approval, turns governed |
 
 ---
 
 ## Adding New Cities
 
-1. Generate JSON with `CITY_GENERATOR_PROMPT.md` (Gemini)
-2. Ensure JSON is a plain object (not array-wrapped)
-3. Verify `scandal_reactions` and `romance_exposure` fields exist
-4. Drop file in `src/data/cities/`
-5. Add entry to `CITY_REGISTRY` in `main.js`
-6. Add pin to `CITIES` array in `cityselect-screen.js` (tier color, cx/cy coordinates, flavor)
+1. Generate JSON with `CITY_GENERATOR_PROMPT.md`
+2. Ensure plain object (not array-wrapped); include `scandal_reactions`, `romance_exposure`, ideally `address_the_nation`
+3. Drop in `src/data/cities/`, register in `CITY_REGISTRY` (main.js), pin in `CITIES` (cityselect-screen.js)
+
+---
+
+## Build, Test & Deploy
+
+```bash
+npm run dev       # Dev server (localhost:4444 as configured)
+npm test          # Vitest engine suite
+npm run build     # Build to docs/
+```
+
+GitHub Pages serves `docs/` at `https://putra10.github.io/governed/` (`base: '/governed/'`).
 
 ---
 

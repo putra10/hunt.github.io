@@ -24,3 +24,9 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+vite.config.js.timestamp*
+
+audit_report.md
+IMPROVEMENT_PLAN.md
+CITY_GENERATOR_PROMPT.md
+ADVISOR_REASON_PROMPT.md

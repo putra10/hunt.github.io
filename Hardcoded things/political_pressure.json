@@ -14,6 +14,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Comply with the feds to keep the money flowing.",
+        "advisor_reason": "We must accept the cameras to preserve our budget and social unity. The righteous have nothing to hide from the federal eye anyway.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -50,
@@ -33,6 +34,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Refuse the cameras and sue the federal government.",
+        "advisor_reason": "A 200M lawsuit is a steep price for our soul, but we cannot let federal overreach taint our moral standing. The people will praise our purity.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -200,
@@ -52,6 +54,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Install fake plastic cameras to trick the feds.",
+        "advisor_reason": "Deception is a sin, but a 30M facade keeps the peace and the funding. Pray the federal ministers do not look too closely at our hollow virtue.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -30,
@@ -86,6 +89,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Bribe undecided members with new infrastructure projects in their districts.",
+        "advisor_reason": "Giving away 300M is a heavy penance, but it maintains the unity of our government. An open schism would be far too scandalous to bear.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -300,
@@ -105,6 +109,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Publicly expose the corrupt secrets of the opposition leaders.",
+        "advisor_reason": "We must purge their sins in the public square, even if the scandal risk tests our own faith. Righteousness requires a little dirt.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -50,
@@ -124,6 +129,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Lock the doors of the council chamber until they vote in your favor.",
+        "advisor_reason": "Forced communion is still communion. A brief kidnapping is a small price for municipal harmony, though the police intervention severely tests our optics.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -158,6 +164,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Launch a PR campaign claiming the defector was fired for incompetence.",
+        "advisor_reason": "For 80M we can weave a narrative that protects our moral authority. It is a necessary falsehood to prevent the congregation from losing faith.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -80,
@@ -177,6 +184,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Sue the defector for violating their non-disclosure agreement.",
+        "advisor_reason": "Dragging them through court costs 100M and invites wicked gossip, but apostates must be punished publicly to preserve our holy order.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -100,
@@ -196,6 +204,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Promote the defector's intern to deputy mayor to show you do not care.",
+        "advisor_reason": "Elevating the meek saves us money and projects a serene, unified front. I am sure the intern's profound lack of experience will not spark any scandals.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -30,
@@ -230,6 +239,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Form a meaningless task force to study the report's findings.",
+        "advisor_reason": "A 50M task force is the perfect liturgical response to international outrage. It looks deeply moral without actually disturbing our delicate status quo.",
         "consequences": {
           "approval_delta": 0,
           "budget_delta": -50,
@@ -249,6 +259,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Implement sweeping labor reforms to appease the international community.",
+        "advisor_reason": "Spending 250M on reforms cleanses our global reputation. The oligarchs will weep, but our optics on the world stage will be immaculately pure.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -250,
@@ -268,6 +279,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Ban the international organization from entering city limits.",
+        "advisor_reason": "Excommunicating the UN avoids a protracted debate, though it invites terrifying global scandal. We must protect our flock from foreign judgment at all costs.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -30,
@@ -302,6 +314,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Pay to clean it up ourselves and build a barrier.",
+        "advisor_reason": "Turning the other cheek costs 150M, but it cleanses the stench from {city.landmark}. Better a quiet, expensive peace than a scandalous neighborly dispute.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,
@@ -321,6 +334,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Load the trash into dump trucks and return it to their city hall lawn.",
+        "advisor_reason": "Returning their filth is an ugly, vindictive act that risks a massive scandal spike. Yet the public demands righteous retribution, heaven help us.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -80,
@@ -340,6 +354,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Annex the border territory using municipal police.",
+        "advisor_reason": "An armed crusade over garbage is a moral catastrophe costing 200M. The resulting federal intervention will completely destroy our pious image.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -200,
@@ -374,6 +389,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Give them control of the budget committee to keep the peace.",
+        "advisor_reason": "Sacrificing 100M and our moderate programs is a bitter pill, but preserving party unity is a moral imperative. Schisms only breed deeply embarrassing public shame.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -100,
@@ -393,6 +409,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Expel the faction leaders from the party entirely.",
+        "advisor_reason": "Casting out the heretics purifies our ranks. The resulting political gridlock will be miserable, but at least our optics will be free of their radical taint.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -30,
@@ -412,6 +429,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Resign from the party and govern as a fully independent executive.",
+        "advisor_reason": "Abandoning our political church to walk alone invites absolute chaos and impeachment. The public disgrace will be a stain we can never wash away.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -446,6 +464,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Launch a massive PR campaign highlighting minor successes.",
+        "advisor_reason": "Emptying our coffers by 250M is a tragic waste, but we must broadcast a narrative of virtuous success to avoid the utter disgrace of a recall.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -250,
@@ -465,6 +484,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Challenge the opposition candidate to a live unscripted debate.",
+        "advisor_reason": "An unscripted debate risks a terrifying loss of decorum. We must pray the opposition loses their temper first, keeping our own moral superiority intact.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -30,
@@ -484,6 +504,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Invalidate the signatures on a technicality and cancel the election.",
+        "advisor_reason": "Canceling democracy is a profound sin against public optics. The resulting riots will shatter the peaceful unity we have worked so hard to maintain.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -50,
@@ -518,6 +539,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Politely request the federal government to recall the general.",
+        "advisor_reason": "Waiting patiently for federal deliverance costs us 30M and looks weak, but it completely avoids the scandalous horror of armed conflict on our streets.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -30,
@@ -537,6 +559,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Order the municipal police to formally arrest the military personnel.",
+        "advisor_reason": "Pitting our police against the army for 100M is a horrifying violation of civic peace. The public may cheer, but the resulting armed standoff is a scandal we cannot survive.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -100,
@@ -556,6 +579,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Appoint the general as the new head of the transport department.",
+        "advisor_reason": "Embracing the usurper brings an unholy, terrifying order to our roads. It avoids a shootout, even if our moral authority is entirely surrendered to the sword.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,

@@ -20,10 +20,90 @@
     "can_compete": true
   },
   {
+    "id": "culinary_tourism_grant",
+    "title": "Culinary Tourism Grant",
+    "client": "National Gastronomy Association",
+    "description": "A food-focused marketing push to attract culinary tourists. The restaurant association demands prominent branding and event space.",
+    "reward_budget": 130,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 9,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "heritage_tourism_grant",
+    "title": "Heritage Tourism Grant",
+    "client": "Historical Preservation Society",
+    "description": "Funding to promote historical landmarks across the city. Requires strict preservation guarantees in the marketing materials.",
+    "reward_budget": 130,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 9,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "sports_event_hosting",
     "title": "International Sports Event Bid",
     "client": "Global Sports Federation",
     "description": "The city is awarded hosting rights for a major international event. Short-term budget injection — logistics costs may follow.",
+    "reward_budget": 160,
+    "approval_delta": 10,
+    "scandal_risk": 0.1,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 8,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "esports_major_tournament",
+    "title": "Esports Major Tournament",
+    "client": "Digital Athletics League",
+    "description": "The city secures a massive international gaming tournament. Immediate sponsor cash flows in, but internet and grid infrastructure will be tested.",
+    "reward_budget": 160,
+    "approval_delta": 10,
+    "scandal_risk": 0.1,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 8,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "regional_championship_bid",
+    "title": "Regional Athletics Championship",
+    "client": "Continental Athletics Committee",
+    "description": "Your city is chosen for a highly publicized regional track and field championship. The initial payout is generous to prepare the venues.",
     "reward_budget": 160,
     "approval_delta": 10,
     "scandal_risk": 0.1,
@@ -60,10 +140,90 @@
     "can_compete": true
   },
   {
+    "id": "innovation_expo_grant",
+    "title": "Innovation Expo Grant",
+    "client": "Startup Founders Network",
+    "description": "A coalition of local startups wants to host a citywide technology expo. They require municipal backing and a prominent central venue.",
+    "reward_budget": 100,
+    "approval_delta": 3,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "trade_association_conference",
+    "title": "Trade Association Conference",
+    "client": "Manufacturers Guild",
+    "description": "A powerful manufacturing guild wants to base its annual conference here. City endorsement and security cordons are mandatory.",
+    "reward_budget": 100,
+    "approval_delta": 3,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "film_production_subsidy",
     "title": "Film Production Subsidy",
     "client": "Meridian Entertainment",
     "description": "A film studio wants to use the city as a backdrop. Tax incentives and location fees generate quick revenue — but tabloid crews come with the deal.",
+    "reward_budget": 120,
+    "approval_delta": 6,
+    "scandal_risk": 0.18,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 9,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "indie_film_festival_subsidy",
+    "title": "Independent Film Festival",
+    "client": "Silver Screen Coalition",
+    "description": "A prominent indie festival wants to relocate to your city. It brings immediate cash and tourism, but the avant-garde crowds might cause friction.",
+    "reward_budget": 120,
+    "approval_delta": 6,
+    "scandal_risk": 0.18,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 9,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "television_pilot_incentive",
+    "title": "Television Pilot Incentive",
+    "client": "Global Broadcast Network",
+    "description": "A major TV network wants to shoot a high-budget pilot downtown. The location fees are great, but traffic disruptions will agitate the press.",
     "reward_budget": 120,
     "approval_delta": 6,
     "scandal_risk": 0.18,
@@ -100,10 +260,100 @@
     "can_compete": true
   },
   {
+    "id": "international_art_biennale",
+    "title": "International Art Biennale",
+    "client": "Global Arts Council",
+    "description": "Funding to host a prestigious art biennale. The civic pride boost is wonderful, and the initial grant makes setup highly appealing.",
+    "reward_budget": 85,
+    "approval_delta": 7,
+    "scandal_risk": 0.02,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 11,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "global_music_showcase",
+    "title": "Global Music Showcase",
+    "client": "World Heritage Fund",
+    "description": "A global foundation offers to sponsor a massive traditional music showcase in your city. It elevates the city's international profile safely.",
+    "reward_budget": 85,
+    "approval_delta": 7,
+    "scandal_risk": 0.02,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 11,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "green_energy_grant",
     "title": "Green Energy Infrastructure Grant",
     "client": "ClimateFirst Foundation",
     "description": "A 3-year renewable infrastructure grant paid in installments. The public views it favorably — your planning team will appreciate the investment.",
+    "reward_budget": 300,
+    "approval_delta": 5,
+    "scandal_risk": 0.02,
+    "advisor_effects": [
+      {
+        "advisor_id": "urban_planning",
+        "trust_delta": 8
+      }
+    ],
+    "min_turn": 1,
+    "max_turn": 8,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 3,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "solar_infrastructure_grant",
+    "title": "Solar Grid Modernization Grant",
+    "client": "EcoVision Trust",
+    "description": "A long-term grant aimed at outfitting municipal buildings with solar arrays. Multi-year installments with strong support from city planners.",
+    "reward_budget": 300,
+    "approval_delta": 5,
+    "scandal_risk": 0.02,
+    "advisor_effects": [
+      {
+        "advisor_id": "urban_planning",
+        "trust_delta": 8
+      }
+    ],
+    "min_turn": 1,
+    "max_turn": 8,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 3,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "urban_canopy_initiative",
+    "title": "Urban Canopy Initiative",
+    "client": "Green Earth Network",
+    "description": "A 3-year phased funding program to plant thousands of trees and build eco-corridors. Extremely popular with residents and planning officials.",
     "reward_budget": 300,
     "approval_delta": 5,
     "scandal_risk": 0.02,
@@ -148,6 +398,52 @@
     "can_compete": true
   },
   {
+    "id": "medical_research_partnership",
+    "title": "Medical Research Partnership",
+    "client": "Institute of Health Sciences",
+    "description": "Funding to construct a cutting-edge biomedical research annex. Requires direct integration with municipal health and zoning plans.",
+    "reward_budget": 110,
+    "approval_delta": 5,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "urban_planning"
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "engineering_innovation_lab",
+    "title": "Engineering Innovation Lab",
+    "client": "Advanced Mechanics Board",
+    "description": "A board wants to fund a massive civil engineering testing lab. Your urban planners will have to sign off on the land usage requirements.",
+    "reward_budget": 110,
+    "approval_delta": 5,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "urban_planning"
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "city_branding_campaign",
     "title": "City Branding Campaign",
     "client": "Global Cities Network",
@@ -168,10 +464,102 @@
     "can_compete": true
   },
   {
+    "id": "digital_nomad_campaign",
+    "title": "Digital Nomad Campaign",
+    "client": "Remote Workforce Alliance",
+    "description": "An alliance wants to market your city as the ultimate remote work destination. They'll fund the campaign in exchange for city-sponsored incentives.",
+    "reward_budget": 115,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "smart_city_showcase",
+    "title": "Smart City Showcase",
+    "client": "Urban Future Forum",
+    "description": "A prominent forum wants to use your city as a poster child for smart technology. Generates great visibility and cash, but requires deep data sharing.",
+    "reward_budget": 115,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "tech_hub_partnership",
     "title": "Tech Hub Partnership",
     "client": "GlobalTech Consortium",
     "description": "A multinational consortium offers infrastructure funding in exchange for zoning rights near the city center. Residents are already skeptical.",
+    "reward_budget": 200,
+    "approval_delta": -5,
+    "scandal_risk": 0.2,
+    "advisor_effects": [
+      {
+        "advisor_id": "urban_planning",
+        "trust_delta": -10
+      }
+    ],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "data_center_zoning_deal",
+    "title": "Data Center Zoning Deal",
+    "client": "CloudCore Industries",
+    "description": "A massive tech firm wants to build a hyper-scale data center. It brings huge capital, but it will consume massive power and displace neighborhoods.",
+    "reward_budget": 200,
+    "approval_delta": -5,
+    "scandal_risk": 0.2,
+    "advisor_effects": [
+      {
+        "advisor_id": "urban_planning",
+        "trust_delta": -10
+      }
+    ],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "autonomous_vehicle_testing_hub",
+    "title": "Autonomous Vehicle Testing Hub",
+    "client": "NextGen Mobility",
+    "description": "A tech giant wants to turn city streets into a testing ground for driverless cars. Highly lucrative, but safety concerns enrage local planners.",
     "reward_budget": 200,
     "approval_delta": -5,
     "scandal_risk": 0.2,
@@ -220,10 +608,114 @@
     "can_compete": true
   },
   {
+    "id": "asian_development_bank_loan",
+    "title": "Continental Development Loan",
+    "client": "Regional Development Bank",
+    "description": "A substantial loan meant strictly for upgrading civic utilities. It shores up the treasury, but the public resents the accompanying austerity terms.",
+    "reward_budget": 280,
+    "approval_delta": -4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [
+      {
+        "advisor_id": "finance",
+        "trust_delta": 8
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 11,
+    "tier_filter": [
+      "medium",
+      "hard",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "global_infrastructure_fund",
+    "title": "Global Infrastructure Fund",
+    "client": "International Finance Corp",
+    "description": "A major capital injection intended to modernize transit systems. It pleases the finance department, but comes with rigid privatization demands.",
+    "reward_budget": 280,
+    "approval_delta": -4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [
+      {
+        "advisor_id": "finance",
+        "trust_delta": 8
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 11,
+    "tier_filter": [
+      "medium",
+      "hard",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "private_investment_deal",
     "title": "Foreign Direct Investment Deal",
     "client": "Meridian Capital Group",
     "description": "A private equity group is willing to invest heavily in the city's growth sector. Opposition groups are already calling it a sellout.",
+    "reward_budget": 240,
+    "approval_delta": -7,
+    "scandal_risk": 0.3,
+    "advisor_effects": [
+      {
+        "advisor_id": "finance",
+        "trust_delta": 12
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "venture_capital_injection",
+    "title": "Venture Capital Injection",
+    "client": "Apex Ventures",
+    "description": "A VC firm wants to aggressively fund local commercial districts. It provides massive liquidity but risks gentrifying historic neighborhoods rapidly.",
+    "reward_budget": 240,
+    "approval_delta": -7,
+    "scandal_risk": 0.3,
+    "advisor_effects": [
+      {
+        "advisor_id": "finance",
+        "trust_delta": 12
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "easy",
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "real_estate_consortium_deal",
+    "title": "Real Estate Consortium Deal",
+    "client": "Vanguard Land Group",
+    "description": "A coalition of foreign developers offers to buy up struggling municipal properties. The financial boon is undeniable, but it looks terrible to voters.",
     "reward_budget": 240,
     "approval_delta": -7,
     "scandal_risk": 0.3,
@@ -270,10 +762,98 @@
     "can_compete": true
   },
   {
+    "id": "stadium_naming_rights",
+    "title": "Stadium Naming Rights Deal",
+    "client": "OmniCorp Holdings",
+    "description": "A massive holding company offers to inject cash into the city budget if they can plaster their logo on the central municipal stadium.",
+    "reward_budget": 200,
+    "approval_delta": 2,
+    "scandal_risk": 0.14,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "finance",
+      "advisor_min_trust": 50
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "transit_system_sponsorship",
+    "title": "Transit System Sponsorship",
+    "client": "Pioneer Energy Group",
+    "description": "An energy firm wants to sponsor the city's bus network, renaming lines after their products. It's an easy win financially, despite the tacky optics.",
+    "reward_budget": 200,
+    "approval_delta": 2,
+    "scandal_risk": 0.14,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "finance",
+      "advisor_min_trust": 50
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "infrastructure_bond",
     "title": "Municipal Infrastructure Bond",
     "client": "Regional Development Authority",
     "description": "A 2-year government-backed bond paid in installments. Lower short-term gains but more stable than a lump sum deal.",
+    "reward_budget": 320,
+    "approval_delta": -2,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 9,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 2,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "green_transit_bond",
+    "title": "Green Transit Bond",
+    "client": "National Treasury Board",
+    "description": "A 2-year state-backed bond focused entirely on mass transit. It restricts your budget flexibility slightly but pays out well over time.",
+    "reward_budget": 320,
+    "approval_delta": -2,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 9,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 2,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "municipal_housing_bond",
+    "title": "Municipal Housing Bond",
+    "client": "Federal Housing Agency",
+    "description": "A phased bond distribution meant to alleviate housing crises. It brings a lot of money into the system but slightly annoys the tax base.",
     "reward_budget": 320,
     "approval_delta": -2,
     "scandal_risk": 0.06,
@@ -310,6 +890,46 @@
     "can_compete": true
   },
   {
+    "id": "rail_freight_terminal_lease",
+    "title": "Rail Freight Terminal Lease",
+    "client": "Trans-Continental Logistics",
+    "description": "A massive logistics firm wants to lease the central rail freight hub. The influx of cash is great, but transit workers are threatening strikes.",
+    "reward_budget": 260,
+    "approval_delta": -6,
+    "scandal_risk": 0.22,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "airport_cargo_hub_lease",
+    "title": "Airport Cargo Hub Lease",
+    "client": "AeroGlobal Freight",
+    "description": "An international freight carrier offers a premium to exclusively lease parts of the municipal airport. Commercial airlines and locals will suffer the disruption.",
+    "reward_budget": 260,
+    "approval_delta": -6,
+    "scandal_risk": 0.22,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "media_conglomerate_deal",
     "title": "Media Conglomerate Licensing Deal",
     "client": "Nexus Media Group",
@@ -330,10 +950,96 @@
     "can_compete": true
   },
   {
+    "id": "telecom_infrastructure_monopoly",
+    "title": "Telecom Infrastructure Monopoly",
+    "client": "CommNet Global",
+    "description": "A telecom giant will pay a premium to monopolize city data cables. It boosts the budget immediately but creates huge vulnerability and public outrage.",
+    "reward_budget": 180,
+    "approval_delta": -5,
+    "scandal_risk": 0.35,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "billboard_advertising_exclusivity",
+    "title": "Citywide Advertising Exclusivity",
+    "client": "Visionary Ad Agency",
+    "description": "An agency wants exclusive rights to all public billboards and transit ads. The visual clutter will be intense, and the press will hunt for corruption angles.",
+    "reward_budget": 180,
+    "approval_delta": -5,
+    "scandal_risk": 0.35,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "tech_incubator_deal",
     "title": "Technology Incubator Initiative",
     "client": "Silicon Frontier Fund",
     "description": "A private fund wants to establish a tech incubator. They'll only deal with a city that has a proven governance track record.",
+    "reward_budget": 220,
+    "approval_delta": -2,
+    "scandal_risk": 0.14,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "min_decisions_resolved": 3
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "biotech_research_park",
+    "title": "Biotech Research Park",
+    "client": "BioGen Ventures",
+    "description": "A venture fund offers to finance a biomedical research park. They require evidence of stable local leadership before releasing the capital.",
+    "reward_budget": 220,
+    "approval_delta": -2,
+    "scandal_risk": 0.14,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "medium",
+      "hard"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "min_decisions_resolved": 3
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "green_tech_accelerator",
+    "title": "Green Tech Accelerator",
+    "client": "EcoInnovate Capital",
+    "description": "An investment firm wants to build a clean energy accelerator. The terms require a proven track record of resolving civic issues first.",
     "reward_budget": 220,
     "approval_delta": -2,
     "scandal_risk": 0.14,
@@ -374,6 +1080,48 @@
     "can_compete": true
   },
   {
+    "id": "clean_water_initiative_grant",
+    "title": "Clean Water Initiative Grant",
+    "client": "Global Health NGO",
+    "description": "An international NGO offers funding specifically to repair the water grid. Accepting requires transparent audits that could expose other flaws.",
+    "reward_budget": 180,
+    "approval_delta": 5,
+    "scandal_risk": 0.12,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -2,
+    "can_compete": true
+  },
+  {
+    "id": "medical_clinic_rebuilding_fund",
+    "title": "Medical Clinic Rebuilding Fund",
+    "client": "Doctors Without Borders Partnership",
+    "description": "A grant to rebuild critical medical infrastructure. They demand extensive oversight to ensure the funds aren't siphoned off.",
+    "reward_budget": 180,
+    "approval_delta": 5,
+    "scandal_risk": 0.12,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 10,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -2,
+    "can_compete": true
+  },
+  {
     "id": "diaspora_investment",
     "title": "Diaspora Investment Fund",
     "client": "National Diaspora Council",
@@ -394,10 +1142,108 @@
     "can_compete": false
   },
   {
+    "id": "expat_repatriation_fund",
+    "title": "Expat Rebuilding Fund",
+    "client": "Overseas Citizens League",
+    "description": "Wealthy expatriates have pooled resources to help rebuild the city over three years. It comes with deep civic pride and slow, stable payouts.",
+    "reward_budget": 270,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 9,
+    "tier_filter": [
+      "hard",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 3,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "overseas_heritage_bond",
+    "title": "Overseas Heritage Bond",
+    "client": "Cultural Expatriate Network",
+    "description": "A phased bond funded entirely by citizens living abroad. It stabilizes the budget over several cycles without typical corporate strings.",
+    "reward_budget": 270,
+    "approval_delta": 4,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 9,
+    "tier_filter": [
+      "hard",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 3,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
     "id": "military_logistics_contract",
     "title": "Military Logistics Contract",
     "client": "Joint Defense Command",
     "description": "The defense command wants to use city infrastructure for staging. Requires active liaison coordination — and comes with political strings.",
+    "reward_budget": 280,
+    "approval_delta": -5,
+    "scandal_risk": 0.2,
+    "advisor_effects": [
+      {
+        "advisor_id": "military_liaison",
+        "trust_delta": 12
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "military_liaison"
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "naval_resupply_contract",
+    "title": "Naval Resupply Contract",
+    "client": "Ministry of the Navy",
+    "description": "The Navy wants priority access to city docks for resupply. High payout, but civilians will resent the militarization of local ports.",
+    "reward_budget": 280,
+    "approval_delta": -5,
+    "scandal_risk": 0.2,
+    "advisor_effects": [
+      {
+        "advisor_id": "military_liaison",
+        "trust_delta": 12
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "requires": {
+      "advisor_active": "military_liaison"
+    },
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "aerospace_defense_testing",
+    "title": "Aerospace Defense Testing Pact",
+    "client": "Air Force Command",
+    "description": "The Air Force wants to test drone logistics over municipal airspace. Highly lucrative, deeply unpopular, and requires your military liaison to manage.",
     "reward_budget": 280,
     "approval_delta": -5,
     "scandal_risk": 0.2,
@@ -444,10 +1290,92 @@
     "can_compete": false
   },
   {
+    "id": "pandemic_recovery_fund",
+    "title": "Crisis Recovery Fund",
+    "client": "International Health Board",
+    "description": "Massive international relief targeted at cities in dire condition. Rejecting this looks foolish to a desperate population.",
+    "reward_budget": 360,
+    "approval_delta": 8,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 5,
+    "max_turn": 12,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -3,
+    "can_compete": false
+  },
+  {
+    "id": "famine_relief_injection",
+    "title": "Food Security Relief Injection",
+    "client": "World Food Program",
+    "description": "Critical emergency funding for supply chains near collapse. The money is fast, but turning it down carries a heavy political penalty.",
+    "reward_budget": 360,
+    "approval_delta": 8,
+    "scandal_risk": 0.06,
+    "advisor_effects": [],
+    "min_turn": 5,
+    "max_turn": 12,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -3,
+    "can_compete": false
+  },
+  {
     "id": "sovereign_wealth_fund",
     "title": "Sovereign Wealth Fund Injection",
     "client": "Apex Sovereign Fund",
     "description": "A sovereign wealth fund is interested in the city's long-term assets. The investment is substantial — and so are the governance conditions attached.",
+    "reward_budget": 420,
+    "approval_delta": -9,
+    "scandal_risk": 0.22,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "hard",
+      "extreme"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "royal_investment_portfolio",
+    "title": "Royal Investment Portfolio",
+    "client": "Crown Holdings Group",
+    "description": "A foreign monarchy offers to inject massive wealth into the city's struggling economy. The oversight demands are highly intrusive and unpopular.",
+    "reward_budget": 420,
+    "approval_delta": -9,
+    "scandal_risk": 0.22,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "hard",
+      "extreme"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "national_resource_fund_deal",
+    "title": "National Resource Fund Deal",
+    "client": "State Oil Reserve",
+    "description": "A state-owned resource fund wants to park extreme amounts of capital in your city's infrastructure. Citizens despise the opaque terms of the agreement.",
     "reward_budget": 420,
     "approval_delta": -9,
     "scandal_risk": 0.22,
@@ -486,10 +1414,94 @@
     "can_compete": true
   },
   {
+    "id": "central_bank_liquidity_facility",
+    "title": "Central Bank Liquidity Facility",
+    "client": "Federal Reserve System",
+    "description": "A harsh but necessary liquidity injection from the central bank. It saves the budget but forces wildly unpopular spending cuts.",
+    "reward_budget": 350,
+    "approval_delta": -8,
+    "scandal_risk": 0.1,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "emergency_currency_swap",
+    "title": "International Currency Swap",
+    "client": "Global Economic Forum",
+    "description": "An emergency mechanism to keep the city solvent. It dumps money into your treasury, but the public perceives it as a loss of economic sovereignty.",
+    "reward_budget": 350,
+    "approval_delta": -8,
+    "scandal_risk": 0.1,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 10,
+    "tier_filter": [
+      "medium",
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "un_humanitarian_grant",
     "title": "UN Humanitarian Aid Grant",
     "client": "United Nations",
     "description": "Emergency humanitarian funds from the UN. The public sees this as international support — but it comes with strict reporting requirements.",
+    "reward_budget": 420,
+    "approval_delta": 6,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 12,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -4,
+    "can_compete": false
+  },
+  {
+    "id": "global_refugee_assistance",
+    "title": "Global Refugee Assistance Fund",
+    "client": "UNHCR",
+    "description": "A massive grant meant to stabilize populations in crisis. Refusing it creates a terrible public image.",
+    "reward_budget": 420,
+    "approval_delta": 6,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 1,
+    "max_turn": 12,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -4,
+    "can_compete": false
+  },
+  {
+    "id": "unicef_child_welfare_grant",
+    "title": "Child Welfare Emergency Grant",
+    "client": "UNICEF",
+    "description": "Substantial funding aimed at protecting vulnerable youth during extreme crisis. The money is vital, and turning it down is political suicide.",
     "reward_budget": 420,
     "approval_delta": 6,
     "scandal_risk": 0.04,
@@ -527,10 +1539,92 @@
     "can_compete": true
   },
   {
+    "id": "earthquake_reconstruction_fund",
+    "title": "Seismic Reconstruction Fund",
+    "client": "Red Cross International",
+    "description": "Rapidly deployed capital intended to fix catastrophic damage. Very popular with citizens and highly accessible.",
+    "reward_budget": 300,
+    "approval_delta": 8,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 12,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "flood_mitigation_grant",
+    "title": "Severe Weather Mitigation Grant",
+    "client": "Climate Disaster Network",
+    "description": "Emergency cash to rebuild after severe environmental destruction. The payout is swift and generates immediate goodwill.",
+    "reward_budget": 300,
+    "approval_delta": 8,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 12,
+    "tier_filter": [
+      "hard",
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "international_observer_program",
     "title": "International Observer Program",
     "client": "Global Governance Initiative",
     "description": "An international body offers funding in exchange for deploying independent governance observers. Declining signals the city has something to hide.",
+    "reward_budget": 200,
+    "approval_delta": 8,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 11,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -5,
+    "can_compete": true
+  },
+  {
+    "id": "election_transparency_mission",
+    "title": "Election Transparency Mission",
+    "client": "Democratic Watchdog Group",
+    "description": "A group offers operational funds if they can embed monitors in city hall. Rejecting this breeds immediate suspicion.",
+    "reward_budget": 200,
+    "approval_delta": 8,
+    "scandal_risk": 0.04,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 11,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": -5,
+    "can_compete": true
+  },
+  {
+    "id": "human_rights_monitoring_deal",
+    "title": "Human Rights Audit Program",
+    "client": "Amnesty Coalition",
+    "description": "Funding granted in exchange for full access to municipal records by a rights organization. Saying no guarantees terrible press.",
     "reward_budget": 200,
     "approval_delta": 8,
     "scandal_risk": 0.04,
@@ -572,6 +1666,56 @@
     "can_compete": true
   },
   {
+    "id": "border_patrol_funding",
+    "title": "Border Security Aid Package",
+    "client": "Coalition Defense Forces",
+    "description": "A foreign military alliance will pay to reinforce the city's perimeter. It enrages the populace but thrills your military advisors.",
+    "reward_budget": 380,
+    "approval_delta": -10,
+    "scandal_risk": 0.25,
+    "advisor_effects": [
+      {
+        "advisor_id": "military_liaison",
+        "trust_delta": 15
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 12,
+    "tier_filter": [
+      "war",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
+    "id": "counter_terrorism_grant",
+    "title": "Counter-Terrorism Operations Grant",
+    "client": "Global Intelligence Network",
+    "description": "An influx of capital to support harsh anti-insurgency measures in the city. The military loves it; the citizens are terrified.",
+    "reward_budget": 380,
+    "approval_delta": -10,
+    "scandal_risk": 0.25,
+    "advisor_effects": [
+      {
+        "advisor_id": "military_liaison",
+        "trust_delta": 15
+      }
+    ],
+    "min_turn": 2,
+    "max_turn": 12,
+    "tier_filter": [
+      "war",
+      "extreme"
+    ],
+    "rarity": "common",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": true
+  },
+  {
     "id": "shadow_banking_deal",
     "title": "Off-Books Financing Arrangement",
     "client": "Undisclosed Principal",
@@ -592,10 +1736,88 @@
     "can_compete": false
   },
   {
+    "id": "offshore_syndicate_loan",
+    "title": "Offshore Syndicate Loan",
+    "client": "Cayman Island Trust",
+    "description": "A massive loan from shell companies with untraceable origins. It solves your money problems overnight, but an audit will ruin you.",
+    "reward_budget": 450,
+    "approval_delta": 0,
+    "scandal_risk": 0.48,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "dark_pool_liquidity_injection",
+    "title": "Dark Pool Liquidity Injection",
+    "client": "Anonymous Benefactor",
+    "description": "An illegal transfer of funds into the city treasury through a web of ghost accounts. Astounding wealth, astronomical scandal risk.",
+    "reward_budget": 450,
+    "approval_delta": 0,
+    "scandal_risk": 0.48,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 11,
+    "tier_filter": [
+      "extreme",
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
     "id": "warlord_negotiation",
     "title": "Territorial Access Negotiation",
     "client": "Regional Faction Leader",
     "description": "A faction leader is willing to pay for safe access to city infrastructure. Refusing may worsen tensions in already contested areas.",
+    "reward_budget": 300,
+    "approval_delta": -5,
+    "scandal_risk": 0.33,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": -5,
+    "can_compete": false
+  },
+  {
+    "id": "mercenary_transit_pact",
+    "title": "Mercenary Transit Pact",
+    "client": "Paramilitary Commander",
+    "description": "A rogue commander offers heavy bribes to move troops via city rail lines. It's scandalous, but rejecting them will provoke an immediate blockade.",
+    "reward_budget": 300,
+    "approval_delta": -5,
+    "scandal_risk": 0.33,
+    "advisor_effects": [],
+    "min_turn": 2,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "decline_penalty": -5,
+    "can_compete": false
+  },
+  {
+    "id": "smuggling_route_toll",
+    "title": "Sanctioned Smuggling Route",
+    "client": "Cartel Syndicate Boss",
+    "description": "Organized crime offers a cut of profits to ignore a key supply corridor. Turning them down risks explosive violence in the streets.",
     "reward_budget": 300,
     "approval_delta": -5,
     "scandal_risk": 0.33,
@@ -633,10 +1855,92 @@
     "can_compete": false
   },
   {
+    "id": "weapons_manufacturing_license",
+    "title": "Weapons Manufacturing License",
+    "client": "IronClad Munitions",
+    "description": "An arms dealer wants zoning approval for a massive munitions factory in the city limits. It brings huge revenue but creates a massive target.",
+    "reward_budget": 350,
+    "approval_delta": -12,
+    "scandal_risk": 0.42,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "requires": {
+      "min_decisions_resolved": 4
+    },
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "black_market_munitions_hub",
+    "title": "Black Market Munitions Hub",
+    "client": "Freelance Arms Broker",
+    "description": "A notorious broker will pay top dollar to operate a gray-market supply depot out of the city. Highly illegal, incredibly lucrative.",
+    "reward_budget": 350,
+    "approval_delta": -12,
+    "scandal_risk": 0.42,
+    "advisor_effects": [],
+    "min_turn": 3,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "rare",
+    "duration": 1,
+    "requires": {
+      "min_decisions_resolved": 4
+    },
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
     "id": "proxy_government_deal",
     "title": "Proxy Administration Agreement",
     "client": "Classified — Foreign State Actor",
     "description": "A foreign government is willing to effectively back your administration financially. The terms are opaque. Exposure could end your term. This offer won't come again.",
+    "reward_budget": 600,
+    "approval_delta": -20,
+    "scandal_risk": 0.52,
+    "advisor_effects": [],
+    "min_turn": 6,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "legendary",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "puppet_regime_subsidy",
+    "title": "Puppet Regime Subsidy",
+    "client": "Hostile Intelligence Service",
+    "description": "An enemy nation offers virtually unlimited funding if you quietly align city policies with their geopolitical goals. Treason has never paid so well.",
+    "reward_budget": 600,
+    "approval_delta": -20,
+    "scandal_risk": 0.52,
+    "advisor_effects": [],
+    "min_turn": 6,
+    "max_turn": 12,
+    "tier_filter": [
+      "war"
+    ],
+    "rarity": "legendary",
+    "duration": 1,
+    "decline_penalty": 0,
+    "can_compete": false
+  },
+  {
+    "id": "shadow_state_financing",
+    "title": "Shadow State Financing",
+    "client": "Global Oligarch Syndicate",
+    "description": "A cabal of ultra-wealthy elites offers to bankroll the entire city budget. In exchange, they become the true rulers. Unprecedented wealth, apocalyptic risk.",
     "reward_budget": 600,
     "approval_delta": -20,
     "scandal_risk": 0.52,

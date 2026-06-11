@@ -14,6 +14,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Close the bridge immediately for emergency repairs.",
+        "advisor_reason": "Shut it down. A dead economy is better than dead bodies — and lawsuits will cost us triple.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -300,
@@ -33,6 +34,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Keep it open but ban heavy trucks and monitor closely.",
+        "advisor_reason": "Fifty million is cheap. Let the trucks risk the detour — my logistics say one fall won't sink us.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -50,
@@ -52,6 +54,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Duct tape the cracks and declare it a historic pedestrian walkway.",
+        "advisor_reason": "It saves the budget and the freight industry was overrated anyway. Walkable cities are trendy.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -30,
@@ -86,6 +89,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Implement strict rolling blackouts and buy expensive emergency power.",
+        "advisor_reason": "Fair misery for everyone keeps the mob at bay. Two fifty hurts but the grid won't burn.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -250,
@@ -105,6 +109,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Cut power to residential slums to keep the business district lit.",
+        "advisor_reason": "The slums don't pay taxes. Fifty million keeps the CBD humming — that's simple math.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,
@@ -124,6 +129,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Nationalize the utility company using armed police.",
+        "advisor_reason": "A hundred fifty million and a CEO in cuffs sends a message. Let the cops learn hydropower.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -150,
@@ -158,6 +164,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Distribute emergency bottled water and flush the entire system.",
+        "advisor_reason": "One fifty for clear water and quiet citizens. Expensive, but panic costs more.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,
@@ -177,6 +184,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Claim the purple color is a harmless added mineral supplement.",
+        "advisor_reason": "Thirty million and a lie. Purple teeth are tomorrow's problem — today we save the reserve.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -30,
@@ -196,6 +204,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Bottle the purple water and sell it as a novelty energy drink.",
+        "advisor_reason": "Fifty million and a profit margin. The FDA raids us, but that's next quarter's logistics.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -50,
@@ -230,6 +239,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Rent commercial office space as temporary classrooms.",
+        "advisor_reason": "Two hundred million buys cubicles and calm parents. Depressing beats dangerous.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -200,
@@ -249,6 +259,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Force students to share facilities with the {city.primary_industry_workers}.",
+        "advisor_reason": "Thirty million and the forklift certs practically write themselves. Cross-training is efficiency.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -30,
@@ -268,6 +279,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Declare the collapsed school an archaeological dig site for history class.",
+        "advisor_reason": "Thirty million for tetanus and grit. Kids these days need character — and cheap field trips.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -302,6 +314,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Divert all city sanitation crews to the affected district immediately.",
+        "advisor_reason": "One hundred million to unblock one moat. Let the other districts stew — this stops a tax revolt.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -100,
@@ -321,6 +334,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Tell the affected residents to hire private plumbers.",
+        "advisor_reason": "Thirty million and zero city crews. They'll cave — nobody holds out in raw sewage for long.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -30,
@@ -340,6 +354,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Pump the sewage into the {city.landmark} reservoir to contain it.",
+        "advisor_reason": "Eighty million to ruin a landmark is a steal. Tourists vomit, but the sewage leaves the street.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -80,
@@ -374,6 +389,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Expedite the customs process and pay overtime for installation.",
+        "advisor_reason": "One fifty to bribe ourselves into efficiency. Tourists are loud, but grounded planes are louder.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,
@@ -393,6 +409,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Use binoculars and walkie-talkies to land the planes manually.",
+        "advisor_reason": "Thirty million and a prayer. The FAA yells, but we keep the runways moving by eyeball.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -30,
@@ -412,6 +429,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Convert the grounded planes into expensive stationary airport hotels.",
+        "advisor_reason": "Fifty million and the airlines sue. But tourist dollars for a middle seat? Genius logistics.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -50,
@@ -446,6 +464,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Hire a heavy crane to remove it and fill the hole properly.",
+        "advisor_reason": "One fifty to crane a bus out of the abyss. Weeks of closure, but we fix the road right.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,
@@ -465,6 +484,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Leave the bus and pave over the top of it.",
+        "advisor_reason": "Thirty million and a new speed bump. Who needs a crane when asphalt hides everything?",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -30,
@@ -484,6 +504,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Declare it a subway entrance and charge people to climb into the bus.",
+        "advisor_reason": "Thirty million and we finally have a subway. Tourists pay to smell diesel — that's revenue.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -30,
@@ -518,6 +539,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Pay the hacker's ransom to restore the system.",
+        "advisor_reason": "One hundred million to a teenager with a laptop. Humiliating, but cheaper than a full rebuild.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -100,
@@ -537,6 +559,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Send police to manually direct traffic at every single intersection.",
+        "advisor_reason": "Two hundred million for cop overtime. Exhausted and furious, but the traffic moves — eventually.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -200,
@@ -556,6 +579,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Turn off all traffic lights entirely and declare the city a shared space zone.",
+        "advisor_reason": "Thirty million and Mad Max. Fistfights replace insurance claims — that's a win for my ledger.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,

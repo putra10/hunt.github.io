@@ -25,7 +25,7 @@ tier             — difficulty: "easy" | "medium" | "hard" | "extreme" | "war"
 problem_clusters — array of 3 thematic tags for generic problems (e.g. ["economy", "crime", "housing"])
 city_personality — object (see below)
 opening_sequence — object (see below)
-advisors         — array of exactly 5 advisors (see below)
+advisors         — array of exactly 10 advisors: 2 CANDIDATES per domain (see below)
 decisions        — array of exactly 5 city-specific policy decisions (see below)
 crises           — array of exactly 4 crises triggered on turns 4/8/12 (see below)
 scandals         — array of exactly 3 scandal events (see below)
@@ -67,24 +67,29 @@ romance_exposure  — object (see below)
     "approval_rating": 40-60 (integer, adjust by tier — easy starts higher),
     "budget": 200-800 (integer in millions M, adjust by tier — hard/extreme starts lower),
     "advisor_trust_levels": {
-      "finance": 40-65,
-      "military_liaison": 35-60,
-      "urban_planning": 45-65,
-      "transport": 40-60,
-      "religious_affairs": 35-55
+      "[one entry PER ADVISOR, keyed by each advisor's UNIQUE id]": 35-65,
+      "finance_siti": 55, "finance_bambang": 45, "military_liaison_agus": 40, "...": "..."
     }
   }
 }
 ```
+(The two candidates of the same domain should usually have DIFFERENT starting trust — one insider, one outsider.)
 
 #### `advisors`
-Generate **exactly 5 advisors** with these fixed IDs: `finance`, `military_liaison`, `urban_planning`, `transport`, `religious_affairs`.
+Generate **exactly 10 advisors — TWO CANDIDATES for each of the 5 domains**: `finance`, `military_liaison`, `urban_planning`, `transport`, `religious_affairs`.
+
+At game start the engine randomly picks **one candidate per domain** (never two of the same domain), so every playthrough gets a different cabinet. This means:
+
+- Each advisor needs a **unique `id`**: the domain followed by an underscore and a short name slug — e.g. `finance_siti`, `finance_bambang`, `military_liaison_agus`.
+- Each advisor needs a **`domain_id`** field with the canonical domain: exactly one of `finance | military_liaison | urban_planning | transport | religious_affairs`.
+- **The two candidates of one domain must CONTRAST sharply** — different gender or generation, different archetype, opposing hidden agendas, different relationship to power (e.g. one old-guard insider vs one ambitious reformer; one true believer vs one cynic). A player meeting candidate B on their second run should feel like a different game.
 
 Give each advisor a culturally authentic name from the city's dominant culture. Each advisor must feel like a specific person, not a generic archetype.
 
 ```json
 {
-  "id": "finance",
+  "id": "finance_siti",
+  "domain_id": "finance",
   "name": "Full Name (culturally authentic)",
   "domain": "Finance & Budget",
   "archetype": "Pragmatist | Idealist | Hardliner | Fixer | Moralist | Schemer | Loyalist",
@@ -110,6 +115,8 @@ Give each advisor a culturally authentic name from the city's dominant culture. 
 - `betrayal`: ONE line. This is their exit. Make it sting. Reference their specific hidden agenda.
 - `roast`: 2 sarcastic lines about the city's state or the player's performance.
 - `scandal_reaction`: 2 lines when a scandal breaks. Each advisor reacts differently based on personality.
+- `threat` (optional but encouraged): 2 lines for when their trust runs low — veiled menace, in character.
+- `quick_replies` (optional): 4 short player-message options for the chat screen, flavored to this advisor.
 
 #### `decisions`
 Generate **exactly 5 policy decisions** — city-specific dilemmas the governor faces. These are NOT crises; they are routine governance choices.
@@ -130,7 +137,7 @@ Generate **exactly 5 policy decisions** — city-specific dilemmas the governor 
         "budget_delta": integer (-300 to +200),
         "advisor_effects": [
           {
-            "advisor_id": "finance | military_liaison | urban_planning | transport | religious_affairs",
+            "advisor_id": "finance | military_liaison | urban_planning | transport | religious_affairs  ← ALWAYS the canonical DOMAIN, never a candidate's unique id (the engine applies it to whichever candidate holds the domain this run)",
             "trust_delta": integer (-20 to +15),
             "betrayal_risk_delta": integer (-15 to +20)
           }
@@ -237,6 +244,21 @@ City-specific one-line public reaction when each scandal tier hits. Capture the 
 }
 ```
 
+#### `address_the_nation` (optional but encouraged)
+The governor can hold ONE press conference per term when the press is closing in. Mechanics are fixed by the engine — you only write the city's signature staging and flavor.
+
+```json
+{
+  "title": "Where the podium stands (e.g. 'Steps of Balai Kota', 'The Rose Garden, Such As It Is')",
+  "body": "1-2 sentences setting the scene. Cameras, mood, what's at stake. City-specific.",
+  "option_flavor": {
+    "own_it": "How a full public apology sounds in THIS city's political culture",
+    "defiant": "How attacking the press sounds here",
+    "deflect": "Who gets blamed here ('outside agitators', 'the previous administration', 'foreign NGOs'...)"
+  }
+}
+```
+
 #### `romance_exposure`
 How the city culturally reacts if the governor's romantic relationship with an advisor is exposed.
 
@@ -259,14 +281,18 @@ How the city culturally reacts if the governor's romantic relationship with an a
 ### Quality Checklist
 
 Before outputting, verify:
-- [ ] All 5 advisor IDs are exactly: `finance`, `military_liaison`, `urban_planning`, `transport`, `religious_affairs`
+- [ ] Exactly 10 advisors: 2 candidates per domain, every `domain_id` one of: `finance`, `military_liaison`, `urban_planning`, `transport`, `religious_affairs`
+- [ ] Every advisor `id` is unique (domain + underscore + name slug, e.g. `transport_dewi`)
+- [ ] The two candidates of each domain CONTRAST (archetype, agenda, generation, starting trust)
+- [ ] `advisor_trust_levels` has one entry per advisor, keyed by UNIQUE id
+- [ ] All `advisor_effects[].advisor_id` use canonical DOMAINS, never candidate ids
 - [ ] All advisor names are culturally authentic to the city
 - [ ] Each betrayal line references the advisor's specific hidden agenda
 - [ ] Each decision has exactly 3 options tagged SAFE/BOLD/CHAOS
 - [ ] Each crisis has exactly 3 options tagged A/B/C
 - [ ] `turn_available` on decisions are staggered (not all 1)
 - [ ] Comment library has at least 6 entries per pool
-- [ ] `scandal_reactions` and `romance_exposure` are filled in
+- [ ] `scandal_reactions`, `romance_exposure` and `address_the_nation` are filled in
 - [ ] The overall tone matches the city's real political situation
 - [ ] No placeholder text, no "etc.", no generic lines
 

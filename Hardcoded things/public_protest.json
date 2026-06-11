@@ -14,6 +14,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Concede to minor demands and offer a one-time hazard bonus.",
+        "advisor_reason": "We bleed 200M, but restoring order to the supply chain is a tactical necessity. Better to pay them off than let this circus remain on the streets.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -200,
@@ -33,6 +34,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Send in riot police to clear the machinery.",
+        "advisor_reason": "A kinetic dispersal costs only 80M and re-establishes the hierarchy of authority. The tear gas will sting, but prolonged insubordination is far worse.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -80,
@@ -52,6 +54,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Join the strike personally and blame the federal government for conditions.",
+        "advisor_reason": "Surrendering our command structure for street theater is deeply humiliating. We save 30M, but validating this mob sets a dangerous precedent for future pacification.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -30,
@@ -86,6 +89,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Repeal the new tax and wait for them to go back to class.",
+        "advisor_reason": "Retreating costs us 80M and makes us look soft to these children. Still, dispersing them quietly avoids the optics of dragging students across the pavement.",
         "consequences": {
           "approval_delta": 8,
           "budget_delta": -80,
@@ -105,6 +109,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Turn off the plaza's free Wi-Fi and public restrooms.",
+        "advisor_reason": "A bloodless siege strategy only costs 20M and naturally degrades their morale. Cut their communications and they will scatter without a single baton drawn.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -20,
@@ -124,6 +129,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Blast classical music at maximum volume 24 hours a day to drown them out.",
+        "advisor_reason": "Sonic warfare is an elegant, non-lethal dispersal tactic for just 30M. The collateral hearing damage is unfortunate but necessary for clearing the perimeter.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -158,6 +164,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Publicly apologize and donate city funds to the cleric's favored charity.",
+        "advisor_reason": "Paying 150M in tactical tribute pacifies a mobilized demographic before they become a militia. It is a distasteful appeasement, but it maintains the peace.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,
@@ -177,6 +184,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Audit the cleric's tax-exempt properties.",
+        "advisor_reason": "Engaging in an administrative offensive neutralizes their leadership structure for 50M. We just need to ensure our security perimeters hold during the backlash.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -50,
@@ -196,6 +204,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Start a rival state-sponsored religious sect.",
+        "advisor_reason": "Funding a psychological operations campaign for 300M is an ambitious overreach. Creating our own zealots sounds useful until they realize we hold the leash.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -300,
@@ -230,6 +239,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Promise to build the elevators and sign a binding timeline.",
+        "advisor_reason": "Buying them off for 250M avoids the tactical nightmare of forcibly removing wheelchair users. Some targets are simply not worth the collateral PR damage.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -250,
@@ -249,6 +259,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Arrest the protesters for blocking critical infrastructure.",
+        "advisor_reason": "It costs 30M to clear the infrastructure blockage. The optics of physically extracting them are abysmal, but an unauthorized perimeter breach cannot be tolerated.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -30,
@@ -268,6 +279,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Install a giant terrifyingly steep wooden ramp overnight.",
+        "advisor_reason": "A 30M improvised structural modification technically fulfills their demands while discouraging occupations. The subsequent injuries are not our jurisdiction.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -30,
@@ -302,6 +314,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Halt the eviction and relocate the mall to another site.",
+        "advisor_reason": "A strategic withdrawal costs 100M but prevents a multi-front skirmish with the unions. We will regroup and secure the territory when they drop their guard.",
         "consequences": {
           "approval_delta": 8,
           "budget_delta": -100,
@@ -321,6 +334,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Push through with the eviction using water cannons.",
+        "advisor_reason": "Deploying the water cannons is a highly efficient 50M clearance operation. A brief, overwhelming application of force prevents a protracted occupation.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,
@@ -340,6 +354,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Incorporate the street market inside the luxury mall.",
+        "advisor_reason": "Surrendering the retail zone for 200M creates an uncontrolled mixing of hostile populations. It is a security nightmare disguised as urban compromise.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -200,
@@ -374,6 +389,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Offer anonymous safety inspections without checking legal status.",
+        "advisor_reason": "For 80M we implement a soft pacification strategy that keeps the labor force functioning. Maintaining economic output takes priority over strict border enforcement here.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -80,
@@ -393,6 +409,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Launch a mass deportation raid to appease the nationalists.",
+        "advisor_reason": "A coordinated extraction operation costs 150M and thoroughly cleanses the zone. We will face severe logistical collapse, but order and authority will be absolute.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -150,
@@ -412,6 +429,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Grant them all instant municipal citizenship bypassing federal law.",
+        "advisor_reason": "Openly defying federal jurisdiction for 50M is a declaration of municipal insurgency. I will need to prepare the guard for imminent federal retaliation.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -50,
@@ -446,6 +464,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Roll back the fare hike and subsidize the transit authority.",
+        "advisor_reason": "A 250M tactical retreat pacifies the insurgent commuters before they burn down the terminals. We buy back the streets, though it bankrupts the fleet.",
         "consequences": {
           "approval_delta": 12,
           "budget_delta": -250,
@@ -465,6 +484,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Deploy transit police to brutally enforce the new fares.",
+        "advisor_reason": "Authorizing a hard compliance sweep costs 80M and reasserts our dominance over the transit nodes. Baton charges are messy, but fare evasion is a breach of discipline.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -80,
@@ -484,6 +504,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Make all public transit entirely free forever.",
+        "advisor_reason": "Surrendering 400M and abandoning all access control turns our transit grid into a lawless shelter system. It is a total abdication of operational security.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -400,
@@ -518,6 +539,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Cancel the development and declare the neighborhood a heritage site.",
+        "advisor_reason": "Ceding the territory costs 100M but avoids a bloody urban pacification campaign. The barricades are well-entrenched, so a strategic pause is our safest maneuver.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -100,
@@ -537,6 +559,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Bribe the neighborhood leaders with penthouse suites in the new condos.",
+        "advisor_reason": "Decapitating their leadership structure with 80M in bribes is a classic counter-insurgency tactic. The mob will naturally scatter without their commanders.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -80,
@@ -556,6 +579,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Seize the demolition bulldozers and give them to the residents.",
+        "advisor_reason": "Handing heavy armor to the civilian population is a 150M failure of containment. We are effectively sponsoring a localized militia action against a corporate entity.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,

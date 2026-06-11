@@ -14,6 +14,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Fire the officials who wrote the memos and issue a groveling apology.",
+        "advisor_reason": "Severance is cheap. A blood sacrifice resets the news cycle by Friday.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -80,
@@ -33,6 +34,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Sue the {city.media_outlet} for publishing stolen documents.",
+        "advisor_reason": "A hundred million in legal fees buys silence? No. But it buys menace.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -100,
@@ -52,6 +54,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Double down and claim tax livestock is a legitimate academic economic term.",
+        "advisor_reason": "Thirty million for a live TV egging. At least the headline will be entertaining.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -86,6 +89,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Force the official to resign and hand the recording to the police.",
+        "advisor_reason": "Thirty million and a perp walk. The toilet audio dies in a day.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -30,
@@ -105,6 +109,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Stick to the sting operation story and quietly promote the official.",
+        "advisor_reason": "Fifty million for brazenness. The press hates it, but the base loves a fighter.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,
@@ -124,6 +129,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Release audio of all officials in embarrassing situations to prove it is normal.",
+        "advisor_reason": "Thirty million for mutual assured destruction. Everyone drowns, no one remembers.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -158,6 +164,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Hire the person running the parody account as the new communications director.",
+        "advisor_reason": "Eighty million to buy the troll. Boring propaganda beats enemy memes.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -80,
@@ -177,6 +184,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Use police cyber-units to unmask and arrest the satirist.",
+        "advisor_reason": "Eighty million for a teenager's arrest. The protests are free advertising.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -80,
@@ -196,6 +204,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Start an official parody account of the parody account.",
+        "advisor_reason": "Thirty million and a mayor with a meme addiction. At least the original account looks legit now.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -30,
@@ -230,6 +239,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Pay the ransom quietly using available emergency funds.",
+        "advisor_reason": "Three hundred million and a five-star hacker review. Quiet ledger, louder silence.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -300,
@@ -249,6 +259,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Refuse to pay and tell citizens to monitor their accounts.",
+        "advisor_reason": "Fifty million saves face but loses identities. The headlines will be brutal.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,
@@ -268,6 +279,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Attempt to hack the hackers back using municipal IT infrastructure.",
+        "advisor_reason": "One fifty to accidentally start an international incident. At least Interpol knows our name.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -150,
@@ -302,6 +314,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Claim the mayor was quoting a movie villain to make a rhetorical point.",
+        "advisor_reason": "Eighty million for a bad lie. The clip fades if we stop talking about it.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -80,
@@ -321,6 +334,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Own it publicly and claim the crime was necessary to save the city.",
+        "advisor_reason": "Thirty million for audacity. The feds come, but the base loves a confessor.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -30,
@@ -340,6 +354,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Flee the city immediately during the commercial break.",
+        "advisor_reason": "One hundred million for a fake mustache arrest. The news cycle will feast for a month.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -100,
@@ -374,6 +389,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Quietly force the advisor to resign with a clean reference letter.",
+        "advisor_reason": "Eighty million buys a quiet exit. The press moves on by Wednesday.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -80,
@@ -393,6 +409,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Keep the advisor and publicly praise their creative accounting expertise.",
+        "advisor_reason": "Thirty million and a downgrade to 'highly suspicious.' But the budget balances.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -30,
@@ -412,6 +429,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Put the advisor in charge of the municipal police pension fund.",
+        "advisor_reason": "Fifty million to trigger a police strike and an international manhunt. Great television.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -50,
@@ -446,6 +464,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Hire an expensive international PR firm to rehabilitate the city's image.",
+        "advisor_reason": "Two hundred million for ads foreigners ignore. At least the local press stays quiet.",
         "consequences": {
           "approval_delta": 0,
           "budget_delta": -200,
@@ -465,6 +484,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Accuse the foreign newspaper of being a foreign intelligence front.",
+        "advisor_reason": "Thirty million for a nationalist rally. The world laughs, but our base cheers.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -30,
@@ -484,6 +504,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Ban all foreign journalists from entering the city limits.",
+        "advisor_reason": "Fifty million to become a hermit kingdom. Tourism dies, but the exposé stops.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,
@@ -518,6 +539,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Drink the tap water on live television to prove it is safe.",
+        "advisor_reason": "Thirty million for a gag reflex. Two days of jokes, then a new panic.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -30,
@@ -537,6 +559,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Temporarily shut down the city's main social media infrastructure.",
+        "advisor_reason": "One fifty to kill the meme by killing the internet. People talk outside again.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -150,
@@ -556,6 +579,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Lean into it and claim the microchips are actually free 5G connectivity upgrades.",
+        "advisor_reason": "Thirty million for mass water intoxication. The headline writes itself.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -30,

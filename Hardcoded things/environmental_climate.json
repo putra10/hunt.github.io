@@ -14,6 +14,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Open public cooling centers and distribute free ice.",
+        "advisor_reason": "We lose 150M, but we keep people alive and grateful. It is expensive, but dodging a mass casualty event does wonders for our approval ratings.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -150,
@@ -33,6 +34,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Mandate a city-wide siesta with all businesses closed during peak heat hours.",
+        "advisor_reason": "Closing businesses saves 70M compared to the cooling centers. People will complain about lost wages, but at least they will not be dying in the streets.",
         "consequences": {
           "approval_delta": -5,
           "budget_delta": -80,
@@ -52,6 +54,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Spray the streets with liquid nitrogen to cool them down.",
+        "advisor_reason": "The 300M price tag is a nightmare, but perhaps if we freeze the city the media will focus on our bold climate action instead of the shattered roads.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -300,
@@ -86,6 +89,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Fine the company heavily and hire a professional cleanup crew.",
+        "advisor_reason": "It costs us 100M up front, but cleaning the river buys us some much-needed public goodwill. I am tired of watching fish dissolve near {city.landmark}.",
         "consequences": {
           "approval_delta": 8,
           "budget_delta": -100,
@@ -105,6 +109,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Shut down the plant permanently.",
+        "advisor_reason": "A 200M economic hit is brutal, but shutting them down permanently secures our legacy. I just hope the unemployed workers appreciate the clean water.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -200,
@@ -124,6 +129,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Rebrand the toxic river as a hot springs spa experience.",
+        "advisor_reason": "We only spend 50M and pretend it is a public wellness initiative. It is a terrible lie, but I am too exhausted to fight the mayor's cousin on this.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -50,
@@ -158,6 +164,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Build the seawall to protect coastal property, angering the inlanders.",
+        "advisor_reason": "Losing 300M is devastating, but letting the wealthy drown just causes worse headaches later. I hate ignoring the inlanders, but we need those property taxes.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -300,
@@ -177,6 +184,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Let the coastline erode and invest in inland drainage instead.",
+        "advisor_reason": "We save half the budget and finally help the people who actually need drainage. The billionaires will scream, but ordinary citizens will love us for once.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -150,
@@ -196,6 +204,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Try to physically push the eroding structures inland with bulldozers.",
+        "advisor_reason": "It costs 120M and we at least look like we are taking aggressive urban planning action. When it collapses, we can just say we tried our best to save them.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -120,
@@ -230,6 +239,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Implement strict residential water rationing and fine violators.",
+        "advisor_reason": "It is deeply unpopular, but a 50M cost is manageable. I wish we could touch the golf courses, but rationing the poor is the only way we survive this.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -50,
@@ -249,6 +259,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Cut off water to all luxury and recreational facilities.",
+        "advisor_reason": "It costs 80M, but cutting off the elite will skyrocket our approval with the commoners. I have been wanting to dry out those private greens for years.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -80,
@@ -268,6 +279,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Hire a rainmaker shaman for a massive public ceremony.",
+        "advisor_reason": "Spending 150M on magic is absurd, but maybe giving the public a massive spectacle will distract them from the fact that we are completely out of water.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -150,
@@ -302,6 +314,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Deploy emergency pumps and pay massive overtime for cleanup.",
+        "advisor_reason": "Pumping it out costs 200M, but we have to save downtown. If we let the citizens drown, my office will never hear the end of the complaints.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -200,
@@ -321,6 +334,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Blame the citizens for clogging the drains with litter and refuse to pump.",
+        "advisor_reason": "We only spend 30M if we just shift the blame onto them. It destroys our approval, but honestly, they do drop a lot of trash near {city.landmark}.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -30,
@@ -340,6 +354,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Stock the flooded streets with fish and declare it a new fishing district.",
+        "advisor_reason": "Turning downtown into an urban fishery for 60M might be the only way to spin this disaster. Maybe the public will appreciate the new food source.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -60,
@@ -374,6 +389,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Distribute masks and mandate a temporary factory shutdown.",
+        "advisor_reason": "The 150M hit is rough, but masks will keep the public breathing and our approval up. I would like to finally sleep without coughing up gray phlegm.",
         "consequences": {
           "approval_delta": 8,
           "budget_delta": -150,
@@ -393,6 +409,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Ban all cars from the city center indefinitely.",
+        "advisor_reason": "We lose 80M and people will hate the walk, but this is our one chance to pedestrianize the city center. The environment needs this win.",
         "consequences": {
           "approval_delta": -10,
           "budget_delta": -80,
@@ -412,6 +429,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Install giant industrial fans on {city.landmark} to blow the smog away.",
+        "advisor_reason": "It costs 250M to just blow our problems onto the suburbs, but people love big visible infrastructure. At least it looks like we care about the air.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -250,
@@ -446,6 +464,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Send city fire trucks to put out the agricultural fires.",
+        "advisor_reason": "Spending 100M to fix the council's mess is infuriating, but the people will thank us for the clean air. We just have to hope downtown does not ignite.",
         "consequences": {
           "approval_delta": 10,
           "budget_delta": -100,
@@ -465,6 +484,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Publicly fine the council members who own the farms.",
+        "advisor_reason": "It only costs 50M and the public will absolutely adore us for punishing the corrupt council. I am tired of covering for their profitable little fires.",
         "consequences": {
           "approval_delta": 15,
           "budget_delta": -50,
@@ -484,6 +504,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Tell citizens to collect the ash and sell it as premium artisan fertilizer.",
+        "advisor_reason": "We barely spend 30M if we convince them it is a green economic opportunity. I know the ash is toxic, but the administration is forcing my hand here.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -518,6 +539,7 @@
         "id": "A",
         "tag": "SAFE",
         "label": "Set up emergency shelters and formally accept responsibility.",
+        "advisor_reason": "A 250M bailout is going to ruin our budget, but we have to take care of these displaced families. It is the only humane urban policy we have left.",
         "consequences": {
           "approval_delta": 5,
           "budget_delta": -250,
@@ -537,6 +559,7 @@
         "id": "B",
         "tag": "BOLD",
         "label": "Blame the residents for building illegal structures and refuse all aid.",
+        "advisor_reason": "We save 220M by washing our hands of it. It breaks my heart and our approval rating, but technically they should not have built there anyway.",
         "consequences": {
           "approval_delta": -20,
           "budget_delta": -30,
@@ -556,6 +579,7 @@
         "id": "C",
         "tag": "CHAOS",
         "label": "Declare the landslide a natural terracing project and announce future parks.",
+        "advisor_reason": "Rebranding a tragedy as a 50M park project is incredibly bleak. But if we just call it green space, maybe people will eventually forget the homes underneath.",
         "consequences": {
           "approval_delta": -15,
           "budget_delta": -50,

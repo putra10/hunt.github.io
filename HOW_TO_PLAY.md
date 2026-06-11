@@ -1,227 +1,190 @@
 # GOVERNED — How To Play
 
----
+> Run the city. Hide the bodies. Smile for the cameras.
 
-## Overview
-
-You are appointed governor of a city in crisis. Survive a **12-turn term** by keeping your **approval rating above 0** and avoiding a public recall vote. Make decisions, handle crises, manage advisors, and balance your budget — all while the city's problems compound around you.
+You are appointed governor of a city in crisis. Survive a **12-turn term**. Keep your **approval above 0**, keep the press off your back, and decide — every single turn — how dirty your hands are willing to get.
 
 ---
 
-## Core Stats
+## 1. The Basics
 
-| Stat | What It Measures | Game Over If… |
-|------|-----------------|---------------|
-| **Approval** | Public trust in your leadership (0–100) | Falls to 0 |
-| **Budget** | City treasury in millions (M) | — (no hard limit, but deficit triggers consequences) |
-| **Turn** | Current turn out of 12 | Reach 12 = term complete |
+### Core stats (top bar)
 
-A score above **50 approval at turn 12** is considered a strong finish. Below 30 is a shaky survival.
+| Stat | What it is | Why you care |
+|---|---|---|
+| **APPROVAL** (0–100) | Public support | 0 = recalled. Game over. |
+| **BUDGET** (M) | City treasury | Can go negative — deficits bleed approval every turn |
+| **TURN** (1–12) | Your term | Survive to 12 to complete the term |
+| **SCRUTINY** | How hard the press is digging | Hidden while QUIET. Once it appears, worry. |
 
----
+### A turn, in practice
 
-## Turn Structure
+1. Read the day's **problem** and pick one of three options — usually **SAFE** (expensive, popular), **BOLD** (cheaper, riskier), **CHAOS** (cheap, unhinged).
+2. Deal with whatever else surfaced: scandal cards, unrest, contract offers, bribe offers, the black market.
+3. Talk to advisors in the **Messenger** (tap any advisor card) — advice, emergency powers, and the back channel live there.
+4. Press **END TURN**. Taxes collect, schemes advance, secrets rot, and the next day begins.
 
-Each turn runs in this order automatically when you press **END TURN**:
+### End conditions
 
-1. Unresolved scandals auto-fire their worst penalty
-2. Advisor agendas tick (betray risk, relationship shift)
-3. Bribe offers generated (if advisor agenda ≥ 60)
-4. Crisis queue checked (queued crises activate)
-5. End-of-game check (turn 12 or approval = 0)
-6. Turn number increments
-7. Passive tax income applied (city income per turn)
-8. Budget pressure applied (deficit → approval penalty)
-9. Scandal roll (random chance of new scandal)
-10. Unrest roll (if conditions met → civil unrest pending)
-11. Advisor briefings generated (intel for high-trust advisors)
-12. Absence effects applied (skipped advisors penalise you)
-13. Crisis trigger (new crisis may appear)
-
-After pressing END TURN you must resolve any **pending decisions** before the next turn begins.
+| How it ends | Why |
+|---|---|
+| **Term complete** | Reached turn 12 with no unresolved crisis |
+| **Recalled** | Approval hit 0 — or 3 consecutive turns UNDER SIEGE — or 3 failed crises in a row while approval < 20 |
+| **Resigned in disgrace** | A career-ending scandal got you |
+| **Resigned** | You quit voluntarily (Settings → Data → Resign Early) |
 
 ---
 
-## Decisions
+## 2. Decisions & Crises
 
-Each turn presents **1–3 decisions** (more on easy tiers, fewer on extreme/war). Each decision has 2–4 options with visible consequences:
+**One NEW problem per turn — but problems don't go away.** An undecided problem **carries over** to the next turn and stacks on top of the new one. Your desk can pile up.
 
-- **approval_delta** — how much your approval changes
-- **budget_delta** — how much your budget changes (in M)
+**Ignore a problem for 3 turns and it discloses itself** — 50% it becomes a *"Governor Sat On It"* scandal, 50% the public just turns on you (−5% and the feed lets you know). Either way it's closed forever, marked **ignored**.
 
-Some options have tags like `COSTLY`, `RISKY`, `POPULAR`, or `COMPROMISE` that hint at trade-offs.
+**Unfinished business has a price at the end too:** finish your term with **more than one undecided problem** and you get no invitation — even at 100% approval.
 
-After resolving decisions, your **advisor recommendations** may appear on screen (see Advisors section).
-
----
-
-## Crises
-
-Crises are escalating events that force a single, permanent choice. Unlike decisions, **crises cannot be ignored** — they stay active until resolved.
-
-Each crisis offers 2–4 response options. An additional **advisor secret option** may appear if your most-trusted non-betrayed advisor has **trust ≥ 60** and matches the domain (see Advisor Secret Options).
-
-Crisis resolution affects approval and budget immediately. Choosing poorly can chain into worse crises or trigger public unrest.
+**Crisis windows open on turns 4, 8, and 12.** Crises are bigger, forced events — you cannot end your term with one unresolved. If a trusted advisor (trust ≥ 60) owns the matching domain, a **secret option** appears: their personal connections, your way out.
 
 ---
 
-## Advisors
+## 3. Advisors
 
-You have 3–5 advisors depending on city tier (easy = 5, hard = 4, extreme/war = 3). Each advisor has a **domain** (finance, military_liaison, urban_planning, religious_affairs, transport) and a **trust** score (0–100).
+You get 3–5 advisors by city tier. Each has a **domain**, a **trust** score, and a **hidden agenda** filling slowly toward betrayal.
 
-### Trust Decay
-Trust falls **−2 per turn** passively. To keep it up, use the **domain recovery** button in the Messenger — this costs agenda progress (−8) but restores +5 trust.
+### Trust
 
-### Trust Thresholds
-| Trust Level | Effect |
-|-------------|--------|
-| ≥ 75 | Trust-gated passive bonus activates (see below) |
-| 70–100 | Intel warning replaces normal briefing line |
-| 60–100 | Advisor secret crisis option available |
-| 30–59 | Normal operation |
-| < 30 | Domain advice hidden; budget/approval penalty |
-| 0 | Risk of betrayal |
+- Decays **−2/turn** baseline. Maintain it by resolving problems in their domain (+5) and following their advice (+3).
+- **≥ 60:** secret crisis options. **≥ 70:** real intel in briefings (deficit warnings, crisis timing, unrest proximity). **≥ 75:** passive bonuses — Finance +10M/turn, Military −15% scandal chance, Urban Planning −20% unrest chance.
+- **< 30: CHECKED OUT.** They stop flagging their domain's problems and silently drain your stats every turn. Hard to recover.
 
-### Trust-Gated Passives (always-on when threshold met)
-- **Finance trust ≥ 75** → +10M income every turn (applied in passive tax phase)
-- **Military Liaison trust ≥ 75** → scandal chance reduced by 15%
-- **Urban Planning trust ≥ 75** → civil unrest chance reduced by 20%
+### Agendas & betrayal
 
-### Advisor Intel (trust > 70)
-High-trust advisors replace their generic briefing with a real game warning:
-- **Finance** → warns if next turn will run a deficit, or if deficit streak is active
-- **Military Liaison** → warns about upcoming crisis windows or active unrest
-- **Urban Planning** → warns if approval is dangerously close to the unrest threshold
+Agendas tick **+5/turn**. At **60+** the card shows GROWING RESTLESS and they may offer you a deal; at **80 they betray you** — gone permanently, −10 approval (−15 if they were your lover).
 
-### Advisor Recommendations
-When you have a pending decision, the domain-matched advisor will recommend the option with the highest approval gain. A **REC** badge appears in the Messenger.
+### Advice — read this twice
 
-- Follow the recommendation → advisor gains **+3 trust**
-- Ignore it → advisor loses **−2 trust**
+Advisors recommend options based on **their own values**, not your safety. Finance favors whatever's cheap. Military hates scandal risk. Urban Planning chases popularity. Open their **Messenger** and they'll make their case in chat — a reason for the pick, in their own voice. It's persuasion, not truth: an advisor whose **agenda is 60+ may deliberately recommend what hurts you**, with the same confident reasoning. The agenda bar is your only warning. Following advice still builds trust (+3) — even bad advice. Ignoring it costs a little (−2). That's politics.
 
-### Emergency Powers (once per game per advisor)
-Each advisor has a one-time emergency power that can be activated from the Messenger when conditions are met. Using it costs **−8 trust** regardless of outcome.
+**And they keep score.** Ignore an advisor's recommendation and have your choice blow up in your face, and the next morning there's a message waiting: *"I told you so."* You'll know it's there — their card shows a **red badge** and "new message", and on mobile the **ADVISORS tab gets a red dot** right from the dispatch.
 
-| Advisor | Power | Condition | Effect |
-|---------|-------|-----------|--------|
-| Finance | EMERGENCY LOAN | budget < −50 and trust ≥ 45 | +80M, −5 approval |
-| Military Liaison | MARSHAL FORCES | active civil unrest and trust ≥ 50 | clears unrest immediately |
-| Urban Planning | COMMUNITY INITIATIVE | approval < 45 and trust ≥ 45 | +10 approval, −20M |
-| Religious Affairs | UNITY SERMON | approval < 50 and trust ≥ 45 | +7 approval |
-| Transport | EMERGENCY RELIEF ROUTES | budget < 0 and trust ≥ 45 | +15M, −3 approval |
+### Bribes (they offer you)
 
-### Advisor Secret Crisis Options
-During a crisis, if your most-trusted advisor (trust ≥ 60) has a matching domain, a **hidden fourth option** appears at the bottom of the response list. This option typically offers better approval at a budget cost, and uses the advisor's real-world connections to resolve the crisis.
+At agenda 60+, advisors may offer a deal: pay their price (≈50–200M) for **−30 agenda, +15 trust** — with a 25% chance the payment leaks into a scandal. Declining adds +10 agenda, and if that crosses 80, they snap immediately.
 
-### Agendas, Bribes, and Betrayal
-Every advisor has a hidden agenda that fills over time. If it reaches 60+, they may offer you a **bribe** — accept for budget gain (but risks scandal), or decline to reduce agenda pressure. If you refuse to engage with an advisor repeatedly and their trust hits 0 with a full agenda, they may **betray you**, triggering an instant scandal and approval hit.
+### Emergency powers (one use each, −8 trust)
 
-### Relationships
-In the Messenger, you can invest in advisor relationships: **Trust → Romantic**. Romantic advisors give +4 trust/turn and extra loyalty, but carry a **5% romance exposure risk per turn** — if exposed, a scandal fires immediately. Some cities react more harshly to romance exposure than others.
+| Advisor | Power | Effect |
+|---|---|---|
+| Finance | Emergency Loan | +80M, −5% approval |
+| Military | Marshal Forces | instantly clears unrest |
+| Urban Planning | Community Initiative | +10% approval, −20M |
+| Religious Affairs | Unity Sermon | +7% approval |
+| Transport | Relief Routes | +15M, −3% approval |
 
 ---
 
-## Budget System
+## 4. The Back Channel (Messenger)
 
-Your city earns income each turn from the passive tax (based on city tax rate and tier). You spend money through decisions, crises, and contracts.
+One action per turn, across all advisors. Each unlocks only when its trigger is met.
 
-### Deficit Consequences
-If your budget goes **negative**:
-- Approval takes an extra hit each turn (−3 standard, −5 if budget < −200M)
-- **consecutiveDeficitTurns** counter increments
-- After **2 turns in deficit**, contract offers appear more frequently (+20% chance)
+| Action | Trigger | What happens |
+|---|---|---|
+| **Get Closer** | their trust ≥ 50 | Relationship deepens: neutral → trust → romantic |
+| **Keep Your Distance** | not rivals | Steps the relationship back — the only exit from an affair |
+| **Corrupt Pact** | trust ≥ 60, budget < 150M | Skim money every turn. Discovery risk grows. The trail **never** resets |
+| **Threaten** | their agenda ≥ 40, your approval ≥ 45 | Agenda −30 — or it backfires into the press. Third threat: they betray you on the spot |
+| **Leak Dirt** | their agenda ≥ 50, 30M | Their agenda collapses (−40) — but the story splashes on you too |
+| **Throw Under the Bus** | SCRUTINY ≥ 20 | They're finished; heat −10, +2% approval; your whole cabinet loses trust watching it |
 
-If budget recovers to ≥ 0, the deficit streak resets.
+### The lover arc
 
----
+Going romantic pays **+4 trust/turn** and devoted lovers (trust ≥ 70) sometimes **tip you off**, killing a scandal before it prints. The price: a permanent **5%/turn exposure risk**, and love is *needy* — **~40% of turns they want something** (fund their project −30M, or a quiet favor +1 heat; refusing cools the relationship). **One lover only** — pursuing someone else turns the first into a scorned ex who may go public at worse severity. Breakups carry the same scorned risk. When exposure comes, the relationship's health decides the scene: a devoted lover stands beside you at the podium (penalty halved); a neglected one denies everything (full hit, instant rivalry). Sacrificing your lover to the press is the strongest heat purge in the game. The city will not forget that you did it.
 
-## Contracts
+### Crime partners are needy too
 
-Contracts are financial relief offers that appear during turns. Each turn has a base chance of generating one (easy = 40%, down to war = 20%). **Two consecutive deficit turns** raise that chance by +20% (capped at 70%).
-
-Contracts come in two forms:
-- **Immediate** — lump-sum budget gain, one choice
-- **Installment** — budget paid across multiple turns
-
-You are usually presented with **two competing offers** — accept one, the other is cancelled. You may also decline all.
-
-Accepting a contract may have side effects (small approval shifts, conditions). Read carefully before committing.
+While a corrupt pact runs, your partner demands an answer **~40% of turns**: a **bigger cut** (pay 25M, or refuse and the paper trail thickens) or **cold feet** (let the scheme lie low a turn — no skim, no risk — or push on and nervous hands get sloppy). When a lover or partner is waiting on you, their advisor card shows a **red badge** and "needs an answer" — open the Messenger and deal with it. (The same badge marks an unread "I told you so" — pulsing red on the card, red dot on the mobile ADVISORS tab.)
 
 ---
 
-## Civil Unrest
+## 5. Scandals
 
-When your city runs a **deficit AND approval drops below 37**, civil unrest may break out. The engine rolls each turn once conditions are met (starting from turn 3).
+Scandals fire from bad luck (Settings: low 8% / normal 20% / high 38% per turn), from risky decisions, and from your own schemes. A pending scandal card offers:
 
-### Unrest Types
-| Type | Triggers When | Severity |
-|------|--------------|---------|
-| Strike | approval 28–36 | Moderate — economic pressure |
-| Demonstration | approval 18–27 | Serious — public confrontation |
-| Riot | approval < 18 | Critical — order breakdown |
+- **SUPPRESS** — pay (20–150M by severity), it never runs
+- **ACCEPT** — take the full approval hit
+- **MANAGE THE STORY** — the base hit still lands, then your response shapes it: apologize, deny, fire someone, investigate...
+- **Ignore it** — it auto-fires at full force next turn
 
-### Unrest Chance Formula
-`Base 20% + debtPressure×15% + approvalPanic×20%`
-where debtPressure scales with how deep in debt you are (max at −300M), and approvalPanic scales with how far below 37 you are. Urban Planning trust ≥ 75 reduces all unrest chance by 20%.
-
-### Resolving Unrest
-An unrest card appears on the dispatch screen. You must resolve it before it compounds. Options vary by type:
-
-| Action | Cost | Notes |
-|--------|------|-------|
-| Meet Demands | −20M | Removes unrest peacefully |
-| Stand Firm | −5 approval | Defies the crowd — risky |
-| Engage | −25M, +2 approval | Dialogue; expensive but positive |
-| Disperse | −10 approval | Forces dispersal; approval hit |
-| Negotiate | −40M | Most expensive but safest |
-| Crackdown | −18 approval, +30% scandal risk | Nuclear option — dangerous |
+**Career-ending scandals** cannot be suppressed or accepted: offer your resignation, or gamble 150M on a **Desperate Last Stand (25% survival)**. Surprise scandals (leaks, exposures, decision fallout) announce themselves with a popup explaining exactly why your approval just moved.
 
 ---
 
-## Scandals
+## 6. SCRUTINY (heat)
 
-Scandals fire randomly each turn (chance set in Settings: low = 8%, normal = 20%, high = 38%). They have 4 severity tiers, and each city reacts differently based on its culture and history.
+The city's memory of your sins. Every scandal raises it (minor +1 → career-ending +5); every black-market deal raises it; clean turns lower it by 1.
 
-When a scandal fires, you have three choices:
-- **Accept** — take the full approval penalty (safe but costly)
-- **Suppress** — spend budget to bury it (may escalate if it fails)
-- **Respond** — choose a specific response (outcome depends on tier + city)
+| Level | Effect |
+|---|---|
+| QUIET | Nothing. Not even shown. |
+| MURMURS | Rumors in the feed |
+| WATCHED | Scandal chance ×1.25 · **Address the Nation** unlocks |
+| INVESTIGATED | ×1.5 · one-time audit (−20M) · black market prices +25% |
+| UNDER SIEGE | ×2 · impeachment proceedings open · **3 turns here = recall** |
 
-Some decisions and unrest resolutions can also trigger scandals as a side effect.
-
----
-
-## Tier Differences
-
-| Tier | Advisors | Income | Scandal Freq | Starting Approval | Crises |
-|------|----------|--------|-------------|-------------------|--------|
-| Easy | 5 | High | Lower | 50–60 | Fewer, milder |
-| Medium | 5 | Medium | Normal | 45–55 | Moderate |
-| Hard | 4 | Lower | Normal | 40–50 | Frequent |
-| Extreme | 3 | Low | Higher | 35–45 | Frequent + severe |
-| War | 3 | Very low | High | 30–40 | Constant, severe |
-
-**Extreme and War cities** also have a **passive approval drain** each turn — the city is so unstable that approval falls even if you do nothing wrong.
+**Lowering it:** stay clean (−1/turn) · **Address the Nation** (once per term, from the dispatch: apologize −5% approval/−6 heat, go defiant +3%/+2 heat/15% scandal, or deflect onto "outside agitators") · **throw someone under the bus** · pay the black market's laundry services.
 
 ---
 
-## End Conditions
+## 7. The Black Market
 
-| Condition | Result |
-|-----------|--------|
-| Reach turn 12 | Term complete → Report screen |
-| Approval drops to 0 | Recalled → Report screen |
-| Career-ending scandal | Forced resignation → Report screen |
+Some nights, **after you resolve the day's problem**, the market opens — more often when you're broke or hated, and it reads the news: the day's problem attracts the matching dealer. Offers expire at dawn.
 
-The report screen shows final approval, budget, decisions made, crises resolved, and advisor status.
+Six dealer types: **Influence** (buy approval), **Intelligence** (control advisors), **Cleanup** (bury scandals, launder heat), **Insurance** (pre-pay for safety), **Sell-side** (sell the city for cash), and the **Dark Market** (war/extreme/hard cities only — the offers you shouldn't take, with payouts that explain why people do).
+
+Every deal adds heat. Every deal can go wrong at the printed odds. Everything is tallied for your final report.
+
+---
+
+## 8. Money, Unrest, Contracts
+
+**Income:** tax each turn = city tax rate × approval%. Poor cities with hated governors starve.
+
+**Deficit:** −3% approval per turn (−5% below −200M), and after 2 deficit turns, contract offers spike.
+
+**Contracts:** business offers (lump sum or installments) with side effects and occasional scandal risk. Competing offers — pick one, the loser doesn't come back.
+
+**Unrest:** brews when budget < 0 **and** approval < 37 — strikes, then demonstrations, then riots as approval falls. Pay them, face them down, or crack down (−18% approval and a real chance the violence becomes a scandal).
+
+---
+
+## 9. City Tiers
+
+| Tier | Advisors | Tax base | Flavor |
+|---|---|---|---|
+| Easy | 5 | 80M | Stable. Your mistakes are your own. |
+| Medium | 5 | 60M | Normal politics |
+| Hard | 4 | 40M | Tight money, more dark-market access |
+| Extreme | 3 | 25M | −1% approval/turn ambient decay |
+| War | 3 | 15M | −2%/turn. The city is on fire before you arrive. |
+
+Cities also differ in how they punish romance exposure, what scandals they carry, and how their public talks back.
+
+---
+
+## 10. The Report Card
+
+At the end — however it ends — the report shows your approval arc, domain grades, worst decision, **DIRTY HANDS** (everything you skimmed, threatened, leaked, and bought) or **CLEAN HANDS**, and **BACKROOM RELATIONS** — what really happened between you and each advisor. History keeps receipts.
 
 ---
 
 ## Tips
 
-- **Keep at least one advisor trust above 70** — their intel warnings are the best early warning system in the game.
-- **Don't let two turns pass in deficit without a plan** — unrest can snowball faster than scandals.
-- **Save emergency powers for real emergencies** — MARSHAL FORCES is the only instant unrest clear in the game.
-- **Follow advisor recommendations when you can** — the trust gain compounds into better passives and intel over time.
-- **On extreme/war tiers**, contracts are your lifeline. Prioritize installment contracts for long-term budget stability.
-- **Crackdown is almost never worth it** — the approval hit plus scandal risk is usually worse than the cost of negotiating.
+- **Never let your desk pile up.** Two undecided problems is a warning; three is a scandal generator and a lost invitation.
+- Keep **one advisor above 70 trust** — intel warnings are the best early-warning system in the game.
+- **Check the agenda bar before taking advice.** A restless advisor's recommendation may be a knife.
+- Scandals are cheapest handled **immediately** — ignoring one fires it at full force.
+- SCRUTINY is a debt. The black market lets you borrow against it; turn 10 is when the bill arrives.
+- The corrupt pact's trail **never resets** (only fire can clean it). End schemes while they're still minor.
+- A lover at high trust is the strongest passive defense in the game — and the single most expensive thing to lose.
+- **Crackdown is almost never worth it.** Negotiate, or let Military marshal forces.
+- On war tiers, money is oxygen: contracts and (if you dare) the dark market are how you breathe.
