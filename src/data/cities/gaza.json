@@ -800,5 +800,14 @@
     "severity": "minor",
     "flavour": "People have bigger problems. But they noticed."
   },
-  "tax_rate": 35
+  "tax_rate": 35,
+  "city_personality": {
+    "voice": "war-weary",
+    "humor_style": "fatalistic",
+    "media_outlet": "Al-Ayyam",
+    "government_body": "Gaza Municipal Committee",
+    "landmark": "Great Mosque of Gaza",
+    "primary_industry_workers": "aid workers and civil servants",
+    "slang_reaction": "Ya khsara, hal wada' ma byinhtamal ba'd!"
+  }
 }

@@ -81,6 +81,7 @@ export class MessengerScreen {
                 <div class="ag-label"><span>Betrayal imminent at 100%</span><span>${agendaPct}%</span></div>
               </div>` : ''}
             ${MessengerScreen._renderRecommendation(state, advisor)}
+            ${MessengerScreen._renderConsult(state, advisor)}
             ${MessengerScreen._renderEmergencyPower(state, advisor)}
             ${MessengerScreen._renderLoverDemand(state, advisor)}
             ${MessengerScreen._renderPartnerDemand(state, advisor)}
@@ -127,6 +128,27 @@ export class MessengerScreen {
           <div class="adv-rec-note">Following my advice +3 trust &middot; Ignoring -2 trust</div>
         </div>
         <div class="mm">${advisor.name}</div>
+      </div>`;
+  }
+
+  static _renderConsult(state, advisor) {
+    if (advisor.betrayed) return '';
+    if (advisor.consultedTurn === state.turn) {
+      return `<div class="consult-done">They've given you their read for today.</div>`;
+    }
+    const noAP = (state.actionPoints ?? 0) <= 0;
+    const recIds = Object.keys(state.pendingDecisionRecommendations ?? {});
+    const verifying = recIds.some(id => id !== advisor.id);
+    const label = verifying ? 'VERIFY TODAY’S ADVICE' : 'ASK FOR A FORECAST';
+    const desc = verifying
+      ? 'Have them quietly check whether today’s recommendation is honest. They’re usually right. Usually.'
+      : 'Their private read on what’s coming — deficits, unrest, the press.';
+    return `
+      <div class="consult-box">
+        <button class="consult-btn" data-consult="${advisor.id}" ${noAP ? 'disabled' : ''}>
+          \u{1F50D} ${label} <span class="consult-cost">(1 hour${noAP ? ' — none left' : ''})</span>
+        </button>
+        <div class="consult-desc">${desc}</div>
       </div>`;
   }
 
@@ -272,6 +294,10 @@ export class MessengerScreen {
 
     container.querySelector('[data-use-emergency]')?.addEventListener('click', (e) => {
       handlers.useEmergencyPower?.(e.currentTarget.dataset.useEmergency);
+    });
+
+    container.querySelector('[data-consult]')?.addEventListener('click', (e) => {
+      handlers.consultAdvisor?.(e.currentTarget.dataset.consult);
     });
 
     container.querySelectorAll('[data-back-channel]').forEach(btn => {

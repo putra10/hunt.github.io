@@ -819,5 +819,14 @@
   "romance_exposure": {
     "severity": "major",
     "flavour": "A think piece titled \"Power, Proximity, and the Mayor's Calendar\" has gone viral."
+  },
+  "city_personality": {
+    "voice": "hurried-aggressive",
+    "humor_style": "sarcastic",
+    "media_outlet": "The New York Times",
+    "government_body": "New York City Council",
+    "landmark": "Empire State Building",
+    "primary_industry_workers": "finance bros and gig workers",
+    "slang_reaction": "Are you kidding me right now? This city is a circus!"
   }
 }

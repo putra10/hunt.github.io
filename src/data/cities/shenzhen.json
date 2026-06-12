@@ -906,5 +906,14 @@
   "romance_exposure": {
     "severity": "major",
     "flavour": "The matter has been referred upward. This is now a political liability."
+  },
+  "city_personality": {
+    "voice": "hyper-efficient",
+    "humor_style": "pragmatic",
+    "media_outlet": "Shenzhen Daily",
+    "government_body": "Shenzhen Municipal People's Government",
+    "landmark": "Ping An Finance Centre",
+    "primary_industry_workers": "factory assemblers and software developers",
+    "slang_reaction": "Zhè xiàolǜ tài dī le, wánquán bù fúhé Běishàngguǎngshēn de biāozhǔn!"
   }
 }

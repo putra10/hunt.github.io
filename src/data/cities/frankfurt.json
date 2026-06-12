@@ -822,5 +822,14 @@
   "romance_exposure": {
     "severity": "moderate",
     "flavour": "It is a distraction from governance. The committee is not pleased."
+  },
+  "city_personality": {
+    "voice": "pragmatic-corporate",
+    "humor_style": "deadpan",
+    "media_outlet": "Frankfurter Allgemeine",
+    "government_body": "Römer (City Council)",
+    "landmark": "Mainhattan Skyline",
+    "primary_industry_workers": "bankers and logistics coordinators",
+    "slang_reaction": "Das ist doch ein absoluter Witz, so ein Chaos!"
   }
 }

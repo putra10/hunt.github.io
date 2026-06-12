@@ -869,5 +869,14 @@
   "romance_exposure": {
     "severity": "major",
     "flavour": "The matter has been referred to the Party discipline committee."
+  },
+  "city_personality": {
+    "voice": "bureaucratic-stoic",
+    "humor_style": "dry",
+    "media_outlet": "Beijing Daily",
+    "government_body": "Beijing Municipal People's Government",
+    "landmark": "Forbidden City",
+    "primary_industry_workers": "tech workers and state-enterprise clerks",
+    "slang_reaction": "Tai lípǔ le, zhè jiǎnzhí shì zài wán huǒ!"
   }
 }

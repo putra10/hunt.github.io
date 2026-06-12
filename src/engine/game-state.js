@@ -80,6 +80,22 @@ export const state = {
   pendingLoverDemand: null,
   pendingPartnerDemand: null,
 
+  // Day structure: action points (meetings, consults, back channel each cost 1)
+  actionPoints: 3,
+  maxActionPoints: 3,
+
+  // External actor meetings (one per turn)
+  pendingMeeting: null,
+  meetingUsedTurn: 0,
+  meetingSkippedTurn: 0,
+  lastMeetingResult: null,
+  decisionMods: {},          // today's-decision modifiers from meetings
+
+  // Morning newspaper + honest-rec metadata
+  pendingNewspaper: null,
+  lastNewspaperApproval: null,
+  pendingRecMeta: {},        // advisorId → { scheming } for today's recs
+
   // ── Lifecycle ─────────────────────────────────────────────────────────
 
   loadCity(cityData) {
@@ -164,6 +180,16 @@ export const state = {
     this.marketEffects = {};
     this.pendingLoverDemand = null;
     this.pendingPartnerDemand = null;
+    this.actionPoints = 3;
+    this.maxActionPoints = 3;
+    this.pendingMeeting = null;
+    this.meetingUsedTurn = 0;
+    this.meetingSkippedTurn = 0;
+    this.lastMeetingResult = null;
+    this.decisionMods = {};
+    this.pendingNewspaper = null;
+    this.lastNewspaperApproval = this.approval;
+    this.pendingRecMeta = {};
   },
 
   // ── Decision pacing ───────────────────────────────────────────────────
@@ -322,6 +348,15 @@ export const state = {
       marketEffects: this.marketEffects,
       pendingLoverDemand: this.pendingLoverDemand,
       pendingPartnerDemand: this.pendingPartnerDemand,
+      actionPoints: this.actionPoints,
+      maxActionPoints: this.maxActionPoints,
+      pendingMeeting: this.pendingMeeting,
+      meetingUsedTurn: this.meetingUsedTurn,
+      meetingSkippedTurn: this.meetingSkippedTurn,
+      decisionMods: this.decisionMods,
+      pendingNewspaper: this.pendingNewspaper,
+      lastNewspaperApproval: this.lastNewspaperApproval,
+      pendingRecMeta: this.pendingRecMeta,
       flags: this.flags,
     });
   },
@@ -370,6 +405,15 @@ export const state = {
     this.marketEffects           = parsed.marketEffects ?? {};
     this.pendingLoverDemand      = parsed.pendingLoverDemand ?? null;
     this.pendingPartnerDemand    = parsed.pendingPartnerDemand ?? null;
+    this.actionPoints            = parsed.actionPoints ?? 3;
+    this.maxActionPoints         = parsed.maxActionPoints ?? 3;
+    this.pendingMeeting          = parsed.pendingMeeting ?? null;
+    this.meetingUsedTurn         = parsed.meetingUsedTurn ?? 0;
+    this.meetingSkippedTurn      = parsed.meetingSkippedTurn ?? 0;
+    this.decisionMods            = parsed.decisionMods ?? {};
+    this.pendingNewspaper        = parsed.pendingNewspaper ?? null;
+    this.lastNewspaperApproval   = parsed.lastNewspaperApproval ?? null;
+    this.pendingRecMeta          = parsed.pendingRecMeta ?? {};
     this.flags                   = parsed.flags ?? {};
 
     // Rebuild the advisor roster from the SAVE, not from loadCity's random

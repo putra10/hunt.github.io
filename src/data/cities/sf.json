@@ -811,5 +811,14 @@
   "romance_exposure": {
     "severity": "minor",
     "flavour": "People say it is complicated but understandable. Still trending though."
+  },
+  "city_personality": {
+    "voice": "tech-idealistic-disillusioned",
+    "humor_style": "absurdist",
+    "media_outlet": "San Francisco Chronicle",
+    "government_body": "Board of Supervisors",
+    "landmark": "Golden Gate Bridge",
+    "primary_industry_workers": "software engineers and service workers",
+    "slang_reaction": "Like, literally, this is the most unoptimized administration ever."
   }
 }

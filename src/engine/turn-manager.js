@@ -7,6 +7,8 @@ import { ConsequenceSim } from './consequence-sim.js';
 import { ScandalSystem } from './scandal-system.js';
 import { ContractSystem } from './contract-system.js';
 import { MarketSystem } from './market-system.js';
+import { ActorSystem } from './actor-system.js';
+import { buildNewspaper } from './newspaper.js';
 import { getGenericProblemById } from './generic-problems.js';
 import { heatLevel, scandalChanceMult, addHeat } from './heat-system.js';
 
@@ -22,6 +24,7 @@ export class TurnManager {
     this.consequenceSim = new ConsequenceSim(state, this.advisorSystem, this.scandalSystem);
     this.contractSystem = new ContractSystem(state);
     this.marketSystem   = new MarketSystem(state);
+    this.actorSystem    = new ActorSystem(state);
   }
 
   // ── Main turn loop ────────────────────────────────────────────────────
@@ -79,6 +82,16 @@ export class TurnManager {
     // unresolved problems from previous turns carry over on top)
     s.decisionsThisTurn    = 0;
     s.maxDecisionsThisTurn = 1;
+
+    // New day: action points refill, yesterday's unanswered visitor leaves,
+    // unused decision modifiers expire
+    s.actionPoints = s.maxActionPoints ?? 3;
+    s.pendingMeeting = null;
+    s.lastMeetingResult = null;
+    s.decisionMods = {};
+
+    // The morning paper lands on the desk (built from yesterday's events)
+    s.pendingNewspaper = buildNewspaper(s);
 
     // Problems ignored for 3 turns disclose themselves — badly
     this._processOverdueProblems();
@@ -281,8 +294,20 @@ export class TurnManager {
     const option = decision.options[optionIndex];
     if (!option) { console.warn('Option not found:', optionIndex); return; }
 
-    // Buy the Front Page: this decision's approval loss is halved
+    // Meeting modifiers bought from today's visitor (spin / procedural blessing)
     let consequences = option.consequences;
+    const mods = s.decisionMods ?? {};
+    if (mods.scandalHalf && (consequences.scandal_risk ?? 0) > 0) {
+      consequences = { ...consequences, scandal_risk: Math.round(consequences.scandal_risk / 2) };
+      console.log('[Meeting] Scandal risk halved by procedural blessing');
+    }
+    if (mods.spin && (consequences.approval_delta ?? 0) < 0) {
+      consequences = { ...consequences, approval_delta: Math.min(0, consequences.approval_delta + mods.spin) };
+      console.log(`[Meeting] Backlash softened by spin (+${mods.spin})`);
+    }
+    s.decisionMods = {};
+
+    // Buy the Front Page: this decision's approval loss is halved
     const me = s.marketEffects ?? {};
     if (me.halveNextDecisionLoss && (consequences.approval_delta ?? 0) < 0) {
       consequences = { ...consequences, approval_delta: Math.round(consequences.approval_delta / 2) };
@@ -331,6 +356,7 @@ export class TurnManager {
       }
     }
     s.pendingDecisionRecommendations = {};
+    s.pendingRecMeta = {};
 
     // Layer 1+3: if decision matches an advisor's domain, reward their trust
     //            and slow their betrayal clock (good governance = loyalty)
@@ -864,6 +890,40 @@ export class TurnManager {
         break;
       }
     }
+    this.saveState();
+  }
+
+  // ── External actor meetings + consultations (action-point spends) ─────
+
+  summonActor(actorName) {
+    const s = this.state;
+    const decision = s.getNextDecision();
+    const result = this.actorSystem.summon(actorName, decision);
+    this.saveState();
+    return result;
+  }
+
+  skipMeeting() {
+    const s = this.state;
+    s.meetingSkippedTurn = s.turn;
+    console.log('[Meeting] Skipped by player');
+    this.saveState();
+  }
+
+  resolveMeeting(accept) {
+    const result = this.actorSystem.resolve(accept, this.scandalSystem);
+    this.saveState();
+    return result;
+  }
+
+  consultAdvisor(advisorId) {
+    const result = this.advisorSystem.consult(advisorId);
+    this.saveState();
+    return result;
+  }
+
+  dismissNewspaper() {
+    this.state.pendingNewspaper = null;
     this.saveState();
   }
 

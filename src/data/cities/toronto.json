@@ -805,5 +805,14 @@
   "romance_exposure": {
     "severity": "moderate",
     "flavour": "It is making the news. People are awkward about it. Very awkward."
+  },
+  "city_personality": {
+    "voice": "polite-passive-aggressive",
+    "humor_style": "self-deprecating",
+    "media_outlet": "Toronto Star",
+    "government_body": "Toronto City Council",
+    "landmark": "CN Tower",
+    "primary_industry_workers": "bankers and construction workers",
+    "slang_reaction": "Honestly, what a mess, eh? Classic city hall."
   }
 }

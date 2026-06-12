@@ -808,5 +808,14 @@
   "romance_exposure": {
     "severity": "moderate",
     "flavour": "Oga likes himself a situation. The streets are entertained."
+  },
+  "city_personality": {
+    "voice": "hustler-energetic",
+    "humor_style": "satirical",
+    "media_outlet": "The Guardian Nigeria",
+    "government_body": "Lagos State Government",
+    "landmark": "Third Mainland Bridge",
+    "primary_industry_workers": "market traders and tech entrepreneurs",
+    "slang_reaction": "Omo, this government na pure cruise, I swear!"
   }
 }

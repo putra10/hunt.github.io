@@ -204,8 +204,15 @@ export class MenuScreen {
         <div class="modal-body">
           <p><strong>JOB.</strong> You are governor. Survive <strong>12 turns</strong>. Approval hits 0% and you're recalled. How clean your hands stay is up to you.</p>
 
-          <p><strong>EACH TURN.</strong> Read the dispatch, pick one of three answers to the day's problem — SAFE is expensive, BOLD is risky, CHAOS is cheap and unhinged. Undecided problems <strong>carry over and pile up</strong>; ignore one for 3 turns and it becomes a scandal on its own. End the term with a backlog and there's no invitation, whatever your numbers. Crises hit on turns <strong>4, 8 and 12</strong>; they can't be ignored at all.</p>
-
+          <p><strong>EACH TURN.</strong> You face a strict sequence of events each day.</p>
+          <ol>
+            <li><strong>The Morning Paper:</strong> Read yesterday's fallout and see who's talking to the press.</li>
+            <li><strong>The Dispatch:</strong> Face the day's problem. You have <strong>3 hours a day</strong> to spend: take a meeting with a named player, get an advisor's private read, or work the back channel (each costs one hour). Then you must make a decision: SAFE is expensive, BOLD is risky, CHAOS is cheap and unhinged.</li>
+            <li><strong>The Black Market:</strong> Off-the-books fixers may offer deals. Buy, sell, or walk away.</li>
+            <li><strong>Urban Unrest:</strong> If the city is furious and broke, strikes or riots may break out requiring immediate action.</li>
+            <li><strong>Scandals:</strong> Finally, any breaking scandals hit your desk. You must suppress, accept, or manage the story before the day ends.</li>
+          </ol>
+          <p>Crises hit on turns <strong>4, 8 and 12</strong>; they cannot be ignored.</p>
           <p><strong>ADVISORS.</strong> Each has trust (keep it fed or they check out) and a hidden agenda (at 80, they betray you). They argue their advice in chat, with reasons — based on what <em>they</em> value, and a restless advisor's recommendation may be designed to hurt you. Watch the agenda bar before you trust anyone. Ignore their advice and pay for it, and a smug "I told you so" lands in your messages the next morning — red badge and all.</p>
 
           <p><strong>BACK CHANNEL.</strong> In any advisor's chat: get closer (all the way to romance — loyal, useful, and one leaked photo from disaster), run a corrupt pact, threaten, leak dirt, or throw someone under the bus. One dirty move per turn. Lovers and crime partners are <strong>needy</strong> — most turns one of them wants something, and a red badge marks who's waiting on you.</p>

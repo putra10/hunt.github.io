@@ -816,5 +816,14 @@
   "romance_exposure": {
     "severity": "major",
     "flavour": "A formal inquiry has been requested. The governor credibility is under review."
+  },
+  "city_personality": {
+    "voice": "strict-orderly",
+    "humor_style": "dry",
+    "media_outlet": "The Straits Times",
+    "government_body": "Parliament of Singapore",
+    "landmark": "Marina Bay Sands",
+    "primary_industry_workers": "finance professionals and migrant workers",
+    "slang_reaction": "Aiyah, this government doing what one, so cham!"
   }
 }

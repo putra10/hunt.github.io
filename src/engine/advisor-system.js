@@ -339,6 +339,7 @@ export class AdvisorSystem {
   generateRecommendations(decision) {
     const s = this.state;
     s.pendingDecisionRecommendations = {};
+    s.pendingRecMeta = {};
     if (!decision) return;
 
     // What each advisor actually values (budget scaled /20 so money doesn't
@@ -384,6 +385,8 @@ export class AdvisorSystem {
       });
 
       s.pendingDecisionRecommendations[advisor.id] = best;
+      // Honest-or-not metadata: consumed by consults and actor-meeting intel
+      s.pendingRecMeta[advisor.id] = { scheming };
       console.log(`[Advisor] ${advisor.name} recommends option ${best} for "${decision.id}"${scheming ? ' (SCHEMING)' : ''}`);
     }
   }
@@ -499,6 +502,54 @@ export class AdvisorSystem {
     }
   }
 
+  // ── Consultations (messenger, 1 action point) ───────────────────────────────
+  // Ask advisor A for a private read. If today's recommendation came from a
+  // DIFFERENT advisor, A verifies it (counter-intelligence, 80% accurate —
+  // less if A has checked out). Otherwise A gives their domain forecast.
+  // Once per advisor per turn. Returns { ok, msg }.
+
+  consult(advisorId) {
+    const s = this.state;
+    const advisor = s.advisors.find(a => a.id === advisorId && !a.betrayed);
+    if (!advisor) return { ok: false, msg: 'They are not available.' };
+    if (advisor.consultedTurn === s.turn) return { ok: false, msg: `${advisor.name} has already given you their read today.` };
+    if ((s.actionPoints ?? 0) <= 0) return { ok: false, msg: 'No hours left in the day.' };
+
+    s.actionPoints--;
+    advisor.consultedTurn = s.turn;
+
+    // Counter-intelligence: verify another advisor's recommendation
+    const recIds = Object.keys(s.pendingDecisionRecommendations ?? {});
+    const targetId = recIds.find(id => id !== advisorId);
+    if (targetId) {
+      const target = s.advisors.find(a => a.id === targetId);
+      const meta = s.pendingRecMeta?.[targetId];
+      if (target && meta) {
+        // Checked-out advisors can't be bothered to dig
+        if ((advisor.trust ?? 50) < 40) {
+          return { ok: true, msg: `${advisor.name} shrugs: "Ask someone who still gets invited to the meetings."` };
+        }
+        const accurate = random() < 0.8;
+        const verdictScheming = accurate ? meta.scheming : !meta.scheming;
+        const msg = verdictScheming
+          ? `${advisor.name}, quietly: "I looked into ${target.name}'s advice. The numbers are real but the framing is... curated. If I were you, I'd think twice today."`
+          : `${advisor.name}: "I checked ${target.name}'s reasoning. It holds. Whatever game they're playing long-term, today's advice is straight."`;
+        console.log(`[Consult] ${advisor.name} on ${target.name}: scheming=${meta.scheming}, reported=${verdictScheming}`);
+        return { ok: true, msg };
+      }
+    }
+
+    // Their own domain forecast (no trust gate — you're paying with time)
+    const intel = this._generateIntel(advisor, s);
+    if (intel) return { ok: true, msg: `${advisor.name}: "${intel}"` };
+
+    const fallbacks = [
+      `${advisor.name}: "Honestly? Nothing on my desk screams yet. Enjoy it — it never lasts."`,
+      `${advisor.name}: "My read: the city is holding its breath. What it exhales depends on you."`,
+    ];
+    return { ok: true, msg: randomPick(fallbacks) };
+  }
+
   // ── Back-channel execution ──────────────────────────────────────────────────
   // Returns { ok, msg } — msg is shown in the messenger log.
 
@@ -508,19 +559,26 @@ export class AdvisorSystem {
 
     const advisor = s.advisors.find(a => a.id === advisorId && !a.betrayed);
     if (!advisor) return { ok: false, msg: 'This advisor is no longer available.' };
+    let free = false;
     if (s.backChannelUsedTurn === s.turn) {
-      // Burner phones: one extra back-channel action this turn
+      // Burner phones: one extra back-channel action this turn (no AP either)
       if (s.marketEffects?.freeBackChannel) {
         s.marketEffects.freeBackChannel = false;
+        free = true;
       } else {
         return { ok: false, msg: 'You have already used the back channel this turn.' };
       }
+    }
+    // Dirty politics takes time: 1 action point (unless the burner phones paid)
+    if (!free && (s.actionPoints ?? Infinity) <= 0) {
+      return { ok: false, msg: 'No hours left in the day for this kind of work.' };
     }
 
     const action = BACK_CHANNEL_ACTIONS[actionId];
     if (!action || !action.condition(s, advisor))
       return { ok: false, msg: 'Conditions are not met for that move.' };
 
+    if (!free && s.actionPoints !== undefined) s.actionPoints--;
     s.backChannelUsedTurn = s.turn;
     switch (actionId) {
       case 'get_closer':    return this._bcGetCloser(advisor);

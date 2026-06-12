@@ -793,5 +793,14 @@
   "romance_exposure": {
     "severity": "career_ending",
     "flavour": "This is a profound moral failure. The consequences will be immediate and severe."
+  },
+  "city_personality": {
+    "voice": "opulent-detached",
+    "humor_style": "ironic",
+    "media_outlet": "Okaz",
+    "government_body": "Jeddah Municipality",
+    "landmark": "King Fahd's Fountain",
+    "primary_industry_workers": "port operators and retail staff",
+    "slang_reaction": "Ya sater, aish hal fawda illi aishin fiha!"
   }
 }

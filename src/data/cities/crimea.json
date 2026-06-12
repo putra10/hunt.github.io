@@ -813,5 +813,14 @@
   "romance_exposure": {
     "severity": "minor",
     "flavour": "State media buries the story. Everyone already knows."
+  },
+  "city_personality": {
+    "voice": "embattled-cynic",
+    "humor_style": "grim",
+    "media_outlet": "Crimean Truth",
+    "government_body": "State Council of Crimea",
+    "landmark": "Swallow's Nest",
+    "primary_industry_workers": "naval port workers and tourism operators",
+    "slang_reaction": "Eto polnyy koshmar, my snova na te zhe grabli!"
   }
 }

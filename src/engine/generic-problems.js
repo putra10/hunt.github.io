@@ -4,9 +4,12 @@ import infrastructureFailure from '../../Hardcoded things/infrastructure_failure
 import mediaScandal from '../../Hardcoded things/media_scandal.json';
 import politicalPressure from '../../Hardcoded things/political_pressure.json';
 import publicProtest from '../../Hardcoded things/public_protest.json';
+import followupProblems from '../../Hardcoded things/followup_problems.json';
 import { randomPick } from '../utils/random.js';
 
 // _domain maps a problem to the advisor whose trust gates it (null = always visible)
+// Follow-up problems (_followup) never enter the random pool — they unlock when
+// a prior option sets the flag `decision_<followup_id>` and jump the queue.
 const ALL_GENERIC_PROBLEMS = [
   ...budgetCorruption.map(p    => ({ ...p, _domain: 'finance' })),
   ...environmentalClimate.map(p=> ({ ...p, _domain: 'urban_planning' })),
@@ -14,6 +17,7 @@ const ALL_GENERIC_PROBLEMS = [
   ...mediaScandal.map(p        => ({ ...p, _domain: null })),
   ...politicalPressure.map(p   => ({ ...p, _domain: 'religious_affairs' })),
   ...publicProtest.map(p       => ({ ...p, _domain: 'military_liaison' })),
+  ...followupProblems.map(p    => ({ ...p, _domain: p.domain ?? null, _followup: true })),
 ];
 
 export function interpolateText(text, city) {
@@ -93,8 +97,26 @@ export function getNextGenericProblem(state) {
   // consume the day's new problem — that used to eat a content day)
   if (state.lastPresentTurn === state.turn) return null;
 
+  // Follow-up problems jump the queue: a flagged consequence of an earlier
+  // decision is today's news, not a random draw
+  const followup = ALL_GENERIC_PROBLEMS.find(p =>
+    p._followup &&
+    state.flags?.[`decision_${p.id}`] &&
+    !state.pastDecisions.some(past => past.decisionId === p.id) &&
+    !state.presentedDecisions.includes(p.id)
+  );
+  if (followup) {
+    state.presentedDecisions.push(followup.id);
+    if (!state.problemDeadlines) state.problemDeadlines = {};
+    state.problemDeadlines[followup.id] = state.turn;
+    state.lastPresentTurn = state.turn;
+    console.log(`[Problem] Follow-up surfaces: ${followup.id}`);
+    return normalizeProblem(followup, state.city);
+  }
+
   // Surface a new eligible problem
   const eligible = ALL_GENERIC_PROBLEMS.filter(p => {
+    if (p._followup) return false;
     if (state.pastDecisions.some(past => past.decisionId === p.id)) return false;
     if (state.presentedDecisions.includes(p.id)) return false;
     // Layer 2: advisor with trust < 30 stops flagging their domain's problems
@@ -112,6 +134,7 @@ export function getNextGenericProblem(state) {
   let pool = eligible;
   if (pool.length === 0) {
     pool = ALL_GENERIC_PROBLEMS.filter(p => {
+      if (p._followup) return false;
       if (state.pastDecisions.some(past => past.decisionId === p.id)) return false;
       if (state.presentedDecisions.includes(p.id)) return false;
       return true;
@@ -120,6 +143,7 @@ export function getNextGenericProblem(state) {
   // Last resort: allow replaying already-presented problems (but not resolved ones)
   if (pool.length === 0) {
     pool = ALL_GENERIC_PROBLEMS.filter(p =>
+      !p._followup &&
       !state.pastDecisions.some(past => past.decisionId === p.id)
     );
     // Reset presentedDecisions so replayed problems show fresh

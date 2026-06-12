@@ -1393,6 +1393,15 @@
   color: #ccc;
 }
 
+.modal-body ol, .modal-body ul {
+  padding-left: 1.5rem;
+  margin-bottom: 0.625rem;
+}
+
+.modal-body li {
+  margin-bottom: 0.25rem;
+}
+
 .modal-close {
   margin-top: 1.25rem;
   width: 100%;

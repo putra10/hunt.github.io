@@ -813,5 +813,14 @@
   "romance_exposure": {
     "severity": "moderate",
     "flavour": "The press is having a field day. The coalition is very unhappy."
+  },
+  "city_personality": {
+    "voice": "brash-innovative",
+    "humor_style": "cynical",
+    "media_outlet": "Haaretz",
+    "government_body": "Tel Aviv-Yafo Municipality",
+    "landmark": "Azrieli Center",
+    "primary_industry_workers": "startup founders and hospitality staff",
+    "slang_reaction": "Aize balagan, hem pashut lo yod'im ma hem osim!"
   }
 }

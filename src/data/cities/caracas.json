@@ -801,5 +801,14 @@
   "romance_exposure": {
     "severity": "moderate",
     "flavour": "The tabloids have the photos. The government has no comment."
+  },
+  "city_personality": {
+    "voice": "exhausted-resilient",
+    "humor_style": "dark",
+    "media_outlet": "El Nacional",
+    "government_body": "Caracas Metropolitan District",
+    "landmark": "Miraflores Palace",
+    "primary_industry_workers": "informal economy traders and public employees",
+    "slang_reaction": "¡Chamo, qué desastre, esto no tiene nombre!"
   }
 }

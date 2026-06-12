@@ -5,6 +5,7 @@ import { renderDecisionCards } from '../components/decision-cards.js';
 import { renderAdvisorCard } from '../components/advisor-card.js';
 import { pick } from '../ui-helpers.js';
 import { SCANDAL_SEVERITY } from '../../engine/scandal-system.js';
+import { renderNewspaper, bindNewspaper } from './newspaper-screen.js';
 
 
 // Source ids → human explanation of WHY this scandal just hit
@@ -59,10 +60,6 @@ function renderMarketOffers(offers) {
   if (!offers || !offers.length) return '';
   return `
     <div class="market-card">
-      <div class="mk-header">
-        <span class="mk-icon">&#x1F311;</span>
-        <span class="mk-title">THE BLACK MARKET IS OPEN TONIGHT</span>
-      </div>
       ${offers.map(o => {
         const price = o.askingPrice ?? 0;
         const priceLabel = price < 0 ? `+${-price}M` : `${price}M`;
@@ -79,7 +76,6 @@ function renderMarketOffers(offers) {
           <button class="mk-buy" data-buy-offer="${o.id}">${price < 0 ? 'SELL' : 'BUY'} (${priceLabel})</button>
         </div>`;
       }).join('')}
-      <button class="mk-pass" id="btn-pass-market">WALK AWAY</button>
       <div class="mk-foot">Offers vanish at dawn &middot; every deal raises SCRUTINY</div>
     </div>`;
 }
@@ -205,46 +201,111 @@ function renderContractOffers(offers, activeDeals) {
   return html;
 }
 
-function renderUnrestCard(unrest) {
+// ── Action points + meetings ──────────────────────────────────────────────
+
+function renderActionPoints(state) {
+  const max = state.maxActionPoints ?? 3;
+  const ap  = Math.max(0, state.actionPoints ?? max);
+  const pips = Array.from({ length: max }, (_, i) =>
+    `<span class="ap-pip${i < ap ? ' ap-pip--on' : ''}"></span>`).join('');
+  return `<span class="ap-box" title="Meetings, consultations and back-channel moves each cost one">
+    HOURS ${pips}
+  </span>`;
+}
+
+function renderMeetingRow(state, decision) {
+  if (!decision?.external_actors?.length) return '';
+  if (state.pendingMeeting) return '';
+  const used = state.meetingUsedTurn === state.turn;
+  const skipped = state.meetingSkippedTurn === state.turn;
+  const noAP = (state.actionPoints ?? 0) <= 0;
+  if (used || skipped) return '';
+  return `
+    <div class="meet-roster">
+      ${decision.external_actors.slice(0, 2).map(a => `
+        <button class="meet-actor-card" data-summon-actor="${a}" ${noAP ? 'disabled' : ''}>
+          <span class="mac-icon">\u{1F4DE}</span>
+          <span class="mac-name">${a}</span>
+          <span class="mac-cost">${noAP ? 'NO HOURS LEFT' : '1 HOUR'}</span>
+        </button>`).join('')}
+    </div>`;
+}
+
+function renderPendingMeetingStory(m, decision, turn) {
+  if (!m) return '';
+  const o = m.offer;
+  return `
+    <div class="kicker">TODAY'S DISPATCH</div>
+    <div class="headline">${decision?.title || 'Unknown Issue'}</div>
+    <div class="byline">WEEK ${turn * 6} OF YOUR TERM</div>
+    <hr class="divider">
+    <div class="sbody">${decision?.body || decision?.description || ''}</div>
+    <div class="mt-offer" style="margin-top: 1.5rem; background: var(--surface-2); border-left: 4px solid var(--accent); padding: 1rem;">
+      <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.5rem;">MEETING IN PROGRESS: ${m.actorName.toUpperCase()}</div>
+      <div class="sbody" style="font-size: 0.9rem; font-style: italic; margin-bottom: 0.75rem;">"${m.greeting}"</div>
+      <div class="mt-offer-label" style="font-size: 0.85rem;">OFFER: ${o.label}</div>
+      <div class="mt-offer-desc" style="font-size: 0.85rem;">${o.desc}</div>
+    </div>
+  `;
+}
+
+function renderPendingMeetingActions(m) {
+  if (!m) return '';
+  const o = m.offer;
+  return `
+    <div class="cards" style="margin-top: 0;">
+      <button class="mt-accept" data-meeting-response="accept" style="width: 100%; margin-bottom: 0.25rem;">SHAKE ON IT <span class="mt-note">(${o.accept_note ?? ''})</span></button>
+      <button class="mt-decline" data-meeting-response="decline" style="width: 100%;">SHOW THEM OUT <span class="mt-note">(${o.decline_note ?? ''})</span></button>
+    </div>
+  `;
+}
+
+function renderMeetingResult(state) {
+  const r = state.lastMeetingResult;
+  if (!r || r.turn !== state.turn) return '';
+  return `
+    <div class="meeting-result">
+      <div class="mr-label">AFTER THE MEETING — ${r.actorName.toUpperCase()}</div>
+      ${(r.lines ?? []).map(l => `<div class="mr-line">${l}</div>`).join('')}
+    </div>`;
+}
+
+const UNREST_META = {
+  strike: {
+    icon: '✊', label: "WORKERS' STRIKE",
+    desc: 'Organized labor has walked out. Production has halted across key sectors.',
+    actions: [
+      { id: 'meet_demands', label: 'MEET DEMANDS',      note: '-20M budget',             cls: 'uc-costly' },
+      { id: 'stand_firm',   label: 'STAND FIRM',        note: '-5% approval',            cls: 'uc-hard'   },
+    ]
+  },
+  demonstration: {
+    icon: '\u{1F4E2}', label: 'PUBLIC DEMONSTRATION',
+    desc: 'Thousands have taken to the streets. The city is watching how you respond.',
+    actions: [
+      { id: 'engage',   label: 'ENGAGE PROTESTERS', note: '-25M, +2% approval',   cls: 'uc-costly' },
+      { id: 'disperse', label: 'DISPERSE CROWD',     note: '-10% approval',        cls: 'uc-hard'   },
+    ]
+  },
+  riot: {
+    icon: '\u{1F525}', label: 'CIVIL RIOT',
+    desc: 'Riots have broken out across the city. Property destruction is spreading fast.',
+    actions: [
+      { id: 'negotiate', label: 'NEGOTIATE',  note: '-40M budget',              cls: 'uc-costly' },
+      { id: 'crackdown', label: 'CRACKDOWN',  note: '-18% approval + scandal',  cls: 'uc-danger' },
+    ]
+  },
+};
+
+function renderUnrestActions(unrest) {
   if (!unrest) return '';
-  const META = {
-    strike: {
-      icon: '✊', label: "WORKERS' STRIKE",
-      desc: 'Organized labor has walked out. Production has halted across key sectors.',
-      actions: [
-        { id: 'meet_demands', label: 'MEET DEMANDS',      note: '-20M budget',             cls: 'uc-costly' },
-        { id: 'stand_firm',   label: 'STAND FIRM',        note: '-5% approval',            cls: 'uc-hard'   },
-      ]
-    },
-    demonstration: {
-      icon: '\u{1F4E2}', label: 'PUBLIC DEMONSTRATION',
-      desc: 'Thousands have taken to the streets. The city is watching how you respond.',
-      actions: [
-        { id: 'engage',   label: 'ENGAGE PROTESTERS', note: '-25M, +2% approval',   cls: 'uc-costly' },
-        { id: 'disperse', label: 'DISPERSE CROWD',     note: '-10% approval',        cls: 'uc-hard'   },
-      ]
-    },
-    riot: {
-      icon: '\u{1F525}', label: 'CIVIL RIOT',
-      desc: 'Riots have broken out across the city. Property destruction is spreading fast.',
-      actions: [
-        { id: 'negotiate', label: 'NEGOTIATE',  note: '-40M budget',              cls: 'uc-costly' },
-        { id: 'crackdown', label: 'CRACKDOWN',  note: '-18% approval + scandal',  cls: 'uc-danger' },
-      ]
-    },
-  };
-  const m = META[unrest.type] ?? META.demonstration;
+  const m = UNREST_META[unrest.type] ?? UNREST_META.demonstration;
   const btns = m.actions.map(a =>
-    `<button class="uc-btn ${a.cls}" data-resolve-unrest="${a.id}">${a.label} <span class="uc-note">(${a.note})</span></button>`
+    `<button class="uc-btn ${a.cls}" data-resolve-unrest="${a.id}" style="width: 100%; margin-bottom: 0.25rem;">${a.label} <span class="uc-note">(${a.note})</span></button>`
   ).join('');
   return `
-    <div class="unrest-card unrest-card--${unrest.type}">
-      <div class="uc-header">
-        <span class="uc-icon">${m.icon}</span>
-        <span class="uc-title">${m.label}</span>
-      </div>
-      <div class="uc-desc">${m.desc}</div>
-      <div class="uc-actions">${btns}</div>
+    <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+      ${btns}
     </div>`;
 }
 
@@ -273,15 +334,32 @@ function renderBribeOffers(bribes) {
 }
 
 
-function renderScandalCard(scandal) {
+function renderScandalStory(scandal) {
   const tier     = scandal.severity_tier ?? 'minor';
   const tierDef  = SCANDAL_SEVERITY[tier] ?? SCANDAL_SEVERITY.minor;
-  // Show the scandal's actual authored penalty, not the generic tier value
+  const label    = tierDef.label ?? 'Political Scandal';
+  const isCareer = tier === 'career_ending';
+
+  return `
+    <div class="kicker">BREAKING NEWS</div>
+    <div class="headline">${scandal.title ?? scandal.description ?? 'Political Scandal'}</div>
+    <div class="byline">${tier.replace('_', ' ').toUpperCase()} SCANDAL</div>
+    <hr class="divider">
+    <div class="sbody">${scandal.description ?? ''}</div>
+    ${isCareer ? `
+      <div class="sc-terms" style="margin-top: 1rem; border-left: 3px solid #e55; padding-left: 0.5rem;">
+        <span class="sc-bad">This cannot be suppressed or accepted. Survive it — or resign.</span>
+      </div>
+    ` : ''}
+  `;
+}
+
+function renderScandalActions(scandal) {
+  const tier     = scandal.severity_tier ?? 'minor';
+  const tierDef  = SCANDAL_SEVERITY[tier] ?? SCANDAL_SEVERITY.minor;
   const penalty  = Math.abs(scandal.approval_penalty ?? tierDef.approvalPenalty);
   const isCareer = tier === 'career_ending';
-  const label    = tierDef.label ?? 'Political Scandal';
 
-  // Human-readable effect note for a tier response
   const responseNote = (r) => {
     const parts = [];
     if (r.budgetCost)  parts.push(`-${r.budgetCost}M`);
@@ -290,52 +368,41 @@ function renderScandalCard(scandal) {
     return parts.join(' · ');
   };
 
-  // Tier-specific response buttons. Career-ending: responses only.
-  // Other tiers: suppress / accept, plus "manage the story" responses —
-  // the base penalty (-${penalty}%) still applies, the response shapes it.
   let actionButtons;
   if (isCareer) {
-    // Career-ending: make the stakes explicit — "Desperate Last Stand" costs
-    // money and used to read like a suppress button, but it's a 25% gamble
-    actionButtons = tierDef.responses.map(r => {
-      const bits = [];
-      if (r.budgetCost)  bits.push(`-${r.budgetCost}M`);
-      if (r.miracleRoll) bits.push('25% survival — failure ends your term');
-      if (r.gameOver)    bits.push('ends your term');
-      return `
-      <button class="sc-response sc-response--${r.id}" data-scandal-response="${r.id}">
-        ${r.label}${bits.length ? ` <span class="sc-resp-note">(${bits.join(' · ')})</span>` : ''}
-      </button>`;
-    }).join('');
+    actionButtons = `
+      <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+        ${tierDef.responses.map(r => {
+          const bits = [];
+          if (r.budgetCost)  bits.push(`-${r.budgetCost}M`);
+          if (r.miracleRoll) bits.push('25% survival — failure ends your term');
+          if (r.gameOver)    bits.push('ends your term');
+          return `
+          <button class="sc-response sc-response--${r.id}" data-scandal-response="${r.id}" style="width: 100%;">
+            ${r.label}${bits.length ? ` <span class="sc-resp-note">(${bits.join(' · ')})</span>` : ''}
+          </button>`;
+        }).join('')}
+      </div>`;
   } else {
     actionButtons = `
-      <button class="sc-suppress" id="btn-suppress-scandal">SUPPRESS (${scandal.suppress_cost}M)</button>
-      <button class="sc-accept" id="btn-accept-scandal">ACCEPT (-${penalty}%)</button>
-      <div class="sc-manage-label">OR MANAGE THE STORY &middot; base hit -${penalty}% applies, then:</div>
-      ${tierDef.responses.map(r => `
-        <button class="sc-response sc-response--${r.id}" data-scandal-response="${r.id}">
-          ${r.label}${responseNote(r) ? ` <span class="sc-resp-note">(${responseNote(r)})</span>` : ''}
-        </button>`).join('')}`;
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem;">
+        <button class="sc-suppress" id="btn-suppress-scandal" style="width: 100%;">SUPPRESS (${scandal.suppress_cost}M)</button>
+        <button class="sc-accept" id="btn-accept-scandal" style="width: 100%;">ACCEPT (-${penalty}%)</button>
+      </div>
+      <div class="sc-manage-label" style="margin-top: 0.75rem; margin-bottom: 0.25rem;">OR MANAGE THE STORY &middot; base hit -${penalty}% applies, then:</div>
+      <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+        ${tierDef.responses.map(r => `
+          <button class="sc-response sc-response--${r.id}" data-scandal-response="${r.id}" style="width: 100%;">
+            ${r.label}${responseNote(r) ? ` <span class="sc-resp-note">(${responseNote(r)})</span>` : ''}
+          </button>`).join('')}
+      </div>`;
   }
 
   return `
-    <div class="scandal-card scandal-card--${tier}">
-      <div class="sc-header">
-        <span class="sc-icon">\u{1F4F0}</span>
-        <span class="sc-title">${label.toUpperCase()}</span>
-        <span class="sc-tier-badge sc-tier--${tier}">${tier.replace('_', '-').toUpperCase()}</span>
-      </div>
-      <div class="sc-name">${scandal.title ?? scandal.description ?? 'Political Scandal'}</div>
-      <div class="sc-desc">${scandal.description ?? ''}</div>
-      ${!isCareer ? `<div class="sc-terms">
-        Accept: <span class="sc-bad">-${penalty}% approval</span>
-        &nbsp;&middot;&nbsp;
-        Suppress: <span class="sc-warn">-${scandal.suppress_cost}M budget</span>
-      </div>` : `<div class="sc-terms">
-        <span class="sc-bad">This cannot be suppressed or accepted. Survive it — or resign.</span>
-      </div>`}
-      <div class="sc-actions">${actionButtons}</div>
-    </div>`;
+    <div style="margin-top: 0;">
+      ${actionButtons}
+    </div>
+  `;
 }
 
 export class DispatchScreen {
@@ -385,8 +452,23 @@ export class DispatchScreen {
     const FEED_DURATIONS = { slow: '120s', normal: '75s', fast: '35s' };
     const feedDuration = FEED_DURATIONS[state.settings?.feedSpeed ?? 'normal'];
 
+    const needsMeetingChoice = decision?.external_actors?.length > 0 &&
+                               !state.pendingMeeting &&
+                               state.meetingUsedTurn !== state.turn &&
+                               state.meetingSkippedTurn !== state.turn;
+    const hasPendingMeeting = !!state.pendingMeeting;
+    
+    // Strict phase priority: Meeting -> Problem -> Riot -> Market -> Scandal -> Done
+    const phaseMeeting = needsMeetingChoice || hasPendingMeeting;
+    const phaseProblem = !phaseMeeting && !!decision;
+    const phaseRiot    = !phaseMeeting && !phaseProblem && !!state.pendingUnrest;
+    const phaseMarket  = !phaseMeeting && !phaseProblem && !phaseRiot && (state.pendingMarketOffers?.length > 0);
+    const phaseScandal = !phaseMeeting && !phaseProblem && !phaseRiot && !phaseMarket && !!state.pendingScandal;
+    const phaseDone    = !phaseMeeting && !phaseProblem && !phaseRiot && !phaseMarket && !phaseScandal;
+
     return `
       <div class="screen">
+        ${renderNewspaper(state.pendingNewspaper)}
         ${renderHeatNotices(state.pendingHeatNotices)}
         ${renderScandalReveals(state.pendingScandalReveals)}
         ${renderBetrayalEvents(state.pendingBetrayals)}
@@ -419,22 +501,100 @@ export class DispatchScreen {
           </div>
 
           <div class="center">
-            <div class="story">
-              <div class="pip-row">${pipRowHTML}</div>
-              ${storyHTML}
-              ${renderMarketOffers(state.pendingMarketOffers)}
-            </div>
-            <div class="dec">
-              <div class="dec-l">YOUR DECISION</div>
-              ${decision ? `
+            ${phaseMeeting ? `
+              <div class="story">
+                <div class="pip-row">${pipRowHTML}</div>
+                ${hasPendingMeeting 
+                  ? renderPendingMeetingStory(state.pendingMeeting, decision, state.turn)
+                  : `
+                    <div class="kicker">TODAY'S DISPATCH</div>
+                    <div class="headline">${decision?.title || 'Unknown Issue'}</div>
+                    <div class="byline">WEEK ${state.turn * 6} OF YOUR TERM</div>
+                    <hr class="divider">
+                    <div class="sbody">${decision?.body || decision?.description || ''}</div>
+                    <div class="mt-offer" style="margin-top: 1.5rem; background: var(--surface-2); border-left: 4px solid var(--accent); padding: 1rem;">
+                      <div style="font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.5rem;">THE WAITING ROOM</div>
+                      <div class="sbody" style="font-size: 0.9rem;">There are people outside your office who would like a word regarding this issue before you make a decision. You may hear them out — or send them away.</div>
+                    </div>
+                  `
+                }
+              </div>
+              <div class="dec">
+                <div class="dec-l">YOUR DECISION ${renderActionPoints(state)}</div>
+                ${hasPendingMeeting 
+                  ? renderPendingMeetingActions(state.pendingMeeting) 
+                  : `
+                    ${renderMeetingRow(state, decision)}
+                    <button class="skip-btn" id="btn-skip-meeting" style="margin-top: 1rem;">I WON'T TAKE ANY MEETINGS TODAY</button>
+                  `
+                }
+              </div>
+            ` : phaseScandal ? `
+              <div class="story">
+                <div class="pip-row">${pipRowHTML}</div>
+                ${renderScandalStory(state.pendingScandal)}
+              </div>
+              <div class="dec">
+                <div class="dec-l">YOUR DECISION ${renderActionPoints(state)}</div>
+                ${renderScandalActions(state.pendingScandal)}
+              </div>
+            ` : phaseRiot ? (() => {
+              const uMeta = UNREST_META[state.pendingUnrest.type] ?? UNREST_META.demonstration;
+              return `
+              <div class="story">
+                <div class="pip-row">${pipRowHTML}</div>
+                <div class="kicker" style="color: var(--danger);">EMERGENCY DISPATCH</div>
+                <div class="headline">${uMeta.icon} ${uMeta.label}</div>
+                <div class="byline">THE STREETS ARE BOILING OVER</div>
+                <hr class="divider" style="border-color: var(--danger);">
+                <div class="sbody">${uMeta.desc}</div>
+                <div style="margin-top: 1.5rem;">
+                  ${renderUnrestActions(state.pendingUnrest)}
+                </div>
+              </div>
+              <div class="dec" style="display: none;">
+                <!-- Decision handled entirely inside the story card -->
+              </div>
+            `; })() : phaseMarket ? `
+              <div class="story">
+                <div class="pip-row">${pipRowHTML}</div>
+                <div class="kicker" style="color: #a8a8a8;">THE UNDERGROUND</div>
+                <div class="headline">Late Night Dealings</div>
+                <div class="byline">THE CITY SLEEPS, BUT MONEY DOES NOT</div>
+                <hr class="divider" style="border-color: #555;">
+                <div class="sbody">You have been contacted by individuals offering off-the-books solutions to your current problems. These actions are highly illegal and carry significant risk of exposure.</div>
+                ${renderMarketOffers(state.pendingMarketOffers)}
+              </div>
+              <div class="dec">
+                <div class="dec-l">YOUR DECISION</div>
+                <button class="skip-btn" id="btn-pass-market" style="margin-top: 1rem;">WALK AWAY</button>
+              </div>
+            ` : phaseProblem ? `
+              <div class="story">
+                <div class="pip-row">${pipRowHTML}</div>
+                ${storyHTML}
+              </div>
+              <div class="dec">
+                <div class="dec-l">YOUR DECISION ${renderActionPoints(state)}</div>
                 <div class="cards">${renderDecisionCards(decision)}</div>
                 <button class="confirm-btn" id="btn-confirm-decision" disabled>SELECT AN OPTION ABOVE</button>
-              ` : `<div class="no-dec">No decisions pending this turn.</div>`}
-              ${renderAddressCard(state)}
-              ${state.pendingScandal ? renderScandalCard(state.pendingScandal) : ''}
-              ${state.pendingUnrest  ? renderUnrestCard(state.pendingUnrest)   : ''}
-              <button class="skip-btn" id="btn-next-turn">END TURN</button>
-            </div>
+                ${renderMeetingResult(state)}
+                ${renderAddressCard(state)}
+              </div>
+            ` : `
+              <div class="story">
+                <div class="pip-row">${pipRowHTML}</div>
+                <div class="kicker">END OF DAY</div>
+                <div class="headline">The Dust Settles</div>
+                <div class="byline">DISPATCH - WEEK ${state.turn * 6} OF YOUR TERM</div>
+                <hr class="divider">
+                <div class="sbody">The day's crises have been managed. Review your standing and proceed when ready.</div>
+              </div>
+              <div class="dec">
+                <div class="dec-l">YOUR DECISION</div>
+                <button class="skip-btn" id="btn-next-turn">END TURN</button>
+              </div>
+            `}
           </div>
 
           <div class="right">
@@ -464,6 +624,20 @@ export class DispatchScreen {
   }
 
   static bind(state, container, handlers) {
+    // Morning paper
+    bindNewspaper(container, handlers);
+
+    // External actor meetings
+    container.querySelectorAll('[data-summon-actor]').forEach(btn => {
+      btn.addEventListener('click', () => handlers.summonActor?.(btn.dataset.summonActor));
+    });
+    container.querySelectorAll('[data-meeting-response]').forEach(btn => {
+      btn.addEventListener('click', () => handlers.meetingResponse?.(btn.dataset.meetingResponse === 'accept'));
+    });
+    container.querySelector('#btn-skip-meeting')?.addEventListener('click', () => {
+      handlers.skipMeeting?.();
+    });
+
     // Mobile tab switching
     const mainBody = container.querySelector('.main-body');
     container.querySelectorAll('.mob-tab').forEach(tab => {
@@ -474,8 +648,14 @@ export class DispatchScreen {
       });
     });
 
-    container.querySelector('#btn-next-turn')?.addEventListener('click', () => {
-      handlers.nextTurn();
+    container.querySelectorAll('#btn-next-turn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (state.pendingScandal && !state.viewingScandal) {
+          handlers.viewScandal?.();
+        } else {
+          handlers.nextTurn?.();
+        }
+      });
     });
 
     // getNextDecision() returns the same decision that was shown in render()

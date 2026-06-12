@@ -850,5 +850,14 @@
   "romance_exposure": {
     "severity": "career_ending",
     "flavour": "This is seen as a profound moral failure. The consequences will be severe."
+  },
+  "city_personality": {
+    "voice": "poetic-resigned",
+    "humor_style": "satirical",
+    "media_outlet": "Tehran Times",
+    "government_body": "Tehran City Council",
+    "landmark": "Milad Tower",
+    "primary_industry_workers": "bazaar merchants and public sector workers",
+    "slang_reaction": "Vay bar ma, in che vaze modiriyate akhe!"
   }
 }

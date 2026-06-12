@@ -157,6 +157,39 @@ class App {
     this.render();
   }
 
+  // ── Day structure: meetings, consults, the morning paper ────────────────
+
+  summonActor(actorName) {
+    this.turnManager.summonActor(actorName);
+    this.render();
+  }
+
+  skipMeeting() {
+    this.turnManager.skipMeeting();
+    this.render();
+  }
+
+  meetingResponse(accept) {
+    this.turnManager.resolveMeeting(accept);
+    this._checkInstantEnd(); // a busted meeting's scandal can zero approval
+    this.render();
+  }
+
+  consultAdvisor(advisorId) {
+    const result = this.turnManager.consultAdvisor(advisorId);
+    const advisor = this.state.getAdvisor(advisorId);
+    if (advisor && result?.msg) {
+      if (!advisor._msgLog) advisor._msgLog = [];
+      advisor._msgLog.push({ type: result.ok ? 'them' : 'sys', sender: result.ok ? advisor.name : undefined, text: result.msg });
+    }
+    this.render();
+  }
+
+  dismissNewspaper() {
+    this.turnManager.dismissNewspaper();
+    this.render();
+  }
+
   _logToActiveAdvisor(result) {
     const advisorId = this.renderer.activeAdvisorId;
     const advisor = advisorId ? this.state.getAdvisor(advisorId) : null;
@@ -175,6 +208,7 @@ class App {
   }
 
   nextTurn() {
+    this.state.viewingScandal = false;
     const result = this.turnManager.processTurn();
     if (result === 'term_complete' || result === 'recalled') {
       this._endGame();
@@ -203,6 +237,7 @@ class App {
   }
 
   acceptScandal() {
+    this.state.viewingScandal = false;
     this.turnManager.acceptScandal();
     // A scandal's approval penalty can drop the governor to 0 — end early
     if (this.state.approval <= 0) {
@@ -213,6 +248,7 @@ class App {
   }
 
   suppressScandal() {
+    this.state.viewingScandal = false;
     this.turnManager.suppressScandal();
     this.render();
   }
@@ -253,12 +289,18 @@ class App {
   }
 
   respondToScandal(responseId) {
+    this.state.viewingScandal = false;
     const result = this.turnManager.respondToScandal(responseId);
     if (result.gameOver) {
       // BUGFIX: this used to call this.renderer.showScreen(), which doesn't
       // exist — the game crashed instead of ending the term early.
       this._endGame();
     }
+    this.render();
+  }
+
+  viewScandal() {
+    this.state.viewingScandal = true;
     this.render();
   }
 

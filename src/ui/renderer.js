@@ -33,6 +33,7 @@ export class Renderer {
       acceptScandal: () => window.GOVERNED?.acceptScandal(),
       suppressScandal: () => window.GOVERNED?.suppressScandal(),
       respondToScandal: (responseId) => window.GOVERNED?.respondToScandal(responseId),
+      viewScandal: () => window.GOVERNED?.viewScandal(),
       acceptBribe: (advisorId) => window.GOVERNED?.acceptBribe(advisorId),
       declineBribe: (advisorId) => window.GOVERNED?.declineBribe(advisorId),
       shiftAdvisorRelationship: (advisorId, delta) => window.GOVERNED?.shiftAdvisorRelationship(advisorId, delta),
@@ -51,6 +52,11 @@ export class Renderer {
       addressNation:       (optionId) => window.GOVERNED?.addressNation(optionId),
       loverDemand:         (accept) => window.GOVERNED?.loverDemand(accept),
       partnerDemand:       (accept) => window.GOVERNED?.partnerDemand(accept),
+      summonActor:         (actorName) => window.GOVERNED?.summonActor(actorName),
+      skipMeeting:         () => window.GOVERNED?.skipMeeting(),
+      meetingResponse:     (accept) => window.GOVERNED?.meetingResponse(accept),
+      consultAdvisor:      (advisorId) => window.GOVERNED?.consultAdvisor(advisorId),
+      dismissNewspaper:    () => window.GOVERNED?.dismissNewspaper(),
     };
 
     switch (screen) {
